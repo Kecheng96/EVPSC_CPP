@@ -15,6 +15,7 @@ int main()
 
     string ftex, fsx, fload;
     if(EVPSCinput(ftex, fsx, fload)) exit(0);
+    //need a new .in file
     if(texinput(ftex, metal)) exit(0);
     if(sxinput(fsx, metal)) exit(0);
     if(loadinput(fload, metal)) exit(0);
