@@ -1,0 +1,29 @@
+{
+    "tasks": [
+		{
+            "type": "shell",	
+			"label": "build All",	
+			"command": "C:\\mingw64\\bin\\g++.exe",
+			"args": [
+                "--%",	
+				"-g",
+				"-fopenmp",
+				"-O3",
+                "-Wa,-mbig-obj",
+                "-I",
+                "C:/mingw64/include/eigen3",	
+				"-o",
+				"EVPSC.exe",	
+				"*.cpp",
+			],
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {	//要添加到的任务组，支持build或者test。一个任务组可以包含多个任务
+				"kind": "build",
+				"isDefault": true
+			},
+        },   
+    ],
+    "version": "2.0.0"
+}
