@@ -1,5 +1,5 @@
-#ifndef CRYINPUT_H
-#define CRYINPUT_H
+#ifndef INPUT_H
+#define INPUT_H
 
 #include <iostream>
 #include <fstream>
