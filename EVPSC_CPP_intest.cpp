@@ -5,7 +5,7 @@
 #include <string>
 #include <Eigen/Dense>
 
-#include "Cryinput.h"
+#include "Input.h"
 #include "Polycrystals.h"
 
 int main()
