@@ -3,6 +3,7 @@
 
 #include <omp.h>
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <Eigen/Dense>
 using namespace std;
