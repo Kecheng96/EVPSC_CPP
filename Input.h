@@ -10,6 +10,7 @@ using namespace std;
 using namespace Eigen;
 
 #include "Polycrystals.h"
+#include "Processes.h"
 
 int EVPSCinput(string &,string &,string &); //read .in file
 int sxinput(string, Polycs::polycrystal &); //read .sx file
@@ -36,7 +37,7 @@ int EVPSCinput(string &ftex,string &fsx,string &fload)
     }
 }
 
-int loadinput(string fname, Polycs::polycrystal &pcrys)
+int loadinput(string fname, Procs::Process &Proc)
 {
     fstream loadinp;
     loadinp.open(fname,ios::in); //open load
@@ -48,7 +49,7 @@ int loadinput(string fname, Polycs::polycrystal &pcrys)
         //1st line is the loading control option
         getline(loadinp, tp);
         Vector4d Victrl = getnum(tp, 4);
-        pcrys.load_ctrl(Victrl);
+        Proc.load_ctrl(Victrl);
          
         getline(loadinp, tp);//skip one line  
         //boundary condition
@@ -60,7 +61,7 @@ int loadinput(string fname, Polycs::polycrystal &pcrys)
             for(int j = 0; j < 3; j++)
                 IUdot(i,j) = int(temp(j));
         }
-        pcrys.set_IUdot(IUdot);
+        Proc.get_IUdot(IUdot);
 
         getline(loadinp, tp);//skip one line  
         //boundary condition
@@ -70,7 +71,7 @@ int loadinput(string fname, Polycs::polycrystal &pcrys)
             getline(loadinp, tp);
             Udot.row(i) = getnum(tp, 3);
         }
-        pcrys.ini_Udot_m(Udot);
+        Proc.get_Udot(Udot);
 
         getline(loadinp, tp);//skip one line  
         //boundary condition
@@ -85,7 +86,7 @@ int loadinput(string fname, Polycs::polycrystal &pcrys)
         temp = getnum(tp, 1);
         ISdot(2)=int(temp(0));
 
-        pcrys.set_ISdot(ISdot);
+        Proc.get_ISdot(ISdot);
 
         getline(loadinp, tp);//skip one line  
         //boundary condition
@@ -100,7 +101,7 @@ int loadinput(string fname, Polycs::polycrystal &pcrys)
         temp = getnum(tp, 1);
         Sig_m(2)=temp(0);
 
-        pcrys.ini_Sig_m(voigt(Sig_m));
+        Proc.get_Sdot(voigt(Sig_m));
 
         loadinp.close(); //close the file object.
         return 0;        
