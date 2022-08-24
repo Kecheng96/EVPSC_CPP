@@ -74,10 +74,19 @@ class polycrystal
         Matrix3d Sig_AV; //the average stress tensor of all garins
         Matrix3d Sig_m_old; //macro stress in last increment
 
-        double Eincr; //the increment of strain in every istep
-        int Ictrl;
-        int Nsteps; // total steps
-        double Tincr; // Tincr = Eincr/Dij_m(Ictrl)
+        //some parameters for error control and iteration control
+        double SC_err_m = 0.01; //the error limit of Self-consistent compliance or stiffness
+        int SC_iter_m = 20; //the max iteration number of SC
+        double errD_m = 0.01; //error limit between the input macro strain rate and output at each iteration 
+        double errS_m = 0.01; //error limit of the macro stress
+        double err_g_AV = 0.01; //error limit of the average grain stress
+        
+        Matrix3d Sig_in;
+        Matrix3d Dij_in;
+        Matrix3d sig_in_AV;
+
+        //output file of stress & strain
+        fstream s_sout;
 
     public:
         polycrystal();
@@ -134,11 +143,11 @@ class polycrystal
         //double nrsx_in; VectorXd CRSS_p_in; VectorXd hst_in; int modei
         int check_hardening();
 
-        int Update_Fij();
+        int Update_Fij(double);
         int Update_shape();
 
-
-        int EVPSC();
+        //the singular step according to a certain process
+        int EVPSC(int, double);
 
         //calculate the macro&grain elastic compliance
         int Selfconsistent_E(int, double, int); 
@@ -147,10 +156,10 @@ class polycrystal
         int Selfconsistent_P(int, double, int); 
 
         // calculate the Sig_m and Dij_m
-        void Cal_Sig_m();  
+        void Cal_Sig_m(double);  
 
         // calculate the Sig_g and Dij_g including the elastic and vp part
-        void Cal_Sig_g();
+        void Cal_Sig_g(double);
 
         void Update_AV(); //update the volume average value
 

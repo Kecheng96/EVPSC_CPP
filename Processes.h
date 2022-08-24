@@ -17,7 +17,6 @@ class Process
     private:
         Matrix3d Udot_input; //the velocity gradient in process file
         Matrix3d Ddot_input; //the strain rate calculated by the velocity gradient in process file
-        Matrix3d Wdot_input; //the strain rate calculated by the velocity gradient in process file
         Matrix3d Sdot_input; //the stress tensor in process file
 
         Matrix3i IUdot; //the flag of known (control by Udot_input) and unknown (calculated by EVPSC) velocity components
@@ -39,9 +38,11 @@ class Process
         //get the velocity gradient in a process file
         void get_Udot(Matrix3d);
 
+        void get_Sdot(Matrix3d);
+
         //get the known and unknown flag tensor in a process file
-        void set_IUdot(Matrix3i);
-        void set_ISdot(Vector6i);
+        void get_IUdot(Matrix3i);
+        void get_ISdot(Vector6i);
 
         //
         void loading(Polycs::polycrystal &);

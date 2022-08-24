@@ -6,6 +6,9 @@ using namespace std;
 
 polycrystal::polycrystal()
 {
+    //write macro stress & strain
+    s_sout.open("str_str.out",ios::out); 
+
     //initial the macro stress&strain
     Eps_m = Matrix3d::Zero();
     Sig_m = Matrix3d::Zero();
@@ -61,27 +64,16 @@ polycrystal::polycrystal()
 	}
 }
 
-void polycrystal::load_ctrl(Vector4d Vin)
-{
-    Nsteps = int(Vin(0));
-    Ictrl = int(Vin(1)) - 1;
-    Eincr = Vin(2);
-    Temp = Vin(3);
-}
 
-void polycrystal::ini_Udot_m(Matrix3d Min)
+void polycrystal::ini_Udot_m(Matrix3d Udot_input)
 {   
-    Udot_m = Min;
+    Udot_m = Udot_input;
     Dij_m = 0.5*(Udot_m + Udot_m.transpose());
     Wij_m = 0.5*(Udot_m - Udot_m.transpose());
     
     Dij_AV = Dij_m;
     Dije_AV = Dij_m;
     Dijp_AV = Matrix3d::Zero();
-
-    //calculate Time increment Tincr
-    Vector6d Vtemp = voigt(Dij_m);
-    Tincr = Eincr / Vtemp(Ictrl);
 }
 
 void polycrystal::ini_Sig_m(Matrix3d Min){Sig_m = Min;}
@@ -735,7 +727,7 @@ int polycrystal::Selfconsistent_P(int Istep, double ERRM, int ITMAX)
 }
 
 
-int polycrystal::Update_Fij()
+int polycrystal::Update_Fij(double Tincr)
 {
     Matrix3d Fnew;
     Fnew = Matrix3d::Zero();
@@ -845,89 +837,73 @@ int polycrystal::Update_shape()
 }
 
 
-int polycrystal::EVPSC()
+int polycrystal::EVPSC(int istep, double Tincr)
 {   
-    double SC_err_m = 0.01;
-    int SC_iter_m = 20;
-    double errD_m_AV = 0.01;
-    double errS_m_AV = 0.01;
-    double err_g_AV = 0.01;
     double errd, errs, err_g;
-    Matrix3d Sig_in;
-    Matrix3d Dij_in;
-    Matrix3d sig_in_AV;
-
-    fstream s_sout;
-    s_sout.open("str_str.out",ios::out); //write macro stress strain
-    
-    for(int istep = 0; istep < Nsteps; ++istep)
-    {
-        cout << "********STEP********\n\t" \
+    cout << "********STEP********\n\t" \
         << istep << endl << "********STEP********\n";
 
-        Sig_m_old = Sig_m; //save the stress of the last step
-        for(int G_n = 0; G_n < grains_num; ++G_n)
-            g[G_n].save_sig_g_old();//save the grain stress of the last step
+    Sig_m_old = Sig_m; //save the stress of the last step
+    for(int G_n = 0; G_n < grains_num; ++G_n)
+        g[G_n].save_sig_g_old();//save the grain stress of the last step
 
-        for(int i = 0; i < 30; ++i)
+    for(int i = 0; i < 30; ++i)
+    {
+        //save the input for error calculation
+        Sig_in = Sig_m;
+        Dij_in = Dij_m;
+        sig_in_AV = Matrix3d::Zero();
+
+        for(int G_n = 0; G_n < grains_num; ++G_n) 
+            sig_in_AV += g[G_n].get_stress_g() * g[G_n].get_weight_g();
+
+        ///////////
+        cout << "iteration: " << i+1 << endl;
+        Selfconsistent_E(istep, SC_err_m, SC_iter_m);
+        Selfconsistent_P(istep, SC_err_m, SC_iter_m);
+        Cal_Sig_m(Tincr); 
+        Cal_Sig_g(Tincr);
+        Update_AV();
+        ///////////
+
+        errs = Errorcal(Sig_m, Sig_in);
+        errd = Errorcal(Dij_m, Dij_in);
+        err_g = Errorcal(Sig_AV, sig_in_AV);
+
+        cout << "\nerr_s:\t" << errs << endl;
+        cout << "err_d:\t" << errd << endl;
+        cout << "err_g:\t" << err_g << endl;
+        cout << "=-=-=-=-=-=-=-=-=-=\n"; 
+        if((errs<errS_m)&&(errd<errD_m)&&(err_g<err_g_AV)) break;
+    }
+
+    s_sout << voigt(Sig_m).transpose() << endl;
+
+    //update the shape of ellipsoid
+    if(Ishape == 0)
+    {
+        Update_Fij(Tincr);
+        Update_shape();
+    }
+
+    //update the state in deformation systems and 
+    // crystalline orientation 
+     for(int G_n = 0; G_n < grains_num; ++G_n)
+    {
+        g[G_n].Update_shear_strain(Tincr);
+        g[G_n].Update_orientation(Tincr, Wij_m, Dije_AV, Dijp_AV);
+        g[G_n].Update_CRSS(Tincr);
+        if(Ishape == 1)
         {
-            //save the input for error calculation
-            Sig_in = Sig_m;
-            Dij_in = Dij_m;
-            sig_in_AV = Matrix3d::Zero();
-
-            for(int G_n = 0; G_n < grains_num; ++G_n) 
-                sig_in_AV += g[G_n].get_stress_g() * g[G_n].get_weight_g();
-            //
-            ///////////
-            cout << "iteration: " << i+1 << endl;
-            Selfconsistent_E(istep, SC_err_m, SC_iter_m);
-            Selfconsistent_P(istep, SC_err_m, SC_iter_m);
-            Cal_Sig_m(); 
-            Cal_Sig_g();
-            Update_AV();
-            ///////////
-
-            errs = Errorcal(Sig_m, Sig_in);
-            errd = Errorcal(Dij_m, Dij_in);
-            err_g = Errorcal(Sig_AV, sig_in_AV);
-
-            cout << "\nerr_s:\t" << errs << endl;
-            cout << "err_d:\t" << errd << endl;
-            cout << "err_g:\t" << err_g << endl;
-            cout << "=-=-=-=-=-=-=-=-=-=\n"; 
-            if((errs<errS_m_AV)&&(errd<errD_m_AV)&&(err_g<err_g_AV)) break;
+            g[G_n].Update_Fij_g(Tincr);
+            g[G_n].Update_shape_g();
         }
-        //s_sout << voigt(Dij_m).transpose() << "\t" 
-        s_sout << voigt(Sig_m).transpose() << endl;
-
-        //update the shape of ellipsoid
-        if(Ishape == 0)
-        {
-            Update_Fij();
-            Update_shape();
-        }
-
-        //update the state in deformation systems and 
-        // crystalline orientation 
-         for(int G_n = 0; G_n < grains_num; ++G_n)
-        {
-            g[G_n].Update_shear_strain(Tincr);
-            g[G_n].Update_orientation(Tincr, Wij_m, Dije_AV, Dijp_AV);
-            g[G_n].Update_CRSS(Tincr);
-            if(Ishape == 1)
-            {
-                g[G_n].Update_Fij_g(Tincr);
-                g[G_n].Update_shape_g();
-            }
-        }
-
-    } // end of istep loop
+    }
     return 0;
 }
 
 
-void polycrystal::Cal_Sig_m()
+void polycrystal::Cal_Sig_m(double Tincr)
 {
     Wij_m = Matrix3d::Zero();
     //why not Wij = Udot - Dij ?
@@ -1006,7 +982,7 @@ void polycrystal::Cal_Sig_m()
 
 }
 
-void polycrystal::Cal_Sig_g()
+void polycrystal::Cal_Sig_g(double Tincr)
 {
     #pragma omp parallel for num_threads(Mtr)
     for(int G_n = 0; G_n < grains_num; G_n++)
