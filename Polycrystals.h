@@ -92,21 +92,19 @@ class polycrystal
     public:
         polycrystal();
 
-        void load_ctrl(Vector4d); 
-        //Vector4d 0: Nsteps; 1: Ictrl; 2: Eincr; 3: Temperature;
         void ini_Udot_m(Matrix3d);
         void ini_Sig_m(Matrix3d);
         void set_IUdot(Matrix3i);
         void set_ISdot(Vector6i);
 
-        int grains_n(int);  
         //input the number of grains
+        int grains_n(int);  
         int check_grains_n();
         
-        void ini_euler(Vector4d, int); 
         //input the euler angles and weights
         //needs loop over grains
-        void check_euler(int);
+        void ini_euler(Vector4d, int); 
+        void Out_euler(fstream);
         void Norm_weight();
 
         int ini_cry(string, VectorXd);

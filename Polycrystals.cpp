@@ -120,10 +120,11 @@ void polycrystal::Norm_weight()
 
 }
 
-void polycrystal::check_euler(int i)
+void polycrystal::Out_euler(fstream texfile)
 {
-    cout << "the euler angles of Grain " << i << ":\n";
-    cout  << g[i].get_euler_g().transpose() << endl;
+    //cout << "the euler angles of Grain " << i << ":\n";
+    //cout  << g[i].get_euler_g().transpose() << endl;
+    
 }
 
 int polycrystal::ini_cry(string strin, VectorXd vin)

@@ -33,19 +33,28 @@ class Process
         Process();
 
         //get the total steps and increment of a process from files
+        //Vector4d 0: Nsteps; 1: Ictrl; 2: Eincr; 3: Temperature;
         void load_ctrl(Vector4d);
 
         //get the velocity gradient in a process file
         void get_Udot(Matrix3d);
 
+        //get the Cauchy stress tensor in a process file
         void get_Sdot(Matrix3d);
 
         //get the known and unknown flag tensor in a process file
         void get_IUdot(Matrix3i);
         void get_ISdot(Vector6i);
 
-        //
         void loading(Polycs::polycrystal &);
+
+        /////
+        //Output functions:
+        //output of stress&strain curves  
+        void Out_sscurves(Polycs::polycrystal &);
+
+        //output of texture
+        void Out_texture(Polycs::polycrystal &);
 
 };
 
