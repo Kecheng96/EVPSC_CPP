@@ -4,4 +4,4 @@
 Debuginput/*
 .vscode/*
 build/*
-CMakelists.txt
+CMakeLists.txt
