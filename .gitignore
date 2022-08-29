@@ -1,6 +1,6 @@
 *.exe
 *.out
 *.in
-Debuginput/
-.vscode/
-build/
+Debuginput/*
+.vscode/*
+build/*
