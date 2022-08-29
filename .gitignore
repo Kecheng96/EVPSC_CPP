@@ -1,1 +1,6 @@
 *.exe
+*.out
+*.in
+Debuginput/
+.vscode/
+build/

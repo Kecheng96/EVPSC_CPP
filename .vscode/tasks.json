@@ -1,29 +1,19 @@
 {
-    "tasks": [
+	"version": "2.0.0",
+	"tasks": [
 		{
-            "type": "shell",	
-			"label": "build All",	
-			"command": "C:\\mingw64\\bin\\g++.exe",
-			"args": [
-                "--%",	
-				"-g",
-				"-fopenmp",
-				"-O3",
-                "-Wa,-mbig-obj",
-                "-I",
-                "C:/mingw64/include/eigen3",	
-				"-o",
-				"EVPSC.exe",	
-				"*.cpp",
+			"type": "cmake",
+			"label": "CMake: build",
+			"command": "build",
+			"targets": [
+				"all"
 			],
-			"problemMatcher": [
-				"$gcc"
-			],
-			"group": {	//要添加到的任务组，支持build或者test。一个任务组可以包含多个任务
+			"group": {
 				"kind": "build",
 				"isDefault": true
 			},
-        },   
-    ],
-    "version": "2.0.0"
+			"problemMatcher": [],
+			"detail": "CMake template build task"
+		}
+	]
 }
