@@ -26,6 +26,13 @@ polycrystal::polycrystal()
     C_VP_SC = M_VP_SC.inverse();
     D0 = Vector6d::Zero();
 
+    Msup<<1,0,0,0,0,0,
+    0,1,0,0,0,0,
+    0,0,1,0,0,0,
+    0,0,0,0.5,0,0,
+    0,0,0,0,0.5,0,
+    0,0,0,0,0,0.5;
+
     //initial the Eshelby parameter
     VectorXd xph(Intn), xth(Intn),
              wph(Intn), wth(Intn);

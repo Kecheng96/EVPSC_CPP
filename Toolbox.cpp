@@ -159,9 +159,9 @@ void voigt(Matrix6d Min, double M3333[3][3][3][3])
 
 //11-->1, 22-->2, 33-->3, 23=32-->4, 31=13-->5, 12=21-->6 \
   14-->7, 24-->8, 34-->9, 44-->10
-Vector<double, 10> voigt(Matrix4d Min)
+Vector10d voigt(Matrix4d Min)
 {
-    Vector<double, 10> Vout;
+    Vector10d Vout;
     Vout(0) = Min(0,0);
     Vout(1) = Min(1,1); 
     Vout(2) = Min(2,2); 
@@ -175,7 +175,7 @@ Vector<double, 10> voigt(Matrix4d Min)
     return Vout;
 }
 
-Matrix4d voigt(Vector<double, 10> Vin)
+Matrix4d voigt(Vector10d Vin)
 {
     Matrix4d Mout;
     Mout(0,0) = Vin(0);

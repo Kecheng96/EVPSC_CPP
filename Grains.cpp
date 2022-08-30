@@ -163,8 +163,8 @@ Vector3d axis_t, Matrix6d C66,Integralpoint6 aa6, Integralpoint6 aaww6, Integral
 
     Vector6d aa2, aaww2, a1;
     Vector6d a1_inv;
-    Vector<double, 10> a1_10;
-    Vector<double, 10> a1_10_inv;
+    Vector10d a1_10;
+    Vector10d a1_10_inv;
     Matrix4d a1m;
 
     double Ro3;

@@ -22,23 +22,10 @@ typedef Matrix<double,5,5> Matrix5d;
 typedef Matrix<double, 6, 1> Vector6d;
 typedef Matrix<double, 5, 1> Vector5d;
 typedef Matrix<int, 6, 1> Vector6i;
+typedef Matrix<double, 10, 1> Vector10d;
 typedef Matrix<double,3,Intn*Intn> Integralpoint3;
 typedef Matrix<double,6,Intn*Intn> Integralpoint6;
 typedef Matrix<double,Intn*Intn,1> Integralpoint1;
-//
-const Matrix6d Msup { {1,0,0,0,0,0},
-                      {0,1,0,0,0,0},
-                      {0,0,1,0,0,0},
-                      {0,0,0,0.5,0,0},
-                      {0,0,0,0,0.5,0},
-                      {0,0,0,0,0,0.5}};
-
-const Matrix6d Msupinv { {1,0,0,0,0,0},
-                      {0,1,0,0,0,0},
-                      {0,0,1,0,0,0},
-                      {0,0,0,2,0,0},
-                      {0,0,0,0,2,0},
-                      {0,0,0,0,0,2}};
 
 /////////////////////////
 //Identity tensor
@@ -123,8 +110,8 @@ Matrix3d voigt(Vector6d);  // 6X1 to 3X3
 Vector6d voigt(Matrix3d);  // 3X3 to 6X1
 Matrix6d voigt(double M3333[3][3][3][3]);    // 3X3X3X3 to 6X6
 void voigt(Matrix6d, double M3333[3][3][3][3]); // 6X6 to 3X3X3X3
-Vector<double, 10> voigt(Matrix4d);  // 4X4 to 10X1
-Matrix4d voigt(Vector<double, 10>);  // 10X1 to 4X4
+Vector10d voigt(Matrix4d);  // 4X4 to 10X1
+Matrix4d voigt(Vector10d);  // 10X1 to 4X4
 Vector6i voigt(Matrix3i); //int version
 
 Matrix5d voigt6to5(Matrix6d);

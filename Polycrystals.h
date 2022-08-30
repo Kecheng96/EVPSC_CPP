@@ -89,6 +89,8 @@ class polycrystal
         //output file of stress & strain
         fstream s_sout;
 
+        Matrix6d Msup;
+
     public:
         polycrystal();
 
