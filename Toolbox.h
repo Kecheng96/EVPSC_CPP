@@ -106,6 +106,7 @@ Matrix6d voigttoB6(Matrix6d);
 //Voigt and its overload function
 //to realize the 3X3X3X3 to 6X6 and the reverse transformation
 //and realize the 3X3 to 6X1 and the reverse transformation
+//11-->1, 22-->2, 33-->3, 23=32-->4, 31=13-->5, 12=21-->6 
 Matrix3d voigt(Vector6d);  // 6X1 to 3X3
 Vector6d voigt(Matrix3d);  // 3X3 to 6X1
 Matrix6d voigt(double M3333[3][3][3][3]);    // 3X3X3X3 to 6X6

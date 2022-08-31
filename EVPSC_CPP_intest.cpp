@@ -10,16 +10,14 @@
 #include "Polycrystals.h"
 
 int main()
-{   
+{
     Polycs::polycrystal metal; //declare object
+    Procs::Process Proc1;
 
     string ftex, fsx, fload;
-    if(EVPSCinput(ftex, fsx, fload)) exit(0);
-    //need a new .in file
+    if(EVPSCinput(ftex, fsx, fload, Proc1)) exit(0);
     if(texinput(ftex, metal)) exit(0);
     if(sxinput(fsx, metal)) exit(0);
-    
-    Procs::Process Proc1;
     if(loadinput(fload, Proc1)) exit(0);
     
     double Start = clock();

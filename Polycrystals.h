@@ -4,6 +4,7 @@
 #include <omp.h>
 #include <iostream>
 #include <fstream>
+#include <iomanip>
 #include <string>
 #include <Eigen/Dense>
 using namespace std;
@@ -86,9 +87,6 @@ class polycrystal
         Matrix3d Dij_in;
         Matrix3d sig_in_AV;
 
-        //output file of stress & strain
-        fstream s_sout;
-
         Matrix6d Msup;
 
     public:
@@ -106,7 +104,6 @@ class polycrystal
         //input the euler angles and weights
         //needs loop over grains
         void ini_euler(Vector4d, int); 
-        void Out_euler(fstream);
         void Norm_weight();
 
         int ini_cry(string, VectorXd);
@@ -168,6 +165,12 @@ class polycrystal
         Integralpoint3 alpha, aww;
         Integralpoint6 aa6, aaww6; //coordinate and weigts in Fourier space 
         Integralpoint1 ww;
+
+        //output
+        Vector6d get_Sig_m();
+        Vector6d get_Eps_m();
+        Vector4d get_euler(fstream &);
+
         
 };
 

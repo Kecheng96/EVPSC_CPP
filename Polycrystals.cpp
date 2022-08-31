@@ -1,13 +1,10 @@
 #include "Polycrystals.h"
 #include <iostream>
-#include <fstream>
 using namespace Polycs;
 using namespace std;
 
 polycrystal::polycrystal()
 {
-    //write macro stress & strain
-    s_sout.open("str_str.out",ios::out); 
 
     //initial the macro stress&strain
     Eps_m = Matrix3d::Zero();
@@ -125,13 +122,6 @@ void polycrystal::Norm_weight()
     for(int i = 0; i < grains_num; i++)
         g[i].set_weight_g(g[i].get_weight_g()/total_w);
 
-}
-
-void polycrystal::Out_euler(fstream texfile)
-{
-    //cout << "the euler angles of Grain " << i << ":\n";
-    //cout  << g[i].get_euler_g().transpose() << endl;
-    
 }
 
 int polycrystal::ini_cry(string strin, VectorXd vin)
@@ -885,7 +875,7 @@ int polycrystal::EVPSC(int istep, double Tincr)
         if((errs<errS_m)&&(errd<errD_m)&&(err_g<err_g_AV)) break;
     }
 
-    s_sout << voigt(Sig_m).transpose() << endl;
+    Eps_m += Dij_m * Tincr; //update the macro strain tensor
 
     //update the shape of ellipsoid
     if(Ishape == 0)
@@ -1012,3 +1002,13 @@ void polycrystal::Update_AV()
     Dij_AV = Dije_AV + Dijp_AV;
 }
 
+Vector6d polycrystal::get_Sig_m(){return voigt(Sig_m);}
+Vector6d polycrystal::get_Eps_m(){return voigt(Eps_m);}
+Vector4d polycrystal::get_euler(fstream &texfile)
+{
+    for(int i = 0; i < grains_num; i++)
+    {
+        texfile << setprecision(4) << scientific << g[i].get_euler_g().transpose();
+        texfile << setprecision(4) << setw(8) << scientific << g[i].get_weight_g() << endl;
+    }
+}

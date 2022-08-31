@@ -3,6 +3,9 @@
 
 #include <string>
 #include <Eigen/Dense>
+#include <fstream>
+#include <iomanip>
+
 using namespace std;
 using namespace Eigen;
 
@@ -29,8 +32,15 @@ class Process
         double Temp; // /(K^-1) temperature 
         double Tincr;
 
+        //Output files
+        fstream ss_out; //output of the macro stress-strain curves
+        fstream tex_out; //output of the texture
+
+        int texctrl; //print the texture every n steps(0 means only print at the end)
+
     public:
         Process();
+        ~Process();
 
         //get the total steps and increment of a process from files
         //Vector4d 0: Nsteps; 1: Ictrl; 2: Eincr; 3: Temperature;
@@ -54,7 +64,8 @@ class Process
         void Out_sscurves(Polycs::polycrystal &);
 
         //output of texture
-        void Out_texture(Polycs::polycrystal &);
+        void Out_texture(Polycs::polycrystal &, int);
+        void Out_texset(int);
 
 };
 

@@ -3,6 +3,19 @@ using namespace Procs;
 
 Process::Process()
 {
+    ss_out.open("str_str.out",ios::out); 
+    ss_out << setw(10) << "E11" << setw(11)<< "E22" << setw(11)<< "E33";
+    ss_out << setw(11) << "E32" << setw(11)<< "E13" << setw(11)<< "E12";
+    ss_out << setw(11) << "S11" << setw(11)<< "S22" << setw(11)<< "S33";
+    ss_out << setw(11) << "S32" << setw(11)<< "S13" << setw(11)<< "S12" << endl;
+
+    tex_out.open("Tex.out",ios::out);
+}
+
+Process::~Process()
+{
+    ss_out.close();
+    tex_out.close();
 }
 
 void Process::load_ctrl(Vector4d Vin)
@@ -11,6 +24,8 @@ void Process::load_ctrl(Vector4d Vin)
     Ictrl = int(Vin(1)) - 1;
     Eincr = Vin(2);
     Temp = Vin(3);
+
+    if(!texctrl) texctrl = Nsteps;
 }
 
 void Process::get_Udot(Matrix3d Min)
@@ -35,6 +50,25 @@ void Process::loading(Polycs::polycrystal &pcrys)
     for(int istep = 0; istep < Nsteps; ++istep)
     {
         pcrys.EVPSC(istep, Tincr);
+        Out_sscurves(pcrys);
+        if(!((istep+1)%texctrl))
+            Out_texture(pcrys,istep);
     }
 
 }
+
+void Process::Out_sscurves(Polycs::polycrystal &pcrys)
+{
+    IOFormat Outformat(StreamPrecision);
+    ss_out << setprecision(4) << scientific << pcrys.get_Eps_m().transpose().format(Outformat)<< " ";
+    ss_out << setprecision(4) << scientific << pcrys.get_Sig_m().transpose().format(Outformat) << endl;
+}
+
+void Process::Out_texture(Polycs::polycrystal &pcrys, int istep)
+{
+    tex_out << "TEXTURE AT STEP = " << istep+1 << endl;
+    pcrys.get_euler(tex_out);
+    tex_out << endl;
+}
+
+void Process::Out_texset(int input){texctrl = input;}

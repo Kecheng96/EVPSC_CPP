@@ -12,21 +12,35 @@ using namespace Eigen;
 #include "Polycrystals.h"
 #include "Processes.h"
 
-int EVPSCinput(string &,string &,string &); //read .in file
+int EVPSCinput(string &,string &,string &, Procs::Process &); //read .in file
 int sxinput(string, Polycs::polycrystal &); //read .sx file
 int texinput(string, Polycs::polycrystal &); //read .tex file
-int loadinput(string, Polycs::polycrystal &);
+int loadinput(string, Procs::Process &Proc);
 VectorXd getnum(string, int);
 
-int EVPSCinput(string &ftex,string &fsx,string &fload)
+int EVPSCinput(string &ftex,string &fsx,string &fload, Procs::Process &Proc)
 {
     fstream ininp;
     ininp.open("EVPSC_CPP.in",ios::in); //open EVPSC.in
     if (ininp.is_open())
     {
-        getline(ininp, ftex);//skip one line  
-        getline(ininp, fsx);//skip one line  
-        getline(ininp, fload);//skip one line  
+        //read the file path
+        string tp;
+        getline(ininp, tp); //skip
+        getline(ininp, ftex);
+        getline(ininp, tp); //skip
+        getline(ininp, fsx); 
+        getline(ininp, tp); //skip
+        getline(ininp, fload); 
+
+        //read output control
+        getline(ininp, tp); //skip
+        getline(ininp, tp); //skip
+        getline(ininp, tp); //skip
+        getline(ininp, tp); //skip
+        VectorXd temp = getnum(tp, 1);
+        Proc.Out_texset(int(temp(0)));
+
         ininp.close(); 
         return 0;
     }
