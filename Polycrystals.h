@@ -169,7 +169,7 @@ class polycrystal
         //output
         Vector6d get_Sig_m();
         Vector6d get_Eps_m();
-        Vector4d get_euler(fstream &);
+        void get_euler(fstream &);
 
         
 };

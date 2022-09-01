@@ -1004,7 +1004,7 @@ void polycrystal::Update_AV()
 
 Vector6d polycrystal::get_Sig_m(){return voigt(Sig_m);}
 Vector6d polycrystal::get_Eps_m(){return voigt(Eps_m);}
-Vector4d polycrystal::get_euler(fstream &texfile)
+void polycrystal::get_euler(fstream &texfile)
 {
     for(int i = 0; i < grains_num; i++)
     {
