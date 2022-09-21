@@ -1008,7 +1008,7 @@ void polycrystal::get_euler(fstream &texfile)
 {
     for(int i = 0; i < grains_num; i++)
     {
-        texfile << setprecision(4) << scientific << g[i].get_euler_g().transpose();
+        texfile << setprecision(4) << scientific << g[i].get_euler_g().transpose() << "  ";
         texfile << setprecision(4) << setw(8) << scientific << g[i].get_weight_g() << endl;
     }
 }
