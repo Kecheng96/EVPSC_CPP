@@ -69,7 +69,7 @@ void Eigsrt(Matrix3d &, Vector3d &);
 //calculate C(i) = A(i)*B(i)
 Vector6d mult_dot(Vector6d, Vector6i);
 //calculate Cijkl = Aijmn * Bmnkl
-void mult_4th(double A[3][3][3][3],MatrixXd B,double C[3][3][3][3]);
+void mult_4th(double A[3][3][3][3],double B[3][3][3][3],double C[3][3][3][3]);
 //calculate Cij = Aijkl * Bkl
 Matrix3d mult_4th(double A[3][3][3][3],Matrix3d B);
 /////////////////////////

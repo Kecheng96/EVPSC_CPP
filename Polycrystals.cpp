@@ -311,8 +311,9 @@ int polycrystal::Selfconsistent_E(int Istep, double ERRM, int ITMAX)
     for(int G_n = 0; G_n < grains_num; G_n++)
     {
         // -2  Rotate the tensor Cijkl in grain to Sample Axes
-        Matrix3d Euler_M = Euler_trans(g[G_n].get_euler_g());
-        voigt(rotate_C66(Cij6, Euler_M), C4SA);
+        Matrix3d Euler_M = g[G_n].get_Euler_M_g();
+        Matrix3d ET = Euler_M.transpose();
+        voigt(rotate_C66(Cij6, ET), C4SA);
         g[G_n].Update_Cij6_SA_g(voigt(C4SA));
         // -2  Rotate the tensor Cijkl in grain to Sample Axes
 
@@ -325,8 +326,8 @@ int polycrystal::Selfconsistent_E(int Istep, double ERRM, int ITMAX)
                 for(int k = 0; k < 3; k++)
                     for(int l = 0; l < 3; l++)
         {
-            C4SAS[i][j][k][l] = C4SA[i][j][k][l] - sig_g(i,j)*Iij(k,l)
-                                +0.5*Iij(i,k)*sig_g(j,l) \
+            C4SAS[i][j][k][l] = C4SA[i][j][k][l] - sig_g(i,j)*Iij(k,l);
+        //                        +0.5*Iij(i,k)*sig_g(j,l) \
                                 -0.5*Iij(i,l)*sig_g(j,l) \
                                 -0.5*Iij(j,l)*sig_g(i,k) \
                                 +0.5*Iij(j,k)*sig_g(i,l);
@@ -474,7 +475,9 @@ int polycrystal::Selfconsistent_E(int Istep, double ERRM, int ITMAX)
             //store the C~
             g[G_n].Update_Ctilde_g(Chg_basis6(Ctilde));
             //store the PI*(S^-1)
-            mult_4th(R4_SA,S66inv,RSinv_SA);
+            double S66inv4th[3][3][3][3] = {0};
+            voigt(S66inv,S66inv4th);
+            mult_4th(R4_SA,S66inv4th,RSinv_SA);
             g[G_n].Update_RSinv_C_g(RSinv_SA);
             //-13
 
@@ -645,7 +648,9 @@ int polycrystal::Selfconsistent_P(int Istep, double ERRM, int ITMAX)
             g[G_n].Update_Mptilde_g(Mtilde); 
             //only affine case (interaction = 1) 
             //store the PI*(S^-1)
-            mult_4th(R4_SA,S55.inverse(),RSinv_SA);
+            double S66inv4th[3][3][3][3] = {0};
+            Chg_basis(S55.inverse(),S66inv4th);
+            mult_4th(R4_SA,S66inv4th,RSinv_SA);
             g[G_n].Update_RSinv_C_g(RSinv_SA);
             //06.02
             //-5
@@ -733,7 +738,7 @@ int polycrystal::Update_Fij(double Tincr)
         for(int j = 0; j < 3; j++)
             for(int k = 0; k < 3; k++)
     {
-        Fnew(i,j) += (Tincr*Udot_m(i,k)+Iij(i,k))*Fij_m(k,j);
+        Fnew(i,j) += (Tincr*Udot_AV(i,k)+Iij(i,k))*Fij_m(k,j);
     }
     Fij_m = Fnew;
     return 0;
@@ -881,7 +886,7 @@ int polycrystal::EVPSC(int istep, double Tincr)
     if(Ishape == 0)
     {
         Update_Fij(Tincr);
-        Update_shape();
+        //Update_shape();
     }
 
     //update the state in deformation systems and 
@@ -993,11 +998,15 @@ void polycrystal::Update_AV()
     Dije_AV = Matrix3d::Zero();
     Dijp_AV = Matrix3d::Zero();
     Sig_AV = Matrix3d::Zero();
+    Udot_AV = Matrix3d::Zero();
+    double wei;
     for(int G_n = 0; G_n < grains_num; G_n++)
     {
-        Dije_AV += g[G_n].get_Dije_g() * g[G_n].get_weight_g();
-        Dijp_AV += g[G_n].get_Dijp_g() * g[G_n].get_weight_g();
-        Sig_AV += g[G_n].get_stress_g() * g[G_n].get_weight_g();
+        wei = g[G_n].get_weight_g();
+        Dije_AV += g[G_n].get_Dije_g() * wei;
+        Dijp_AV += g[G_n].get_Dijp_g() * wei;
+        Sig_AV += g[G_n].get_stress_g() * wei;
+        Udot_AV += g[G_n].get_Udot_g() * wei;
     }
     Dij_AV = Dije_AV + Dijp_AV;
 }
@@ -1006,9 +1015,13 @@ Vector6d polycrystal::get_Sig_m(){return voigt(Sig_m);}
 Vector6d polycrystal::get_Eps_m(){return voigt(Eps_m);}
 void polycrystal::get_euler(fstream &texfile)
 {
+    IOFormat Outformat(StreamPrecision);
     for(int i = 0; i < grains_num; i++)
     {
-        texfile << setprecision(4) << scientific << g[i].get_euler_g().transpose() << "  ";
-        texfile << setprecision(4) << setw(8) << scientific << g[i].get_weight_g() << endl;
+        texfile << setprecision(4) << scientific << g[i].get_euler_g().transpose().format(Outformat) << "  ";
+        texfile << setprecision(4) << scientific << g[i].get_weight_g() << endl;
     }
 }
+
+Vector3d polycrystal::get_ell_axis(){return ell_axis;}
+Vector3d polycrystal::get_ellip_ang(){return ellip_ang;}

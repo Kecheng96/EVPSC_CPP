@@ -66,6 +66,7 @@ class polycrystal
     
         Matrix3d Dij_m; //the macro strain rate tensor
         Matrix3d Wij_m; //the macro rotation rate tensor
+        Matrix3d Udot_AV;
         // Udot_m = Dij_m + Wij_m
         Matrix3d Dij_AV; //the average strain rate tensor of all garins
         Matrix3d Dije_AV; //the elastic part
@@ -143,6 +144,8 @@ class polycrystal
 
         int Update_Fij(double);
         int Update_shape();
+        Vector3d get_ell_axis(); 
+        Vector3d get_ellip_ang(); 
 
         //the singular step according to a certain process
         int EVPSC(int, double);

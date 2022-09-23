@@ -504,10 +504,21 @@ double Errorcal(Matrix6d A, Matrix6d B)
 double Errorcal(Vector6d A, Vector6d B)
 {
     double err;
-    Vector6d C1,C2;
-    C1 = A - B;
-    C2 = 0.5*(A + B);
-    err = C1.norm()/C2.norm();
+    double A1 = A.norm();
+    double B1 = B.norm();
+    double Tmax = max(A1, B1);
+    double Tmin = min(A1, B1);
+    if(Tmax==0)
+    {err = 0;}
+    else if(Tmin/Tmax < 1e-3)
+    {err = Tmax - Tmin;}
+    else
+    {
+        Vector6d C1,C2;
+        C1 = A - B;
+        C2 = 0.5*(A + B);
+        err = C1.norm()/C2.norm();
+    }
     return err;
 }
 
@@ -541,17 +552,15 @@ Vector6d mult_dot(Vector6d Vin, Vector6i Iv)
     return Vout;
 }
 
-void mult_4th(double A[3][3][3][3],MatrixXd B,double C[3][3][3][3])
+void mult_4th(double A[3][3][3][3],double B[3][3][3][3],double C[3][3][3][3])
 {
-    double B4[3][3][3][3];
-    Chg_basis(B,B4);
     for(int i = 0; i < 3; i++)
         for(int j = 0; j < 3; j++)
             for(int k = 0; k < 3; k++)
                 for(int l = 0; l < 3; l++)
                     for(int m = 0; m < 3; m++)
                         for(int n = 0; n < 3; n++)
-    C[i][j][k][l] = A[i][j][m][n] * B4[m][n][k][l];        
+    C[i][j][k][l] = A[i][j][m][n] * B[m][n][k][l];        
 }
 
 Matrix3d mult_4th(double A[3][3][3][3],Matrix3d B)
@@ -561,7 +570,7 @@ Matrix3d mult_4th(double A[3][3][3][3],Matrix3d B)
         for(int j = 0; j < 3; j++)
             for(int k = 0; k < 3; k++)
                 for(int l = 0; l < 3; l++)
-    C(i,j) = A[i][j][k][l] * B(i,j);
+    C(i,j) = A[i][j][k][l] * B(k,l);
     return C;
 }
 

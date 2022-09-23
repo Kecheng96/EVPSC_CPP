@@ -47,7 +47,8 @@ class grain
         bool Iflat_g = 0; //flag of stretch the ellipsoid (0: yes; 1: no)
         ///////
 
-        Vector3d euler;  //Euler angles and weight (/degree)
+        //Vector3d euler;  //Euler angles and weight (/degree)
+        Matrix3d Euler_M;
         double weight;
 
         Modes::mode* gmode = NULL; // deformation modes
@@ -66,6 +67,7 @@ class grain
         //input the euler angle and weights
         void ini_euler_g(Vector4d);
         Vector3d get_euler_g();
+        Matrix3d get_Euler_M_g();
         double get_weight_g();
         void set_weight_g(double);
   
@@ -103,6 +105,7 @@ class grain
         
         Matrix3d get_Dije_g();
         Matrix3d get_Dijp_g();
+        Matrix3d get_Udot_g();
 
         void save_sig_g_old();
 

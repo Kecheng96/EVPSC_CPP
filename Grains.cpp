@@ -25,9 +25,16 @@ Vector3d grain::get_ell_axis_g(){return ell_axis_g;}
 
 Matrix3d grain::get_ell_axisb_g(){return ell_axisb_g;}
 
-void grain::ini_euler_g(Vector4d vin){euler = vin(seq(0,2)); weight = vin(3);}
+void grain::ini_euler_g(Vector4d vin)
+{
+    Vector3d euler = vin(seq(0,2));
+    Euler_M = Euler_trans(euler);
+    weight = vin(3);
+}
 
-Vector3d grain::get_euler_g(){return euler;}
+Vector3d grain::get_euler_g(){return Euler_trans(Euler_M);}
+
+Matrix3d grain::get_Euler_M_g(){return Euler_M;}
 
 double grain::get_weight_g(){return weight;}
 
@@ -236,6 +243,7 @@ void grain::save_sig_g_old(){sig_g_old = sig_g;}
 
 Matrix3d grain::get_Dije_g(){return Dije_g;}
 Matrix3d grain::get_Dijp_g(){return Dijp_g;}
+Matrix3d grain::get_Udot_g(){return Udot_g;}
 
 //elastic consistent
 void grain::Update_Cij6_SA_g(Matrix6d Min){Cij6_SA_g = Min;}
@@ -326,7 +334,7 @@ void grain::Update_shape_g()
  
     //-5 update the ellipsoid orientation
     Matrix3d BT = B.transpose();
-    ellip_ang_g = Euler_trans(BT);
+    ellip_ang_g = Euler_trans(B);
     //-5
 
     //-6 Update the Iflat_g according to the Max axes ratio of ellipsoid
@@ -376,8 +384,8 @@ Matrix3d grain::cal_Dijp(Matrix3d Min)
 {
     //transform into the deviatoric tensor
     Matrix3d X = devia(Min);
-    Matrix3d E = Euler_trans(euler);
-    Matrix3d ET = E.transpose();
+    Matrix3d E = Euler_M;
+    Matrix3d ET = Euler_M.transpose();
     X = E * X * ET;
 
     Matrix3d Dijp = Matrix3d::Zero();
@@ -390,7 +398,7 @@ Matrix3d grain::cal_Dijp(Matrix3d Min)
 
 Matrix3d grain::cal_rotslip()
 {
-    Matrix3d E = Euler_trans(euler);
+    Matrix3d E = Euler_M;
     Matrix3d ET = E.transpose();
 
     Matrix3d Wij = Matrix3d::Zero();
@@ -404,7 +412,7 @@ Matrix3d grain::cal_rotslip()
 Matrix5d grain::cal_Fgrad(Matrix3d Min)
 {
     Matrix3d X = devia(Min);
-    Matrix3d E = Euler_trans(euler);
+    Matrix3d E = Euler_M;
     Matrix3d ET = E.transpose();
     X = E * X * ET;
 
@@ -418,8 +426,9 @@ Matrix5d grain::cal_Fgrad(Matrix3d Min)
 double grain::cal_RSSxmax(Matrix3d Min)
 {
     Matrix3d X = devia(Min);
-    Matrix3d Euler_M = Euler_trans(euler);
-    X = Euler_M * X * Euler_M.transpose();
+    Matrix3d E = Euler_M;
+    Matrix3d ET = Euler_M.transpose();
+    X = E * X * ET;
     double RSSxmax = 0;
     for(int i = 0; i < modes_num; i++)
     {
@@ -485,7 +494,7 @@ void grain::grain_stress(double Tincr, Matrix3d Wij_m, Matrix3d Dij_m,\
     Matrix6d Fgrad;
     Matrix6d Mtemp = (Metilde + Mij6_J_g)/Tincr;
     double err;
-    double Errm = 1e-5;
+    double Errm = 1e-3;
     for(int it = 0; it < 100; it ++ )
     {
         //06.31
@@ -548,8 +557,9 @@ void grain::Update_orientation(double Tincr, Matrix3d Wij_m, Matrix3d Dije_AV, M
     Udot_g = Wij_g + Dij_g; //update the velocity gradient in grains
 
     Matrix3d Rot = (Wij_g - cal_rotslip())*Tincr;
-    Matrix3d Euler_M = Euler_trans(euler)*Rodrigues(Rot).transpose();
-    euler = Euler_trans(Euler_M);
+    Matrix3d Euler_M_new = Euler_M*Rodrigues(Rot).transpose();
+    //Matrix3d Euler_M = Rodrigues(Rot)*Euler_trans(euler);
+    Euler_M = Euler_M_new;
 }
 
 void grain::Update_CRSS(double Tincr)

@@ -66,7 +66,10 @@ void Process::Out_sscurves(Polycs::polycrystal &pcrys)
 
 void Process::Out_texture(Polycs::polycrystal &pcrys, int istep)
 {
+    IOFormat Outformat(StreamPrecision);
     tex_out << "TEXTURE AT STEP = " << istep+1 << endl;
+    tex_out << setprecision(4) << pcrys.get_ell_axis().transpose().format(Outformat)<< endl; 
+    tex_out << setprecision(4) << pcrys.get_ellip_ang().transpose().format(Outformat) << endl << endl;
     pcrys.get_euler(tex_out);
     tex_out << endl;
 }
