@@ -26,9 +26,9 @@ polycrystal::polycrystal()
     Msup<<1,0,0,0,0,0,
     0,1,0,0,0,0,
     0,0,1,0,0,0,
-    0,0,0,0.5,0,0,
-    0,0,0,0,0.5,0,
-    0,0,0,0,0,0.5;
+    0,0,0,2,0,0,
+    0,0,0,0,2,0,
+    0,0,0,0,0,2;
 
     //initial the Eshelby parameter
     VectorXd xph(Intn), xth(Intn),
@@ -338,7 +338,7 @@ int polycrystal::Selfconsistent_E(int Istep, double ERRM, int ITMAX)
         g[G_n].Update_Cij6_J_g(Chg_basis6(C4SAS));
         //store the Jaumann rate elastic stiffness in grains
 
-        CUB += voigt(C4SAS) * g[G_n].get_weight_g();
+        CUB += Chg_basis6(C4SAS) * g[G_n].get_weight_g();
 
         // CUB is the volume average Elastic stiffness of all grains
     }
@@ -362,7 +362,7 @@ int polycrystal::Selfconsistent_E(int Istep, double ERRM, int ITMAX)
         IT++;
         CNEW = Matrix6d::Zero();
 
-        voigt(CSC, C4SA);
+        Chg_basis(CSC, C4SA);
         
         Matrix6d Ctilde;
         Matrix6d S66; //the Sijkl Equ[5-33] in sample axes in Manual 7d
@@ -384,7 +384,7 @@ int polycrystal::Selfconsistent_E(int Istep, double ERRM, int ITMAX)
             axis_t = ell_axis; 
             //Rotate the self consistent Elastic stiffness (CSC)
             //from sample axes to ellipsoid axes
-            Matrix6d C66 = rotate_C66(CSC, axisb_t.transpose());
+            Matrix6d C66 = rotate_C66(voigt(C4SA), axisb_t.transpose());
             //-4
 
             //-9
@@ -397,7 +397,7 @@ int polycrystal::Selfconsistent_E(int Istep, double ERRM, int ITMAX)
             //-10
             //rotate the eshelby tensor
             //back to the sample axes
-            S66 = rotate_C66(voigt(S4_EA), axisb_t);
+            S66 = voigttoB6(rotate_C66(voigt(S4_EA), axisb_t));
             rot_4th(R4_EA, axisb_t, R4_SA);
             //-10
 
@@ -473,10 +473,10 @@ int polycrystal::Selfconsistent_E(int Istep, double ERRM, int ITMAX)
 
             //-13 store some matrix into grain
             //store the C~
-            g[G_n].Update_Ctilde_g(Chg_basis6(Ctilde));
+            g[G_n].Update_Ctilde_g(Ctilde);
             //store the PI*(S^-1)
             double S66inv4th[3][3][3][3] = {0};
-            voigt(S66inv,S66inv4th);
+            Chg_basis(S66inv,S66inv4th);
             mult_4th(R4_SA,S66inv4th,RSinv_SA);
             g[G_n].Update_RSinv_C_g(RSinv_SA);
             //-13
@@ -491,7 +491,7 @@ int polycrystal::Selfconsistent_E(int Istep, double ERRM, int ITMAX)
             // (M_g)^-1 = Cij6_J_g = C_g
             // M_^-1 = CSC
             // (B_g)^-1 = ( C_g + C~ )^-1 * (CSC + C~)
-            C_g = Btovoigt(g[G_n].get_Cij6_J_g());
+            C_g = g[G_n].get_Cij6_J_g();
             Matrix6d Part1 = C_g + Ctilde;
             Matrix6d Part1_inv = Part1.inverse();
             Matrix6d Part2 = CSC + Ctilde; 
@@ -517,7 +517,7 @@ int polycrystal::Selfconsistent_E(int Istep, double ERRM, int ITMAX)
 
     } //while loop
 
-    SSC = Msup * CSC.inverse();
+    SSC = Msup * Btovoigt(CSC.inverse());
 
     return 0;
 }
@@ -894,8 +894,8 @@ int polycrystal::EVPSC(int istep, double Tincr)
      for(int G_n = 0; G_n < grains_num; ++G_n)
     {
         g[G_n].Update_shear_strain(Tincr);
-        g[G_n].Update_orientation(Tincr, Wij_m, Dije_AV, Dijp_AV);
-        g[G_n].Update_CRSS(Tincr);
+        //g[G_n].Update_orientation(Tincr, Wij_m, Dije_AV, Dijp_AV);
+        //g[G_n].Update_CRSS(Tincr);
         if(Ishape == 1)
         {
             g[G_n].Update_Fij_g(Tincr);
