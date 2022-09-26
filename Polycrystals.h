@@ -6,9 +6,7 @@
 #include <fstream>
 #include <iomanip>
 #include <string>
-#include <Eigen/Dense>
 using namespace std;
-using namespace Eigen;
 
 #include "Grains.h"
 #include "Toolbox.h"

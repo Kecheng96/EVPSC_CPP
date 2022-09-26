@@ -1,11 +1,6 @@
 #ifndef MODES_H
 #define MODES_H
 
-#include <iostream>
-#include <Eigen/Dense>
-using namespace std;
-using namespace Eigen;
-
 #include "Systems_Voce.h"
 #include "Toolbox.h"
 

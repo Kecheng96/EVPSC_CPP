@@ -1,5 +1,4 @@
 #include "Polycrystals.h"
-#include <iostream>
 using namespace Polycs;
 using namespace std;
 

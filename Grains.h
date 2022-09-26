@@ -1,11 +1,6 @@
 #ifndef GRAINS_H
 #define GRAINS_H
 
-#include <iostream>
-#include <Eigen/Dense>
-using namespace std;
-using namespace Eigen;
-
 #include "Modes.h"
 #include "Toolbox.h"
 

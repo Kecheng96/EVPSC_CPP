@@ -1,11 +1,6 @@
 #ifndef SYSTEMS_VOCE_H
 #define SYSTEMS_VOCE_H
 
-#include <iostream>
-#include <Eigen/Dense>
-using namespace std;
-using namespace Eigen;
-
 #include "Toolbox.h"
 
 namespace DSystems_Voce{
