@@ -335,7 +335,7 @@ int polycrystal::Selfconsistent_E(int Istep, double ERRM, int ITMAX)
         // -3 ( Eq[2.14] in Wang et al., 2010)
         // the elastic stiffness invovling Jaumann rate 
 
-        g[G_n].Update_Cij6_J_g(Chg_basis6(C4SAS));
+        g[G_n].Update_Mij6_J_g(Chg_basis6(C4SAS).inverse());
         //store the Jaumann rate elastic stiffness in grains
 
         CUB += Chg_basis6(C4SAS) * g[G_n].get_weight_g();
@@ -353,14 +353,14 @@ int polycrystal::Selfconsistent_E(int Istep, double ERRM, int ITMAX)
     //-5
     //loop to make the guessed elastic stiffness CSC
     // to the Eshelby calculated CNEW 
-    Matrix6d CNEW;
+    Matrix6d SSC_new;
 
     int IT = 0; //loop flag
     double RER = 2*ERRM;
     while((RER >= ERRM) && (IT < ITMAX))
     {
         IT++;
-        CNEW = Matrix6d::Zero();
+        SSC_new = Matrix6d::Zero();
 
         Chg_basis(CSC, C4SA);
         
@@ -371,7 +371,7 @@ int polycrystal::Selfconsistent_E(int Istep, double ERRM, int ITMAX)
         Matrix6d S66inv; 
         Matrix3d axisb_t;
         Vector3d axis_t;
-        Matrix6d C_g; 
+        Matrix6d Me_g; 
 
         //solve the eshelby tensor in the common ellipsoid
         if(Ishape == 0)
@@ -473,7 +473,7 @@ int polycrystal::Selfconsistent_E(int Istep, double ERRM, int ITMAX)
 
             //-13 store some matrix into grain
             //store the C~
-            g[G_n].Update_Ctilde_g(Ctilde);
+            g[G_n].Update_Metilde_g(Ctilde.inverse());
             //store the PI*(S^-1)
             double S66inv4th[3][3][3][3] = {0};
             Chg_basis(S66inv,S66inv4th);
@@ -486,38 +486,34 @@ int polycrystal::Selfconsistent_E(int Istep, double ERRM, int ITMAX)
             // _g means the value depends on the grain
             //refer to Equ[5-35] in Manual 7d
             // B_g = (M_g + M~)^-1 * (M_ + M~)
-            // but here we used 
-            // (M~)^-1 = C~ 
-            // (M_g)^-1 = Cij6_J_g = C_g
-            // M_^-1 = CSC
-            // (B_g)^-1 = ( C_g + C~ )^-1 * (CSC + C~)
-            C_g = g[G_n].get_Cij6_J_g();
-            Matrix6d Part1 = C_g + Ctilde;
+            Matrix6d Metilde = Ctilde.inverse();
+            Me_g = g[G_n].get_Mij6_J_g();
+            Matrix6d Part1 = Me_g + Metilde;
             Matrix6d Part1_inv = Part1.inverse();
-            Matrix6d Part2 = CSC + Ctilde; 
-            Matrix6d B_g_inv = Part1_inv * Part2;
+            Matrix6d Part2 = SSC + Metilde; 
+            Matrix6d B_g = Part1_inv * Part2;
             //-14
 
             ///////
             //-15
             //Calculate the New elastic consistent stiffness CNEW
             //refer to Equ[5-40a] in Manual 7d
-            // CNEW = <C_g * B_g_inv>
-            CNEW += C_g * B_g_inv * g[G_n].get_weight_g();
+            SSC_new += Me_g * B_g * g[G_n].get_weight_g();
             //-15           
         } //loop over grains
 
         //cout << "\nThe CNEW:\n" << CNEW << endl;
         //-16
         //error between CSC and CNEW
-        RER=Errorcal(CSC,CNEW);
-        CSC = 0.5*(CNEW+CNEW.transpose());
+        RER=Errorcal(SSC,SSC_new);
+        SSC = 0.5*(SSC_new+SSC_new.transpose());
+        CSC = SSC.inverse();
         //-16
         cout << "**Error in  ESC iteration_" << IT << ":\t" << RER << endl;
 
     } //while loop
 
-    SSC = Msup * Btovoigt(CSC.inverse());
+    //SSC = Msup * Btovoigt(CSC.inverse());
 
     return 0;
 }
@@ -940,11 +936,12 @@ void polycrystal::Cal_Sig_m(double Tincr)
     //Calculate AX = B
     //X is the macro stress
     //A is Me / Tincr
-    Matrix6d A = SSC/Tincr;
+    Matrix6d Me = Msup * Btovoigt(SSC);
+    Matrix6d A = Me/Tincr;
     //B
     Matrix3d Mtemp = Sig_m_old / Tincr;
 
-    Vector6d B = De + SSC * ( voigt(Mtemp) + voigt(Sig_J));
+    Vector6d B = De + Me * ( voigt(Mtemp) + voigt(Sig_J));
     //-3
 
     //-4
@@ -974,7 +971,7 @@ void polycrystal::Cal_Sig_m(double Tincr)
     Sig_x = mult_dot(X,Ix) + mult_dot(Xt,Ib);
     B_x = mult_dot(B,Ib) + mult_dot(Xt,Ix);
 
-    De = B_x - SSC *( voigt(Mtemp) + voigt(Sig_J));
+    De = B_x - Me *( voigt(Mtemp) + voigt(Sig_J));
 
 
     //calulate the D = De + Dp + D0

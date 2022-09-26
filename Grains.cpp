@@ -247,8 +247,8 @@ Matrix3d grain::get_Udot_g(){return Udot_g;}
 
 //elastic consistent
 void grain::Update_Cij6_SA_g(Matrix6d Min){Cij6_SA_g = Min;}
-void grain::Update_Cij6_J_g(Matrix6d Min){Cij6_J_g = Min;}
-void grain::Update_Ctilde_g(Matrix6d Min){Ctilde_g = Min;}
+void grain::Update_Mij6_J_g(Matrix6d Min){Mij6_J_g = Min;}
+void grain::Update_Metilde_g(Matrix6d Min){Metilde_g = Min;}
 void grain::Update_RSinv_C_g(double A[3][3][3][3])
 {
     for(int i = 0; i < 3; i++)
@@ -257,7 +257,7 @@ void grain::Update_RSinv_C_g(double A[3][3][3][3])
                 for(int n = 0; n < 3; n++)
     RSinv_C[i][j][m][n] = A[i][j][m][n];
 }
-Matrix6d grain::get_Cij6_J_g(){return Cij6_J_g;}
+Matrix6d grain::get_Mij6_J_g(){return Mij6_J_g;}
 
 
 //visco-plastic consistent
@@ -461,8 +461,7 @@ void grain::grain_stress(double Tincr, Matrix3d Wij_m, Matrix3d Dij_m,\
     //if(cal_RSSxmax(X) > RSSxlim) X = X/RSSxm; 
     //06.31
 
-    Matrix6d Metilde = Ctilde_g.inverse();
-    Matrix6d Mij6_J_g = Cij6_J_g.inverse();
+
 
     //-1
     //according to Equ[5-30] in manual
@@ -477,10 +476,10 @@ void grain::grain_stress(double Tincr, Matrix3d Wij_m, Matrix3d Dij_m,\
     //solve the interaction equation of grain
     Vector6d DB = Chg_basis6(Dij_m);
     Matrix3d Mt = Sig_m - Sig_m_old + sig_g_old;
-    DB += Metilde * Chg_basis6(Mt)/Tincr \
+    DB += Metilde_g * Chg_basis6(Mt)/Tincr \
         + Mij6_J_g * Chg_basis6(sig_g_old)/Tincr; 
     Mt = Xjau-Sjau;
-    DB += Mij6_J_g *Chg_basis6(Xjau) + Metilde * Chg_basis6(Mt);
+    DB += Mij6_J_g *Chg_basis6(Xjau) + Metilde_g * Chg_basis6(Mt);
     DB = Bbasisadd(DB, Mptilde_g * Chg_basis5(Sig_m));
     //
 
@@ -492,7 +491,7 @@ void grain::grain_stress(double Tincr, Matrix3d Wij_m, Matrix3d Dij_m,\
     Vector5d dijpgv;
     Vector6d F;
     Matrix6d Fgrad;
-    Matrix6d Mtemp = (Metilde + Mij6_J_g)/Tincr;
+    Matrix6d Mtemp = (Metilde_g + Mij6_J_g)/Tincr;
     double err;
     double Errm = 1e-3;
     for(int it = 0; it < 100; it ++ )

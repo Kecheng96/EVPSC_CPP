@@ -16,8 +16,8 @@ class grain
     private:
 
         Matrix6d Cij6_SA_g; //Elastic stiffness in sample Axes
-        Matrix6d Cij6_J_g;  //Elastic stiffness invovling Jaumann rate in sample Axes
-        Matrix6d Ctilde_g; //the (Me~)^-1 in elastic consistency
+        Matrix6d Mij6_J_g;  //Elastic compliance invovling Jaumann rate in sample Axes
+        Matrix6d Metilde_g; //the (Me~)^-1 in elastic consistency
         double RSinv_C[3][3][3][3];
 
         Matrix5d Mptilde_g;// the (M~) in elastic consistency
@@ -128,10 +128,10 @@ class grain
         double cal_RSSxlim(Matrix3d); //Calculate the limit of RSS/CRSS
 
         //Elastic consistent
-        void Update_Cij6_J_g(Matrix6d);
+        void Update_Mij6_J_g(Matrix6d);
         void Update_Cij6_SA_g(Matrix6d);
-        void Update_Ctilde_g(Matrix6d);
-        Matrix6d get_Cij6_J_g();
+        void Update_Metilde_g(Matrix6d);
+        Matrix6d get_Mij6_J_g();
         void Update_RSinv_C_g(double A[3][3][3][3]);
 
         //Visco-plastic consistent
