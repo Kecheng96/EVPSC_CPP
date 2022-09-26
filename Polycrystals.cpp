@@ -959,7 +959,7 @@ void polycrystal::Cal_Sig_m(double Tincr)
         AUX11(i) = -Id(i)*BC_D(i);
         for(int j = 0; j < 6; j++){
                 AUX11(i) = AUX11(i) + AUX2(i,j)*Is(j)*BC_S(j)*profac(j);
-                AUX21(i,j) = Is(j) - Id(j)*AUX2(i,j)*profac(j);
+                AUX21(i,j) = Is(j)*(i+1)/(j+1)*(j+1)/(i+1) - Id(j)*AUX2(i,j)*profac(j);
             }
     }
 
