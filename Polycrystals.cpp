@@ -593,7 +593,7 @@ int polycrystal::Selfconsistent_P(int Istep, double ERRM, int ITMAX)
         //-1
 
 
-        Vector5d DVP_AV_t = Vector5d::Zero();
+        DVP_AV = Vector5d::Zero();
 
         for(int G_n = 0; G_n < grains_num; G_n++)
         {
@@ -690,8 +690,7 @@ int polycrystal::Selfconsistent_P(int Istep, double ERRM, int ITMAX)
             b_g_ave += b_gv * wei;
 
             //06.06
-            DVP_AV_t +=  M_g * Chg_basis5(g[G_n].get_stress_g()) * wei\
-                    + d0_g * wei;
+            DVP_AV +=  Chg_basis5(g[G_n].get_Dijp_g()) * wei;
             //06.06
 
         } //loop over grains
@@ -714,8 +713,6 @@ int polycrystal::Selfconsistent_P(int Istep, double ERRM, int ITMAX)
     RER = Errorcal(M_VP_SC, MNEW);
     M_VP_SC = MNEW;
     D0 = voigt(Chg_basis(D0_new));
-    
-    DVP_AV = voigt(Chg_basis(DVP_AV_t));
 
     C_VP_SC = M_VP_SC.inverse();
   
@@ -928,55 +925,58 @@ void polycrystal::Cal_Sig_m(double Tincr)
 
     //-2
     //calulate the De = D - Dp - D0
-    Vector6d De = voigt(Dij_m) - DVP_AV;
+    Vector6d De = Bbasisadd(Chg_basis6(Dij_m), -DVP_AV);
     //-2
 
     //-3
     //Calculate AX = B
     //X is the macro stress
-    //A is Me / Tincr
-    Matrix6d Me = Msup * Btovoigt(SSC);
-    Matrix6d A = Me/Tincr;
+    Matrix6d A = SSC/Tincr;
     //B
     Matrix3d Mtemp = Sig_m_old / Tincr;
 
-    Vector6d B = De + Me * ( voigt(Mtemp) + voigt(Sig_J));
+    Vector6d B = De + SSC * ( Chg_basis6(Mtemp) + Chg_basis6(Sig_J));
     //-3
 
     //-4
     //According to the IUdot and ISDOT to solve AX = B
     //transform to solve At Xt = Bt
     // Xt in the unkown set of Udot and Sig
-    Vector6i Ix = ISdot;
-    Vector6i Ib = IDdot;
+    Vector6i Is = ISdot;
+    Vector6i Id = IDdot;
 
-    Vector6d X = voigt(Sig_m);
+    Vector6d profac;
+    profac << 1.25, 1.5, 1.75, 2, 2.25, 2.5;
 
-    Vector6d Bt = mult_dot(B,Ib) - A*mult_dot(X,Ix);
-    //assemble At
-    Matrix6d At = A;
-    for(int i = 0; i < 6; i++)
-    {   
-        if(Ix(i)==1)
-        {
-            At.col(i) = Vector6d::Zero();
-            At(i,i) = -1;
-        }
+    Vector6d BC_D = voigt(Chg_basis(B));
+    Vector6d BC_S = voigt(Sig_m);
+    Matrix6d AUX2 = Btovoigt(A);
+
+    Vector6d AUX11;
+    Matrix6d AUX21;
+
+    for(int i = 0; i < 6; i++){
+        AUX11(i) = -Id(i)*BC_D(i);
+        for(int j = 0; j < 6; j++){
+                AUX11(i) = AUX11(i) + AUX2(i,j)*Is(j)*BC_S(j)*profac(j);
+                AUX21(i,j) = Is(j) - Id(j)*AUX2(i,j)*profac(j);
+            }
     }
-    Vector6d Xt = At.inverse()  * Bt;
+
+    Vector6d AUX6 = AUX21.inverse()*AUX11;
+
     //-4
 
     Vector6d Sig_x, B_x;
-    Sig_x = mult_dot(X,Ix) + mult_dot(Xt,Ib);
-    B_x = mult_dot(B,Ib) + mult_dot(Xt,Ix);
+    B_x = mult_dot(BC_D,Id) + mult_dot(AUX6,Is);
+    Sig_x = mult_dot(BC_S,Is) + mult_dot(AUX6,Id);
 
-    De = B_x - Me *( voigt(Mtemp) + voigt(Sig_J));
-
+    De = Chg_basis6(voigt(B_x)) - SSC * ( Chg_basis6(Mtemp) + Chg_basis6(Sig_J));
 
     //calulate the D = De + Dp + D0
-    Vector6d Dij_m_v = De + DVP_AV;
+    Vector6d Dij_m_v = Bbasisadd(De, DVP_AV);
 
-    Dij_m = voigt(Dij_m_v);
+    Dij_m = Chg_basis(Dij_m_v);
     Sig_m = voigt(Sig_x);
 
 }

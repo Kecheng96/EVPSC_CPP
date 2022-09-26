@@ -54,7 +54,7 @@ class polycrystal
         Matrix5d M_VP_SC; //The visco-plastic compliance C_VP_SC^-1
         Vector6d D0; //the macro back-extrapolated term (follow Equ[5-41b])
 
-        Vector6d DVP_AV;
+        Vector5d DVP_AV;
 
         Matrix3d Fij_m; //the macro deformation tensor in grain
         Matrix3d Udot_m; //the macro velocity gradient;
