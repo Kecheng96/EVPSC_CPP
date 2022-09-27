@@ -113,7 +113,7 @@ Vector3d axis_t, Matrix6d C66,Integralpoint6 aa6, Integralpoint6 aaww6, Integral
 
         Ro3 =0;
         for(int i = 0; i < 3; i++)
-            Ro3 += pow(alpha(i,ny), 2);
+            Ro3 += pow(alpha(i,ny)*axis_t(i), 2);
         Ro3 = pow(Ro3, 1.5);
         abcoro3 = aixabc/Ro3;
 
@@ -192,7 +192,7 @@ Vector3d axis_t, Matrix6d C66,Integralpoint6 aa6, Integralpoint6 aaww6, Integral
 
         Ro3 =0;
         for(int i = 0; i < 3; i++)
-            Ro3 += pow(alpha(i,ny), 2);
+            Ro3 += pow(alpha(i,ny)*axis_t(i), 2);
         Ro3 = pow(Ro3, 1.5);
         abcoro3 = aixabc/Ro3;
 

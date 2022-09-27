@@ -646,7 +646,7 @@ int polycrystal::Selfconsistent_P(int Istep, double ERRM, int ITMAX)
             double S66inv4th[3][3][3][3] = {0};
             Chg_basis(S55.inverse(),S66inv4th);
             mult_4th(R4_SA,S66inv4th,RSinv_SA);
-            g[G_n].Update_RSinv_C_g(RSinv_SA);
+            g[G_n].Update_RSinv_VP_g(RSinv_SA);
             //06.02
             //-5
 
