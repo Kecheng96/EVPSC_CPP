@@ -419,7 +419,8 @@ Matrix5d grain::cal_Fgrad(Matrix3d Min)
     for(int i = 0; i < modes_num; i++)
         Fgrad += gmode[i].get_Fgradm(X);
 
-    return Chg_basis5(rotate_C66(Fgrad, E));
+    //return Chg_basis5(rotate_C66(Fgrad, E));
+    return Chg_basis5(rotate_C66(Fgrad, ET));
 }
 
 double grain::cal_RSSxmax(Matrix3d Min)
