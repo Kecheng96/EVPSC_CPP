@@ -12,7 +12,9 @@ polycrystal::polycrystal()
     //initial the shape of ellipsoid
     ell_axis = Vector3d::Ones();
 
-    ell_axisb = Matrix3d::Identity();
+    ellip_ang << 90,90,90;
+    ell_axisb = Euler_trans(ellip_ang);
+
     Fij_m = Matrix3d::Identity();
 
 
