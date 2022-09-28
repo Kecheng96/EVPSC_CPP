@@ -148,7 +148,7 @@ class polycrystal
         Vector3d get_ellip_ang(); 
 
         //the singular step according to a certain process
-        int EVPSC(int, double);
+        int EVPSC(int, double, bool, bool, bool);
 
         //calculate the macro&grain elastic compliance
         int Selfconsistent_E(int, double, int); 

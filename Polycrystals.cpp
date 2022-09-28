@@ -917,7 +917,8 @@ int polycrystal::Update_shape()
 }
 
 
-int polycrystal::EVPSC(int istep, double Tincr)
+int polycrystal::EVPSC(int istep, double Tincr,\
+ bool Iupdate_ori,bool Iupdate_shp,bool Iupdate_CRSS)
 {   
     double errd, errs, err_g;
     cout << "********STEP********\n\t" \
@@ -963,7 +964,7 @@ int polycrystal::EVPSC(int istep, double Tincr)
     if(Ishape == 0)
     {
         Update_Fij(Tincr);
-        //Update_shape();
+        if(Iupdate_shp) Update_shape();
     }
 
     //update the state in deformation systems and 
@@ -971,12 +972,12 @@ int polycrystal::EVPSC(int istep, double Tincr)
      for(int G_n = 0; G_n < grains_num; ++G_n)
     {
         g[G_n].Update_shear_strain(Tincr);
-        //g[G_n].Update_orientation(Tincr, Wij_m, Dije_AV, Dijp_AV);
-        //g[G_n].Update_CRSS(Tincr);
+        if(Iupdate_ori) g[G_n].Update_orientation(Tincr, Wij_m, Dije_AV, Dijp_AV);
+        if(Iupdate_CRSS) g[G_n].Update_CRSS(Tincr);
         if(Ishape == 1)
         {
             g[G_n].Update_Fij_g(Tincr);
-            g[G_n].Update_shape_g();
+            if(Iupdate_shp) g[G_n].Update_shape_g();
         }
     }
     return 0;

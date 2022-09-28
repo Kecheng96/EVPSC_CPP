@@ -33,11 +33,22 @@ int EVPSCinput(string &ftex,string &fsx,string &fload, Procs::Process &Proc)
         getline(ininp, tp); //skip
         getline(ininp, fload); 
 
+        //read the update control
+        getline(ininp, tp); //skip
+        getline(ininp, tp); //skip
+        getline(ininp, tp); //skip
+        getline(ininp, tp); 
+        VectorXd temp1 = getnum(tp, 3);
+        Vector3i temp2;
+        for(int i=0; i<3; i++)
+            temp2(i) = int(temp1(i));
+        Proc.Update_ctrl(temp2);
+
         //read output control
         getline(ininp, tp); //skip
         getline(ininp, tp); //skip
         getline(ininp, tp); //skip
-        getline(ininp, tp); //skip
+        getline(ininp, tp); 
         VectorXd temp = getnum(tp, 1);
         Proc.Out_texset(int(temp(0)));
 

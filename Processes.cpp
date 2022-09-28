@@ -49,7 +49,7 @@ void Process::loading(Polycs::polycrystal &pcrys)
     pcrys.set_ISdot(ISdot);
     for(int istep = 0; istep < Nsteps; ++istep)
     {
-        pcrys.EVPSC(istep, Tincr);
+        pcrys.EVPSC(istep, Tincr, Iupdate_ori, Iupdate_shp, Iupdate_CRSS);
         Out_sscurves(pcrys);
         if(!((istep+1)%texctrl))
             Out_texture(pcrys,istep);
@@ -75,3 +75,9 @@ void Process::Out_texture(Polycs::polycrystal &pcrys, int istep)
 }
 
 void Process::Out_texset(int input){texctrl = input;}
+
+void Process::Update_ctrl(Vector3i input){
+    Iupdate_ori = input(0);
+    Iupdate_shp = input(1);
+    Iupdate_CRSS = input(2);
+    }
