@@ -36,6 +36,28 @@ const double Basis[3][3][6] = {
 const int IJV[6][2]= {0,0,1,1,2,2,1,2,0,2,0,1};
 /////////////////////////
 
+///
+int Eshelby_case(Vector3d Axis){
+    double RATIO1=Axis(1)/Axis(2);
+    double RATIO2=Axis(0)/Axis(2);
+    Matrix<double, 11, 1> DTE;
+    DTE << 0.0,
+    -0.7*RATIO1+7,
+    -RATIO1+17,
+    -RATIO1+23,
+    -RATIO1+26,
+    -RATIO1+29.3,
+    -RATIO1+32,
+    -RATIO1+34.85,
+    -RATIO1+37,
+    -RATIO1+41.9,
+    -RATIO1+44.5;
+    int case_c = 11;
+    for(int i = 1; i <= 10; i++)
+        if(RATIO2 >= DTE(i-1)&& RATIO2 < DTE(i)) case_c = i;
+    return case_c-1;
+}
+
 
 /// function definition of gau_leg
 void gau_leg(double x1, double x2, VectorXd &x, VectorXd &w, int n)

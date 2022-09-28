@@ -23,6 +23,8 @@ class polycrystal
 
         double GZ = 30; //grain size (um)
 
+        Gausspoint* Gpsets  = NULL; 
+
         string crysym; //crystal symmetry
         MatrixXd Trans_Miller;// the conversion matrix of Miller indices
         int Miller_n = 3;// the number of the Miller indices (3 or 4(hcp))
@@ -161,11 +163,6 @@ class polycrystal
         void Cal_Sig_g(double);
 
         void Update_AV(); //update the volume average value
-
-        //integral points and weights
-        Integralpoint3 alpha, aww;
-        Integralpoint6 aa6, aaww6; //coordinate and weigts in Fourier space 
-        Integralpoint1 ww;
 
         //output
         Vector6d get_Sig_m();

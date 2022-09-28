@@ -19,7 +19,7 @@ using namespace std;
 using namespace Eigen;
 
 //
-#define Intn 12 //number of integral points in Eshelby calculation
+#define Intn 10 //number of integral points in Eshelby calculation
 #define Mtr 1 //number of Multithread
 //
 typedef Matrix<double, 6, 6> Matrix6d;
@@ -31,6 +31,20 @@ typedef Matrix<double, 10, 1> Vector10d;
 typedef Matrix<double,3,Intn*Intn> Integralpoint3;
 typedef Matrix<double,6,Intn*Intn> Integralpoint6;
 typedef Matrix<double,Intn*Intn,1> Integralpoint1;
+
+//////////
+struct Gausspoint
+{
+    //integral points and weights
+    Integralpoint3 Gpalpha, Gpaww;
+    Integralpoint6 Gpaa6, Gpaaww6; //coordinate and weigts in Fourier space 
+    Integralpoint1 Gpww;
+};
+
+/////////////////////////
+//choose the gausspoint set according to the length of ellisoid 
+int Eshelby_case(Vector3d);
+/////////////////////////
 
 /////////////////////////
 //Identity tensor

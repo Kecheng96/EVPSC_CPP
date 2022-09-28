@@ -31,42 +31,117 @@ polycrystal::polycrystal()
     0,0,0,0,2,0,
     0,0,0,0,0,2;
 
-    //initial the Eshelby parameter
-    VectorXd xph(Intn), xth(Intn),
-             wph(Intn), wth(Intn);
+    Vector10d xth,xph,wth,wph;
+    //integral points and weights
+    Integralpoint3 alpha, aww;
+    Integralpoint6 aa6, aaww6; //coordinate and weigts in Fourier space 
+    Integralpoint1 ww;
 
-    gau_leg(0, M_PI, xth, wth, Intn);
-    wph = wth;
-    xph = xth;	
-	double sinth, costh, simbtet;
-    Matrix3d aa, aaww;
-    int ny;
-	for (int ith = 0; ith < Intn; ith++)
-	{
-		sinth = sin(xth(ith));
-		costh = cos(xth(ith));
-		simbtet = wth(ith) * sinth / (2.0*M_PI);
+    Gpsets = new Gausspoint[11];
 
-		for (int iph = 0; iph < Intn; iph++)
-		{
-			ny = iph + ith * Intn;
-			ww(ny) = simbtet*wph(iph);
-			alpha(0,ny) = sinth*cos(xph(iph));
-			alpha(1,ny) = sinth*sin(xph(iph));
-			alpha(2,ny) = costh;
-			//
-			for(int i = 0; i < 3; i++)
-				for (int j = 0; j < 3; j++)
-				{
-					aa(i,j) = alpha(i,ny) * alpha(j,ny);
-					aaww(i,j) = aa(i,j) * ww(ny);
-				}
-            aa6.col(ny) = voigt(aa);
-            aaww6.col(ny) = voigt(aaww);
-            for(int i = 0; i < 3; i++)
-                aww(i,ny) = alpha(i,ny) * ww(ny);
-		}
-	}
+    for(int Gpcase = 0; Gpcase < 11; Gpcase++ ){
+        switch(Gpcase){
+            case 0:
+            xth << 4.71236594e-02,0.241774723e0,0.565131843e0,0.968887568e0,1.37937832e0,
+            1.76221442e0,2.17270517e0,2.57646084e0,2.89981818e0,3.09446883e0;
+            wth << 0.120191820e0,0.264987558e0,0.373805553e0,0.420841277e0,0.390970200e0,
+            0.390970260e0,0.420841366e0,0.373805553e0,0.264987499e0,0.120192111e0;
+            break;
+            case 1:
+            xth << 1.57080423e-02,0.144995824e0,0.425559640e0,0.829968274e0,1.31460333e0,
+            1.82698941e0,2.31162453e0,2.71603298e0,2.99659705e0,3.12588477e0;
+            wth << 5.41692823e-02,0.207461149e0,0.348739326e0,0.452716887e0,0.507709801e0,
+            0.507709682e0,0.452716798e0,0.348738998e0,0.207461327e0,5.41692935e-02;
+            break; 
+            case 2:
+            xth << 3.76990959e-02,0.198626831e0,0.483041346e0,0.871647120e0,1.32964790e0,
+            1.81194484e0,2.26994562e0,2.65855122e0,2.94296598e0,3.10389376e0;
+            wth << 9.68142375e-02,0.224478707e0,0.341134071e0,0.430180043e0,0.478189558e0,
+            0.478189170e0, 0.430180043e0, 0.341134191e0, 0.224478647e0, 9.68143344e-02;
+            break;
+            case 3:
+            xth << 3.45576368e-02,0.187556863e0,0.468425453e0,0.859980166e0,1.32527423e0,
+            1.81631863e0,2.28161263e0,2.67316723e0,2.95403576e0,3.10703516e0;
+            wth << 8.95763785e-02,0.217725381e0,0.341026783e0,0.435772508e0,0.486694932e0,
+            0.486695170e0,0.435772508e0,0.341026902e0,0.217725128e0,8.95764604e-02;
+            break;
+            case 4:
+            xth << 3.14158052e-02,0.177928671e0,0.457155794e0,0.851592362e0,1.32222414e0,
+            1.81936860e0,2.29000044e0,2.68443704e0,2.96366405e0,3.1101768e0;
+            wth << 8.26927349e-02,0.213228315e0,0.342008322e0,0.440196186e0,0.492670894e0,
+            0.492670983e0,0.440195888e0,0.342008322e0, 0.213227972e0, 8.26930404e-02;
+            break;
+            case 5:
+            xth << 2.98452154e-02,0.173592165e0,0.452448040e0,0.848216832e0,1.32101476e0,
+            1.82057810e0,2.29337597e0,2.68914461e0,2.96800065e0,3.11174774e0;
+            wth << 7.93928578e-02,0.211627841e0,0.342669785e0,0.442057431e0,0.495048553e0,
+            0.495048642e0,0.442057490e0,0.342670023e0,0.211627468e0,7.93929026e-02;
+            break;
+            case 6:
+            xth << 2.67036632e-02,0.165752888e0,0.444431901e0,0.842614472e0,1.31902647e0,
+            1.82256627e0,2.29897833e0,2.69716072e0,2.97583985e0,3.11488938e0;
+            wth << 7.30879456e-02,0.209402516e0,0.344104946e0,0.445234656e0,0.498966068e0,
+            0.498966306e0,0.445234746e0, 0.344104946e0,0.209402665e0,7.30878562e-02;
+            break;
+            case 7:
+            xth << 2.67036632e-02,0.165752888e0,0.444431901e0,0.842614472e0,1.31902647e0,
+            1.82256627e0,2.29897833e0,2.69716072e0,2.97583985e0,3.11488938e0;
+            wth << 7.30879456e-02,0.209402516e0,0.344104946e0,0.445234656e0,0.498966068e0,
+            0.498966306e0,0.445234746e0,0.344104946e0,0.209402665e0,7.30878562e-02;
+            break;
+            case 8:
+            xth <<2.43473575e-02,0.160516247e0,0.439386278e0,0.839168847e0,1.31781363e0,
+            1.82377899e0,2.30242372e0,2.70220637e0,2.98107672e0,3.11724544e0;
+            wth << 6.86219111e-02,0.208388865e0,0.345189095e0,0.447236270e0,0.501360059e0,
+            0.501359940e0,0.447236151e0,0.345189214e0,0.208388969e0,6.86219335e-02;
+            break;
+            case 9:
+            xth << 2.19910536e-02,0.155757755e0,0.434985727e0,0.836206555e0,1.31677616e0,
+            1.82481658e0,2.30538607e0,2.70660710e0,2.98583508e0,3.11960149e0;
+            wth << 6.43825606e-02,0.207786217e0,0.346235514e0,0.448981822e0,0.503410578e0,
+            0.503410578e0,0.448981792e0,0.346235693e0,0.207785636e0,6.43827692e-02;
+            break;
+            case 11:
+            xth << 2.04204638e-02,0.152822554e0,0.432348520e0,0.834448099e0,1.31616223e0,
+            1.82543063e0,2.30714464e0,2.70924401e0,2.98877001e0,3.12117243e0;
+            wth << 6.16818815e-02,0.207559645e0,0.346902698e0,0.450027168e0,0.504624724e0,
+            0.504624426e0,0.450027317e0,0.346902847e0,0.207559645e0,6.16819337e-02;
+            break;
+        }
+        wph = wth;
+        xph = xth;	
+        double sinth, costh, simbtet;
+        Matrix3d aa, aaww;
+        int ny;
+        for (int ith = 0; ith < Intn; ith++){
+            sinth = sin(xth(ith));
+            costh = cos(xth(ith));
+            simbtet = wth(ith) * sinth / (2.0*M_PI);
+
+            for (int iph = 0; iph < Intn; iph++){
+                ny = iph + ith * Intn;
+                ww(ny) = simbtet*wph(iph);
+                alpha(0,ny) = sinth*cos(xph(iph));
+                alpha(1,ny) = sinth*sin(xph(iph));
+                alpha(2,ny) = costh;
+                //
+                for(int i = 0; i < 3; i++)
+                    for (int j = 0; j < 3; j++){
+                        aa(i,j) = alpha(i,ny) * alpha(j,ny);
+                        aaww(i,j) = aa(i,j) * ww(ny);
+                    }
+                aa6.col(ny) = voigt(aa);
+                aaww6.col(ny) = voigt(aaww);
+                for(int i = 0; i < 3; i++)
+                    aww(i,ny) = alpha(i,ny) * ww(ny);
+            }
+        }
+        Gpsets[Gpcase].Gpaa6 = aa6;
+        Gpsets[Gpcase].Gpaaww6 = aaww6;
+        Gpsets[Gpcase].Gpalpha = alpha;
+        Gpsets[Gpcase].Gpaww = aww;
+        Gpsets[Gpcase].Gpww = ww;
+    }
 }
 
 
@@ -392,7 +467,9 @@ int polycrystal::Selfconsistent_E(int Istep, double ERRM, int ITMAX)
             //calculate the Eshelby tensor
             double S4_EA[3][3][3][3] = {0}; 
             double R4_EA[3][3][3][3] = {0};
-            g[0].Eshelby_E(S4_EA,R4_EA,axis_t,C66,aa6,aaww6,alpha);
+            
+            int case_c = Eshelby_case(axis_t);
+            g[0].Eshelby_E(S4_EA,R4_EA,axis_t,C66,Gpsets[case_c].Gpaa6,Gpsets[case_c].Gpaaww6,Gpsets[case_c].Gpalpha);
             //-9
 
             //-10
@@ -440,7 +517,8 @@ int polycrystal::Selfconsistent_E(int Istep, double ERRM, int ITMAX)
                 //calculate the Eshelby tensor
                 double S4_EA[3][3][3][3] = {0}; 
                 double R4_EA[3][3][3][3] = {0};
-                g[0].Eshelby_E(S4_EA,R4_EA,axis_t,C66,aa6,aaww6,alpha);
+                int case_c = Eshelby_case(axis_t);
+                g[G_n].Eshelby_E(S4_EA,R4_EA,axis_t,C66,Gpsets[case_c].Gpaa6,Gpsets[case_c].Gpaaww6,Gpsets[case_c].Gpalpha);
                 //-9
 
                 //-10
@@ -569,7 +647,10 @@ int polycrystal::Selfconsistent_P(int Istep, double ERRM, int ITMAX)
             //Calculate Eshelby tensor
             double S4_EA[3][3][3][3] = {0}; 
             double R4_EA[3][3][3][3] = {0};
-            g[0].Eshelby_P(S4_EA,R4_EA,axis_t,C66,aa6,aaww6,alpha,aww,ww);
+            
+            int case_c = Eshelby_case(axis_t);
+            g[0].Eshelby_P(S4_EA,R4_EA,axis_t,C66,Gpsets[case_c].Gpaa6,Gpsets[case_c].Gpaaww6,\
+            Gpsets[case_c].Gpalpha,Gpsets[case_c].Gpaww,Gpsets[case_c].Gpww);
             //-3
 
             //-4
@@ -614,7 +695,9 @@ int polycrystal::Selfconsistent_P(int Istep, double ERRM, int ITMAX)
                 //Calculate Eshelby tensor
                 double S4_EA[3][3][3][3] = {0}; 
                 double R4_EA[3][3][3][3] = {0};
-                g[0].Eshelby_P(S4_EA,R4_EA,axis_t,C66,aa6,aaww6,alpha,aww,ww);
+                int case_c = Eshelby_case(axis_t);
+                g[G_n].Eshelby_P(S4_EA,R4_EA,axis_t,C66,Gpsets[case_c].Gpaa6,Gpsets[case_c].Gpaaww6,\
+                Gpsets[case_c].Gpalpha,Gpsets[case_c].Gpaww,Gpsets[case_c].Gpww);
                 //-3
 
                 //-4
