@@ -1,8 +1,7 @@
 #include "Grains.h"
 using namespace Grains;
 
-grain::grain()
-{
+grain::grain(){
     //initial the grain stress&strain
     eps_g = Matrix3d::Zero();   
     sig_g = Matrix3d::Zero();

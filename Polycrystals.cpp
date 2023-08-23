@@ -403,10 +403,6 @@ int polycrystal::Selfconsistent_E(int Istep, double ERRM, int ITMAX)
                     for(int l = 0; l < 3; l++)
         {
             C4SAS[i][j][k][l] = C4SA[i][j][k][l] - sig_g(i,j)*Iij(k,l);
-        //                        +0.5*Iij(i,k)*sig_g(j,l) \
-                                -0.5*Iij(i,l)*sig_g(j,l) \
-                                -0.5*Iij(j,l)*sig_g(i,k) \
-                                +0.5*Iij(j,k)*sig_g(i,l);
         }
         // -3 ( Eq[2.14] in Wang et al., 2010)
         // the elastic stiffness invovling Jaumann rate 
@@ -423,9 +419,10 @@ int polycrystal::Selfconsistent_E(int Istep, double ERRM, int ITMAX)
     // and sum with the weight 
     // the result is CUB
 
-    if(Istep == 0)  
+    if(Istep == 0)  {
         CSC = CUB;  //first step, use the volume average
-    
+        SSC = CSC.inverse(); //the initial guess of the elastic compliance
+    }
     //-5
     //loop to make the guessed elastic stiffness CSC
     // to the Eshelby calculated CNEW 
