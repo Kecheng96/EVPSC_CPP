@@ -1,9 +1,9 @@
 --The path of initial texture: 
-./Debuginput/test_texture.tex
+./test_texture.tex
 --The path of single crystal:
-./Debuginput/Al.sx
+./Al.sx
 --The path of process file:
-./Debuginput/test_loading.txt
+./test_loading.txt
 
 ----Update control----
 update: orientaion, ellipsoid shape, CRSS
