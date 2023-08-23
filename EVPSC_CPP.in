@@ -1,0 +1,14 @@
+--The path of initial texture: 
+./Debuginput/test_texture.tex
+--The path of single crystal:
+./Debuginput/Al.sx
+--The path of process file:
+./Debuginput/test_loading.txt
+
+----Update control----
+update: orientaion, ellipsoid shape, CRSS
+1,0,1
+
+----Output control----
+*print the texture every n steps: (0 means only print at the end)
+0

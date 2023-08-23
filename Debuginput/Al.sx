@@ -1,0 +1,56 @@
+*Material: Aluminum
+CUBIC                                crysym
+1.  1.  1.     90.  90.  90.         cdim(i),cang(i)
+*Elastic stiffness of single crystal [MPa]
+  206e3   118e3   118e3     0.0     0.0     0.0
+  118e3   206e3   118e3     0.0     0.0     0.0
+  118e3   118e3   206e3     0.0     0.0     0.0
+    0.0     0.0     0.0     54e3   0.0e5     0.0e5
+    0.0     0.0     0.0     0.0e5     54e3   0.0e5
+    0.0     0.0     0.0     0.0e5     0.0e5     54e3
+*Thermal expansion coefficients of single crystal[K^(-1)]
+  5.7e-6   5.7e-6  10.3e-6   0.0e0   0.0e0   0.0e0
+SLIP AND TWINNING MODES
+2                               nmodesx
+1                               nmodes
+1                               mode(i)
+<111>{110} SLIP
+ 1  12  1   0                           modex,nsmx,nrsx,iopsysx
+   1  1  1        0  1 -1
+   1  1  1        1  0 -1
+   1  1  1        1 -1  0
+  -1  1  1        0  1 -1
+  -1  1  1        1  0  1
+  -1  1  1        1  1  0
+  -1 -1  1        0  1  1
+  -1 -1  1        1  0  1
+  -1 -1  1        1 -1  0
+   1 -1  1        0  1  1
+   1 -1  1        1  0 -1
+   1 -1  1        1  1  0
+  <111>{112} TWIN
+ 2  12  0   1                           modex,nsmx,nrsx,iopsysx
+   0.707                                    twshx
+   1  1  1       -2  1  1
+   1  1  1        1 -2  1
+   1  1  1        1  1 -2
+  -1  1  1        2  1  1
+  -1  1  1       -1 -2  1
+  -1  1  1       -1  1 -2
+  -1 -1  1        2 -1  1
+  -1 -1  1       -1  2  1
+  -1 -1  1       -1 -1 -2
+   1 -1  1       -2 -1  1
+   1 -1  1        1  2  1
+   1 -1  1        1 -1 -2
+CONSTITUTIVE LAW
+   3      Voce=0, MTS=1, DD=2, CG=3
+   1      iratesens (0:rate insensitive, 1:rate sensitive)
+   70.    GRAIN SIZE
+   {10-10}<11-20>  
+   10     NRSX
+   120.  90. 300.0   20.  0. 0.     tau0x,tau1x,thet0,thet1, Hhp,Hgnd    
+   1.0               hlatx(1,im,iph),im=1,nmodes
+ 
+
+
