@@ -11,7 +11,6 @@ set(CMAKE_BUILD_TYPE Debug)
 set( EIGEN3_INCLUDE_DIR "/opt/homebrew/Cellar/eigen/3.4.0_1/include/eigen3")
 set( OMP_INCLUDE_DIR "/opt/homebrew/Cellar/libomp/14.0.6/include")
 
-
 include_directories( ${EIGEN3_INCLUDE_DIR} ${OMP_INCLUDE_DIR} )
 
-add_executable(EVPSC EVPSC_CPP.cpp Toolbox.cpp Processes.cpp Polycrystals.cpp Grains.cpp Modes.cpp Systems_Voce.cpp)
+add_executable(EVPSC EVPSC_CPP.cpp Toolbox.cpp Processes.cpp Polycrystals.cpp Grains.cpp Modes.cpp Systems_Voce.cpp global.cpp)

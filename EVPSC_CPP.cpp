@@ -8,6 +8,7 @@
 #include "Input.h"
 #include "Processes.h"
 #include "Polycrystals.h"
+#include "global.h"
 
 int main()
 {
@@ -20,9 +21,12 @@ int main()
     if(sxinput(fsx, metal)) exit(0);
     if(loadinput(fload, Proc1)) exit(0);
     
+    logger.info("EVPSC Start");
     double Start = clock();
     Proc1.loading(metal);
     double End = clock();
-    cout << "The run time is: " <<(double)(End - Start) / CLOCKS_PER_SEC << " sec" << std::endl;
+    double run_time = (double)(End - Start) / CLOCKS_PER_SEC;
+    cout << "The run time is: " << run_time << " sec" << std::endl;
+    logger.info("The run time is: " + to_string(run_time) + " sec");
     return 0;
 }

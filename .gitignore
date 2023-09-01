@@ -1,3 +1,7 @@
 *.exe
 *.out
 build/*
+CMake_macOS.txt
+.gitignore
+debug/*
+.cache/*
