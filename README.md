@@ -25,11 +25,11 @@ $$\boldsymbol {F} = \boldsymbol {F}^e \cdot \boldsymbol {F}^p \tag{1-4}$$
 图 1. 晶体弹塑性变形几何学
 
 根据公式(1-3)和公式(1-4)，速度梯度张量可以写成：
-\[
+$$
 \begin{align*}
 F &= ma \\
 E &= mc^2
 \end{align*}
-\]
+$$
 
 令
