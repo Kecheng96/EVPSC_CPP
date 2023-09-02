@@ -26,12 +26,12 @@ $$\boldsymbol {F} = \boldsymbol {F}^e \cdot \boldsymbol {F}^p \tag{1-4}$$
 
 根据公式(1-3)和公式(1-4)，速度梯度张量可以写成：
 $$
-\begin{aligned}
+\begin{align}
 \boldsymbol {l}&=\boldsymbol {\dot F} \cdot \boldsymbol{F}^{-1}\\
 &=(\boldsymbol{\dot F}^e \cdot \boldsymbol {F}^p + \boldsymbol{F}^e \cdot \boldsymbol {\dot F}^p)\cdot(\boldsymbol {F}^e \cdot \boldsymbol {F}^p)^{-1}\\
 &= \boldsymbol{\dot F}^e \cdot (\boldsymbol{F}^e)^{-1} +
 \boldsymbol{ F}^e \cdot \boldsymbol{F}^p\cdot(\boldsymbol{F}^p)^{-1}\cdot(\boldsymbol{F}^e)^{-1}
-\end{aligned}
+\end{align}
 $$
 
 令
