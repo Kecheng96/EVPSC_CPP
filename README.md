@@ -59,7 +59,9 @@ $$\boldsymbol{w}^e= \frac{1}{2}[\boldsymbol{\dot F}^e\cdot(\boldsymbol{F}^e)^{-1
 $$\boldsymbol {d}^p=\sum_\alpha \dot\gamma^\alpha \boldsymbol {P}^\alpha\tag{1-15}$$
 $$\boldsymbol {w}^p=\sum_\alpha \dot\gamma^\alpha \boldsymbol {R}^\alpha\tag{1-16}$$
 
-其中 $\boldsymbol {P}^\alpha=\frac{1}{2}[\boldsymbol {s}^\alpha\cdot(\boldsymbol {n}^\alpha)^T+\boldsymbol {n}^\alpha\cdot(\boldsymbol {s}^\alpha)^T]$（称为Schmid tensor施密特张量）,$\boldsymbol {P}^\alpha=\frac{1}{2}[\boldsymbol {s}^\alpha\cdot(\boldsymbol {n}^\alpha)^T+\boldsymbol {n}^\alpha\cdot(\boldsymbol {s}^\alpha)^T]$
+其中 $\boldsymbol {P}^\alpha=\frac{1}{2}[\boldsymbol {s}^\alpha\cdot(\boldsymbol {n}^\alpha)^T+\boldsymbol {n}^\alpha\cdot(\boldsymbol {s}^\alpha)^T]$（称为Schmid tensor施密特张量）,
+
+$\boldsymbol {P}^\alpha=\frac{1}{2}[\boldsymbol {s}^\alpha\cdot(\boldsymbol {n}^\alpha)^T+\boldsymbol {n}^\alpha\cdot(\boldsymbol {s}^\alpha)^T]$
 
 ## 2. 单晶本构关系
 设晶体的弹性性质不受滑移/孪晶变形的影响，则单晶的本构方程为:
