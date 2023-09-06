@@ -70,6 +70,10 @@ $$\boldsymbol\sigma^{\nabla*}+\boldsymbol\sigma\ tr(\boldsymbol{d}^e)=\boldsymbo
 $$\boldsymbol\sigma^{\nabla*}=\boldsymbol {\dot\sigma}-\boldsymbol {w}^e\cdot\boldsymbol\sigma+\boldsymbol\sigma\cdot\boldsymbol {w}^e\tag{2-2}$$
 
 而基于初始构型的Cauchy应力张量的Jaumann率为：
+$$\begin{align}\boldsymbol l &= \boldsymbol {\dot F} \cdot \boldsymbol {F}^{-1}\\
+&= (\boldsymbol {\dot F}^e \cdot \boldsymbol { F}^p+\boldsymbol { F}^e \cdot \boldsymbol {\dot F}^p)\cdot(\boldsymbol { F}^e \cdot \boldsymbol {F}^p)^{-1}\\
+&=\boldsymbol {\dot F}^e \cdot (\boldsymbol { F}^e)^{-1} + \boldsymbol { F}^e \cdot \boldsymbol {\dot F}^p \cdot (\boldsymbol {F}^p)^{-1} \cdot  (\boldsymbol {F}^e)^{-1}\\
+\end{align}\tag{1-5}$$
 $$\begin{align}\boldsymbol{\sigma}^\nabla &= \boldsymbol{\dot\sigma}-\boldsymbol w \cdot \boldsymbol \sigma + \boldsymbol \sigma \cdot \boldsymbol w \\
 &= (\boldsymbol{\sigma}^{\nabla*}+\boldsymbol w^e\cdot\boldsymbol\sigma-\boldsymbol \sigma\cdot\boldsymbol w^e) - \boldsymbol w \cdot \boldsymbol \sigma + \boldsymbol \sigma\cdot \boldsymbol w\\
 &=\boldsymbol\sigma^{\nabla*}-(\boldsymbol {w}-\boldsymbol {w}^e)\cdot\boldsymbol\sigma+\boldsymbol\sigma\cdot(\boldsymbol {w}-\boldsymbol {w}^e)\\
