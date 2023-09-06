@@ -66,7 +66,7 @@ $\boldsymbol {R}^\alpha=\frac{1}{2}[\boldsymbol {s}^\alpha\cdot(\boldsymbol {n}^
 设晶体的弹性性质不受滑移/孪晶变形的影响，则单晶的本构方程为:
 $$\boldsymbol\sigma^{\nabla*}+\boldsymbol\sigma\ tr(\boldsymbol{d}^e)=\boldsymbol L:\boldsymbol{d}^e\tag{2-1}$$
 
-其中，$\boldsymbol L$ 为四阶弹性模量张量， $\boldsymbol\sigma^{\nabla*}$ 为基于中间构型的Cauchy应力张量的客观率（Jaumann率）:
+其中， $\boldsymbol L$ 为四阶弹性模量张量， $\boldsymbol\sigma^{\nabla*}$ 为基于中间构型的Cauchy应力张量的客观率（Jaumann率）:
 $$\boldsymbol\sigma^{\nabla*}=\boldsymbol {\dot\sigma}-\boldsymbol {w}^e\cdot\boldsymbol\sigma+\boldsymbol\sigma\cdot\boldsymbol {w}^e\tag{2-2}$$
 
 而基于初始构型的Cauchy应力张量的Jaumann率为：
@@ -82,14 +82,14 @@ $$\boldsymbol{\sigma}^\nabla+\boldsymbol {w}^p\cdot\boldsymbol\sigma-\boldsymbol
 整理得到:
 $$\boldsymbol{\sigma}^\nabla= \boldsymbol {L'}:(\boldsymbol{d}-\boldsymbol{d}^p)+\boldsymbol\sigma^0\tag{2-5}$$
 
-其中, $L^{'}_{ijkl}=L_{ijkl}-\sigma_{ij}\delta_{kl}$ , $\sigma^0_{ij}=w^p_{ik}\sigma_{kj}-\sigma_{ik}w^p_{kj}$ , 进而得到应变率张量与客观应力率的关系:
+其中, $L'_{ijkl}=L_{ijkl}-\sigma_{ij}\delta_{kl}$ , $\sigma^0_{ij}=w^p_{ik}\sigma_{kj}-\sigma_{ik}w^p_{kj}$ , 进而得到应变率张量与客观应力率的关系:
 $$\boldsymbol d = \boldsymbol M^e:\boldsymbol\sigma^\nabla+\boldsymbol d^p + \boldsymbol w^0\tag{2-6}$$
 
 其中 $\boldsymbol M^e=(\boldsymbol L')^{-1}$ 为弹性柔度张量， $\boldsymbol w^0=\boldsymbol M^e:\boldsymbol\sigma^0$ 
 
 根据式(1-14a)，单晶的本构关系中还需要明确 $\alpha$ 滑移/孪生系的剪切应变率 $\dot\gamma^\alpha$ ，而对率相关材料， $\dot\gamma^\alpha$ 取决于变形系的分解剪切应力 $\tau^\alpha$ 、临界剪切应力 $\tau_{cr}^\alpha$ 以及率相关系数 $m$ 等:
 $$\dot\gamma^\alpha=\dot\gamma^\alpha(\tau^\alpha,\tau^\alpha_{cr},m,...)\tag{2-7}$$
-其中，变形系的分解剪切应力 $\tau^\alpha=\boldsymbol P^\alpha: \boldsymbol\sigma^{'}$ ,  $\boldsymbol\sigma^{'}$ 为应力偏张量。可以看出，这样定义的分解剪切应力 $\tau^\alpha$ 与剪切应变率 $\dot\gamma^\alpha$ 是功共轭的；而临界剪切应力 $\tau^\alpha_{cr}$ 反映了变形系的硬化/软化行为，其变化率 $\dot\tau^\alpha_{cr}$ 与当前临界剪切应力 $\tau^\alpha_{cr}$ 、其他变形系 $\beta$ 的累计剪切应变 $\gamma^\beta$ 和剪切应变率 $\dot\gamma^\beta$ 、以及孪晶系 $\kappa$ 的孪晶体积分数 $f^\kappa$ 相关:
+其中，变形系的分解剪切应力 $\tau^\alpha=\boldsymbol P^\alpha: \boldsymbol\sigma'$ ,  $\boldsymbol\sigma'$ 为应力偏张量。可以看出，这样定义的分解剪切应力 $\tau^\alpha$ 与剪切应变率 $\dot\gamma^\alpha$ 是功共轭的；而临界剪切应力 $\tau^\alpha_{cr}$ 反映了变形系的硬化/软化行为，其变化率 $\dot\tau^\alpha_{cr}$ 与当前临界剪切应力 $\tau^\alpha_{cr}$ 、其他变形系 $\beta$ 的累计剪切应变 $\gamma^\beta$ 和剪切应变率 $\dot\gamma^\beta$ 、以及孪晶系 $\kappa$ 的孪晶体积分数 $f^\kappa$ 相关:
 $$\dot\tau^\alpha_{cr}=\dot\tau^\alpha_{cr}(\tau^\alpha_{cr},\gamma^\beta,\dot\gamma^\beta,f^\kappa,...)\tag{2-8}$$
 
 其中，孪晶系 $\kappa$ 的孪晶体积分数 $f^\kappa$ 的变化率为:
@@ -108,7 +108,7 @@ $\dot\gamma_0$ 为参考剪切应变率， $sgn$ 为符号函数。
 
 由此建立了塑性应变率 $\boldsymbol d^p$ 与应力张量 $\boldsymbol\sigma$ 的联系，注意到此时单晶体本构关系(2-6)成为一个非线性方程，可以通过不同的方法将该方程进行准线性化，
 本构关系可以进一步表示为:
-$$\boldsymbol d = \boldsymbol M^e:\boldsymbol\sigma^\nabla+\boldsymbol M^{vp}:\boldsymbol\sigma^{'}+\boldsymbol d^0 \tag{2-12}$$
+$$\boldsymbol d = \boldsymbol M^e:\boldsymbol\sigma^\nabla+\boldsymbol M^{vp}:\boldsymbol\sigma'+\boldsymbol d^0 \tag{2-12}$$
 其中, $\boldsymbol M^{vp}$ 为粘塑性模量， $\boldsymbol d^0$ 为使该准线性方程成立的反推项，并且有 $\boldsymbol d^e=\boldsymbol M^e:\boldsymbol\sigma^\nabla$, $\boldsymbol d^p=\boldsymbol M^{vp}:\boldsymbol\sigma^{'}+\boldsymbol d^0$ 
 
 ## 3. 多晶体自洽模型
