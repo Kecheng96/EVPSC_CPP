@@ -66,7 +66,7 @@ $\boldsymbol {R}^\alpha=\frac{1}{2}[\boldsymbol {s}^\alpha\cdot(\boldsymbol {n}^
 设晶体的弹性性质不受滑移/孪晶变形的影响，则单晶的本构方程为:
 $$\boldsymbol\sigma^{\nabla*}+\boldsymbol\sigma\ tr(\boldsymbol{d}^e)=\boldsymbol L:\boldsymbol{d}^e\tag{2-1}$$
 
-其中，$\boldsymbol L$ 为四阶弹性模量张量，$\boldsymbol\sigma^{\nabla*}$ 为基于中间构型的Cauchy应力张量的客观率（Jaumann率）:
+其中，$\boldsymbol L$ 为四阶弹性模量张量， $\boldsymbol\sigma^{\nabla*}$ 为基于中间构型的Cauchy应力张量的客观率（Jaumann率）:
 $$\boldsymbol\sigma^{\nabla*}=\boldsymbol {\dot\sigma}-\boldsymbol {w}^e\cdot\boldsymbol\sigma+\boldsymbol\sigma\cdot\boldsymbol {w}^e\tag{2-2}$$
 
 而基于初始构型的Cauchy应力张量的Jaumann率为：
@@ -82,7 +82,7 @@ $$\boldsymbol{\sigma}^\nabla+\boldsymbol {w}^p\cdot\boldsymbol\sigma-\boldsymbol
 整理得到:
 $$\boldsymbol{\sigma}^\nabla= \boldsymbol {L'}:(\boldsymbol{d}-\boldsymbol{d}^p)+\boldsymbol\sigma^0\tag{2-5}$$
 
-其中, $L^{'}_{ijkl}=L_{ijkl}-\sigma_{ij}\delta_{kl}$, $\sigma^0_{ij}=w^p_{ik}\sigma_{kj}-\sigma_{ik}w^p_{kj}$ , 进而得到应变率张量与客观应力率的关系:
+其中, $L^{'}_{ijkl}=L_{ijkl}-\sigma_{ij}\delta_{kl}$ , $\sigma^0_{ij}=w^p_{ik}\sigma_{kj}-\sigma_{ik}w^p_{kj}$ , 进而得到应变率张量与客观应力率的关系:
 $$\boldsymbol d = \boldsymbol M^e:\boldsymbol\sigma^\nabla+\boldsymbol d^p + \boldsymbol w^0\tag{2-6}$$
 
 其中 $\boldsymbol M^e=(\boldsymbol L')^{-1}$ 为弹性柔度张量， $\boldsymbol w^0=\boldsymbol M^e:\boldsymbol\sigma^0$ 
