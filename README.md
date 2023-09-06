@@ -11,7 +11,7 @@ $\boldsymbol {u=x-X}$ ：物质点的位移
 根据有限变形理论，晶粒的变形可以通过变形梯度张量 $\boldsymbol  F$ 及速度梯度张量 $\boldsymbol l$ ，定义为：
 $$\boldsymbol {l} = \frac{\partial \boldsymbol {\dot u}}{\partial \boldsymbol x} = \frac{\partial \boldsymbol v}{\partial \boldsymbol x} \tag{1-1}$$
 
-$$\boldsymbol{ F= \frac{\partial  x}{\partial X}= \frac{\partial  u}{\partial  X} + I }\tag{1-2}$$	
+$$\boldsymbol{F}= \frac{\partial  \boldsymbol x}{\partial \boldsymbol X}= \frac{\partial \boldsymbol u}{\partial \boldsymbol X} + \boldsymbol I \tag{1-2}$$	
 
 根据它们的偏微分关系，有：
 $$\boldsymbol {\dot F} = \boldsymbol {l \cdot F}  \tag{1-3}$$
