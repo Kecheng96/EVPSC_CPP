@@ -82,7 +82,7 @@ $$\boldsymbol{\sigma}^\nabla+\boldsymbol {w}^p\cdot\boldsymbol\sigma-\boldsymbol
 整理得到:
 $$\boldsymbol{\sigma}^\nabla= \boldsymbol {L'}:(\boldsymbol{d}-\boldsymbol{d}^p)+\boldsymbol\sigma^0\tag{2-5}$$
 
-其中, $L^{'}_{ijkl}=L_{ijkl}-\sigma_{ij}\delta_{kl}$, $\sigma^0_{ij}=w^p_{ik}\sigma_{kj}-\sigma_{ik}w^p_{kj}$, 进而得到应变率张量与客观应力率的关系:
+其中, $L^'_{ijkl}=L_{ijkl}-\sigma_{ij}\delta_{kl}$, $\sigma^0_{ij}=w^p_{ik}\sigma_{kj}-\sigma_{ik}w^p_{kj}$, 进而得到应变率张量与客观应力率的关系:
 $$\boldsymbol d = \boldsymbol M^e:\boldsymbol\sigma^\nabla+\boldsymbol d^p + \boldsymbol w^0\tag{2-6}$$
 
 其中$\boldsymbol M^e=(\boldsymbol L')^{-1}$ 为弹性柔度张量，$\boldsymbol w^0=\boldsymbol M^e:\boldsymbol\sigma^0$
