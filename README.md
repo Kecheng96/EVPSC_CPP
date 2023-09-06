@@ -134,11 +134,14 @@ $$\boldsymbol D = \overline{\boldsymbol M}^e:\boldsymbol\Sigma^\nabla+\overline{
 	
 （i）将局部区域 $\Omega$ 剥离，让 $\Omega$ 自由产生本征应变 $\varepsilon_{ij}^*$ ，此时区域 $\Omega$ 内没有产生应力，而剩余区域 $\Omega^-$ 也不产生应变；
 
-（ii）当本征应变在区域 $\Omega$ 内均匀分布，则可以通过在夹杂边界 $S$ 附加虚拟面力 $p_i^*$，从而使区域 $\Omega$ 产生弹性应变 $-\varepsilon_{ij}^*$ ，恢复取出时的形状，这样产生的弹性应力场为：
-$$\sigma^*_{ij}=-C_{ijkl}\varepsilon^*_{ij}\tag{3-3}$$
+（ii）当本征应变在区域 $\Omega$ 内均匀分布，则可以通过在夹杂边界 $S$ 附加虚拟面力 $p_i^\*$ ，从而使区域 $\Omega$ 产生弹性应变 $-\varepsilon_{ij}^\*$ ，恢复取出时的形状，这样产生的弹性应力场为：
 
-式中 $C_{ijkl}$ 为材料的弹性刚度， $σ_{ij}^*$ 即为对应的本征应力，虚拟面力 $p_i^*$ 为:
-$$p_i^*=-\sigma^*_{ij}n_j\tag{3-4}$$
+
+$$\sigma_{ij}^\*=-C_{ijkl}\varepsilon_{ij}^\*\tag{3-3}$$
+
+式中 $C_{ijkl}$ 为材料的弹性刚度， $σ_{ij}^\*$ 即为对应的本征应力，虚拟面力 $p_i^\*$ 为:
+
+$$p_i^\*=-\sigma^{\*}_{ij}n_j\tag{3-4}$$
 
 式中 $n_j$ 为边界的外法向。至此，局部区域 $\Omega$ 已经恢复成原来的形状，只是在边界上存在虚拟面力;
 
@@ -146,7 +149,7 @@ $$p_i^*=-\sigma^*_{ij}n_j\tag{3-4}$$
 
 Eshebly (1957) 证明，当介质为线弹性，夹杂体形状为椭球体，而且本征应变 $\boldsymbol\varepsilon^*$ 为常应变（应变大小在夹杂体内不随位置改变），最终求解得到的夹杂内的实际应变 $\boldsymbol\varepsilon$ 也是常应变，二者之间满足:
 
-$$\varepsilon^*_{ij}=S_{ijkl}\varepsilon^*_{ij}\tag{3-5}$$
+$$\varepsilon_{ij}^\*=S_{ijkl}\varepsilon_{ij}^\*\tag{3-5}$$
 
 $S_{ijkl}$ 称为Eshebly张量，它仅与介质的弹性性质和椭球体的形状与取向有关。 $S_{ijkl}$ 关于 $i$ 和 $j$ ， $k$ 和 $l$ 对称，但一般关于 $(i,j)$ 与 $(k,l)$ 不对称，故一般不具有 Voigt 对称性。
 
@@ -154,11 +157,13 @@ $S_{ijkl}$ 称为Eshebly张量，它仅与介质的弹性性质和椭球体的�
 将多晶体视为无限大粘塑性介质，而某一晶粒则为夹杂体。根据单晶体塑性应变率 $\boldsymbol d^p=\boldsymbol M^{vp}:\boldsymbol\sigma'+\boldsymbol d^0$ 和多晶体塑性应变率表达式 $\boldsymbol D^p=\overline{\boldsymbol M}^{vp}:\boldsymbol\Sigma'+ \boldsymbol D^0$,将单晶体的塑性应变率通过宏观粘塑性张量整理成:
 $$\boldsymbol d^p=\overline{\boldsymbol M}^{vp}:\boldsymbol\Sigma'+\boldsymbol d^0 + \boldsymbol d^*\tag{3-6}$$
 
-这样， $\boldsymbol d^*=(\boldsymbol M^{vp}-\overline{\boldsymbol M}^{vp}):\boldsymbol\sigma'+(\boldsymbol d^0-\boldsymbol D^0)$ 则是此时的本征应变率，考虑到粘塑性刚度张量 $\overline{\boldsymbol L}^{vp}=(\overline{\boldsymbol M}^{vp})^{-1}$ ，并记 $\boldsymbol{\widetilde\sigma}'=\boldsymbol\sigma'-\boldsymbol\Sigma'$ ， $\boldsymbol{\widetilde d}^p=\boldsymbol d^p-\boldsymbol D^p$ 式（3-6）可以改写成：
+这样， $\boldsymbol d^\*=(\boldsymbol M^{vp}-\overline{\boldsymbol M}^{vp}):\boldsymbol\sigma'+(\boldsymbol d^0-\boldsymbol D^0)$ 则是此时的本征应变率，考虑到粘塑性刚度张量 $\overline{\boldsymbol L}^{vp}=(\overline{\boldsymbol M}^{vp})^{-1}$ ，并记 $\boldsymbol{\widetilde\sigma}'=\boldsymbol\sigma'-\boldsymbol\Sigma'$ ， $\boldsymbol{\widetilde d}^p=\boldsymbol d^p-\boldsymbol D^p$ 式（3-6）可以改写成：
 $$\boldsymbol{\widetilde\sigma}'=\overline{\boldsymbol L}^{vp}:(\widetilde{\boldsymbol d}^p-\boldsymbol d^*)\tag{3-7a}$$
 
 记材料点的坐标为 $\boldsymbol x$ ,并将张量形式展开：
-$$\widetilde\sigma'_{ij}(\boldsymbol x)=\overline{L}^{vp}_{ijkl}:(\widetilde{d}^p_{kl}(\boldsymbol x)-d^*_{kl}(\boldsymbol x))\tag{3-7b}$$
+
+$$\widetilde\sigma_{ij}'(\boldsymbol x)=\overline{L}^{vp}_{ijkl}:(\widetilde d\_{kl}^p(\boldsymbol x)-d\_{kl}^\*(\boldsymbol x)) \tag{3-7b}$$
 
 平衡方程为:
-$$\sigma_{ij,j}(\boldsymbol x)=(\widetilde\sigma_{ij}(\boldsymbol x)+\Sigma_{ij}(\boldsymbol x))_{,j}=\widetilde{\sigma}_{ij,j}(\boldsymbol x)=0\tag{3-8}$$
+
+$$\sigma_{ij,j}(\boldsymbol x)=(\widetilde\sigma_{ij}(\boldsymbol x)+\Sigma_{ij}(\boldsymbol x))\_{,j}=\widetilde{\sigma}_{ij,j}(\boldsymbol x)=0\tag{3-8}$$
