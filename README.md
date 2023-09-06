@@ -102,13 +102,13 @@ $$\dot\gamma^\alpha=\dot\gamma_0|\frac{\tau^\alpha}{\tau^\alpha_{cr}}|^\frac{1}{
 考虑到孪晶变形的极性，对孪晶系:
 
 $$\dot\gamma^\alpha=\begin{cases}\dot\gamma_0|\frac{\tau^\alpha}{\tau^\alpha_{cr}}|^\frac{1}{m} & , \tau^\alpha \gt 0 \\
-1 & , \tau^\alpha \le 0\\
-\end{cases}\tag{2-11}$$
+1 & , \tau^\alpha \le 0\end{cases}\tag{2-11}$$
+
 $\dot\gamma_0$ 为参考剪切应变率，$sgn$ 为符号函数。
 
 由此建立了塑性应变率 $\boldsymbol d^p$ 与应力张量 $\boldsymbol\sigma$ 的联系，注意到此时单晶体本构关系(2-6)成为一个非线性方程，可以通过不同的方法将该方程进行准线性化，
 本构关系可以进一步表示为:
 $$\boldsymbol d = \boldsymbol M^e:\boldsymbol\sigma^\nabla+\boldsymbol M^{vp}:\boldsymbol\sigma^{'}+\boldsymbol d^0 \tag{2-12}$$
-其中, $\boldsymbol M^{vp}$ 为粘塑性模量，$\boldsymbol d^0$ 为使该准线性方程成立的反推项，并且有 $\boldsymbol d^e=\boldsymbol M^e:\boldsymbol\sigma^\nabla$, $\boldsymbol d^p=\boldsymbol M^{vp}:\boldsymbol\sigma^{'}+\boldsymbol d^0$ 
+其中, $\boldsymbol M^{vp}$ 为粘塑性模量， $\boldsymbol d^0$ 为使该准线性方程成立的反推项，并且有 $\boldsymbol d^e=\boldsymbol M^e:\boldsymbol\sigma^\nabla$, $\boldsymbol d^p=\boldsymbol M^{vp}:\boldsymbol\sigma^{'}+\boldsymbol d^0$ 
 
 ## 3. 多晶体自洽模型
