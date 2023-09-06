@@ -55,13 +55,13 @@ $$\boldsymbol {n}^\alpha=(\boldsymbol{F}^e)^{-T}\cdot\boldsymbol {n}^\alpha_0\ta
 $$\boldsymbol {l}^p=\sum_\alpha \dot\gamma^\alpha \boldsymbol {s}^\alpha\cdot(\boldsymbol {n}^\alpha)^T\tag{1-12}$$
 
 根据公式(1-12),可以得到应变率张量 $\boldsymbol d$ 和旋率张量 $\boldsymbol w$ 的弹性和塑性部分
-$$\boldsymbol{d}^e= \frac{1}{2}[\boldsymbol{\dot F}^e\cdot(\boldsymbol{F}^e)^{-1}+(\boldsymbol{F}^e)^{-T}\cdot(\boldsymbol{\dot F}^e)^T]\tag{1-13}$$
-$$\boldsymbol{w}^e= \frac{1}{2}[\boldsymbol{\dot F}^e\cdot(\boldsymbol{F}^e)^{-1}-(\boldsymbol{F}^e)^{-T}\cdot(\boldsymbol{\dot F}^e)^T]\tag{1-14}$$
+$$\boldsymbol{d}^e= \frac{1}{2}\[\boldsymbol{\dot F}^e\cdot(\boldsymbol{F}^e)^{-1}+(\boldsymbol{F}^e)^{-T}\cdot(\boldsymbol{\dot F}^e)^T\]\tag{1-13}$$
+$$\boldsymbol{w}^e= \frac{1}{2}\[\boldsymbol{\dot F}^e\cdot(\boldsymbol{F}^e)^{-1}-(\boldsymbol{F}^e)^{-T}\cdot(\boldsymbol{\dot F}^e)^T\]\tag{1-14}$$
 $$\boldsymbol {d}^p=\sum_\alpha \dot\gamma^\alpha \boldsymbol {P}^\alpha\tag{1-15}$$
 $$\boldsymbol {w}^p=\sum_\alpha \dot\gamma^\alpha \boldsymbol {R}^\alpha\tag{1-16}$$
 
-其中 $\boldsymbol {P}^\alpha=\frac{1}{2}[\boldsymbol {s}^\alpha\cdot(\boldsymbol {n}^\alpha)^T+\boldsymbol {n}^\alpha\cdot(\boldsymbol {s}^\alpha)^T]$（称为Schmid tensor施密特张量）,
-$\boldsymbol {R}^\alpha=\frac{1}{2}[\boldsymbol {s}^\alpha\cdot(\boldsymbol {n}^\alpha)^T-\boldsymbol {n}^\alpha\cdot(\boldsymbol {s}^\alpha)^T]$
+其中 $\boldsymbol {P}^\alpha=\frac{1}{2}\[\boldsymbol {s}^\alpha\cdot(\boldsymbol {n}^\alpha)^T+\boldsymbol {n}^\alpha\cdot(\boldsymbol {s}^\alpha)^T\]$（称为Schmid tensor施密特张量）,
+$\boldsymbol {R}^\alpha=\frac{1}{2}\[\boldsymbol {s}^\alpha\cdot(\boldsymbol {n}^\alpha)^T-\boldsymbol {n}^\alpha\cdot(\boldsymbol {s}^\alpha)^T\]$
 
 ## 2. 单晶本构关系
 设晶体的弹性性质不受滑移/孪晶变形的影响,则单晶的本构方程为:
@@ -162,7 +162,7 @@ $$\boldsymbol{\widetilde\sigma}'=\overline{\boldsymbol L}^{vp}:(\widetilde{\bold
 
 记材料点的坐标为 $\boldsymbol x$ ,并将张量形式展开:
 
-$$\widetilde\sigma_{ij}'(\boldsymbol x)=\overline{L_{ijkl}^{vp}}:(\widetilde d_{kl}^p(\boldsymbol x)-d_{kl}^+(\boldsymbol x)) \tag{3-7b}$$
+$$\widetilde\sigma_{ij}'(\boldsymbol x)=\overline L_{ijkl}^{vp}:(\widetilde d_{kl}^p(\boldsymbol x)-d_{kl}^+(\boldsymbol x)) \tag{3-7b}$$
 
 平衡方程为:
 
@@ -172,7 +172,9 @@ $$\sigma_{ij,j}(\boldsymbol x)=(\widetilde\sigma_{ij}(\boldsymbol x)+\Sigma_{ij}
 
 $$\sigma_{ij}(\boldsymbol x)=\sigma^p(\boldsymbol x)\delta_{ij}+\sigma_{ij}'(\boldsymbol x)\tag{3-9}$$
 
-再结合关系式 $\widetilde{\boldsymbol d}_{ij}(\boldsymbol x)=\frac{1}{2}(\widetilde{\dot u}_{i,j}+\widetilde{\dot u}_{j,i})$ 和粘塑性刚度张量关于 $k$ 和 $l$ 的对称性 $\overline{\boldsymbol L}_{ijkl}^{vp}=\overline{\boldsymbol L}_{ijlk}^{vp}$ , $\widetilde{\sigma}_{ij,j}(\boldsymbol x)$ 可以通过位移来表示:
+再结合关系式 $\widetilde d_{ij}(\boldsymbol x)=\frac{1}{2}(\widetilde {\dot u_{i,j}}+\widetilde{\dot u_{j,i}})$ 和粘塑性刚度张量关于 $k$ 和 $l$ 的对称性 $\overline L_{ijkl}^{vp}=\overline L_{ijlk}^{vp}$ , $\widetilde\sigma_{ij,j}(\boldsymbol x)$ 可以通过位移来表示:
 
-$$\begin{align}\widetilde{\sigma}_{ij,j}(\boldsymbol x) &= [\sigma^p(\boldsymbol x)\delta_{ij}+\sigma_{ij}'(\boldsymbol x)]_{,j} \\
+$$\begin{align}\widetilde\sigma_{ij,j}(\boldsymbol x) &= \[\sigma^p(\boldsymbol x)\delta_{ij}+\sigma_{ij}'(\boldsymbol x)\],j \\
 &= 1 \end{align}\tag{3-10}$$
+
+
