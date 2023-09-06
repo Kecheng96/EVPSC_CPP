@@ -113,3 +113,52 @@ $$\boldsymbol d = \boldsymbol M^e:\boldsymbol\sigma^\nabla+\boldsymbol M^{vp}:\b
 其中, $\boldsymbol M^{vp}$ 为粘塑性模量， $\boldsymbol d^0$ 为使该准线性方程成立的反推项，并且有 $\boldsymbol d^e=\boldsymbol M^e:\boldsymbol\sigma^\nabla$, $\boldsymbol d^p=\boldsymbol M^{vp}:\boldsymbol\sigma^{'}+\boldsymbol d^0$ 
 
 ## 3. 多晶体自洽模型
+
+多晶体材料可以看作是许多单晶的集合，基于单晶体本构模型和以各个晶体的取向，并结合应力应变协调方程可得到多晶体材料在宏观载荷下的力学响应，结合有限元理论即可实现（Crystal-plasticity finite element method, CPFEM方法）。然而，由于实际多晶体材料中包含的晶粒数量较多，通过CPFEM来计算宏观力学响应往往意味着较大的计算开销。多晶体自洽模型则是一种能在较小的计算开销下，得到多晶体材料的宏微观力学响应的均质化假设模型。
+
+
+对多晶体材料，宏观应变率张量 $\boldsymbol D$ 、旋率张量 $\boldsymbol W$ 及 Cauchy 应力张量 $\boldsymbol\Sigma$ 可看作其包含的所有单晶体的对应张量的体积平均:
+$$\boldsymbol D = \langle\boldsymbol d\rangle=\frac{1}{V}\int\boldsymbol d\ dV\tag{3-1a}$$
+$$\boldsymbol W = \langle\boldsymbol w\rangle=\frac{1}{V}\int\boldsymbol w\ dV\tag{3-1b}$$
+$$\boldsymbol\Sigma = \langle\boldsymbol\sigma\rangle=\frac{1}{V}\int\boldsymbol\sigma\ dV\tag{3-1c}$$
+
+$V$ 为多晶体的体积，算符〈⋯〉表示求体积平均。均匀化处理之后可以得到多晶体的本构方程：
+$$\boldsymbol D = \overline{\boldsymbol M}^e:\boldsymbol\Sigma^\nabla+\overline{\boldsymbol M}^{vp}:\boldsymbol\Sigma'+\boldsymbol D^0 \tag{3-2}$$
+
+其中， $\overline{\boldsymbol M}^e$ , $\overline{\boldsymbol M}^{vp}$ 和 $\boldsymbol D^0$ 分别为宏观弹性模量张量，宏观粘塑性模量张量和反推项。在实际计算中，仅仅只有宏观的边界条件是已知的，而宏观的模量和各个晶粒的模量以及塑性应变都是未知的，需要利用多晶体聚合体和晶粒之间的联系来迭代求解。
+
+### 3.1 椭球体夹杂问题
+上文提到的求解宏微观模量的方法，是通过将多晶体看作无限大均匀介质，从而使得需要求解的晶粒与晶粒之间的应力状态差异问题，转换为了根据本征应变求解本征应力的问题。现在假设均匀介质中存在一个局部区域 $\Omega$ ,若假设 $\Omega$ 不受到周围介质的约束，在由于某种物理或化学的原因，则会产生不产生应力场的均匀的局部应变 $\boldsymbol\varepsilon^*$，该局部应变就被称为本征应变。本征应变是一个广义的概念，它可以是热应变、相变应变和残余应力等，实际上区域 $\Omega$ 在周围介质的约束下，无法自由发生变形，从而在局部区域 $\Omega$ 内外产生应力场，产生本征应变的区域 $\Omega$ 称为夹杂。
+
+本征应变问题可以分解为三个问题的叠加
+	
+（i）将局部区域 $\Omega$ 剥离，让 $\Omega$ 自由产生本征应变 $\varepsilon_{ij}^*$ ，此时区域 $\Omega$ 内没有产生应力，而剩余区域 $\Omega^-$ 也不产生应变；
+
+（ii）当本征应变在区域 $\Omega$ 内均匀分布，则可以通过在夹杂边界 $S$ 附加虚拟面力 $p_i^*$，从而使区域 $\Omega$ 产生弹性应变 $-\varepsilon_{ij}^*$ ，恢复取出时的形状，这样产生的弹性应力场为：
+$$\sigma^*_{ij}=-C_{ijkl}\varepsilon^*_{ij}\tag{3-3}$$
+
+式中 $C_{ijkl}$ 为材料的弹性刚度， $σ_{ij}^*$ 即为对应的本征应力，虚拟面力 $p_i^*$ 为:
+$$p_i^*=-\sigma^*_{ij}n_j\tag{3-4}$$
+
+式中 $n_j$ 为边界的外法向。至此，局部区域 $\Omega$ 已经恢复成原来的形状，只是在边界上存在虚拟面力;
+
+（iii）将局部区域 $\Omega$ 放回均匀介质中，在夹杂边界上施加 $-p_i^*$ ，同时让整个均匀介质一起变形，释放虚拟载荷。求解此时无限大介质内的位移解即为夹杂问题的位移解。
+
+Eshebly (1957) 证明，当介质为线弹性，夹杂体形状为椭球体，而且本征应变 $\boldsymbol\varepsilon^*$ 为常应变（应变大小在夹杂体内不随位置改变），最终求解得到的夹杂内的实际应变 $\boldsymbol\varepsilon$ 也是常应变，二者之间满足:
+
+$$\varepsilon^*_{ij}=S_{ijkl}\varepsilon^*_{ij}\tag{3-5}$$
+
+$S_{ijkl}$ 称为Eshebly张量，它仅与介质的弹性性质和椭球体的形状与取向有关。 $S_{ijkl}$ 关于 $i$ 和 $j$ ， $k$ 和 $l$ 对称，但一般关于 $(i,j)$ 与 $(k,l)$ 不对称，故一般不具有 Voigt 对称性。
+
+### 3.2 粘塑性介质中粘塑性夹杂问题
+将多晶体视为无限大粘塑性介质，而某一晶粒则为夹杂体。根据单晶体塑性应变率 $\boldsymbol d^p=\boldsymbol M^{vp}:\boldsymbol\sigma'+\boldsymbol d^0$ 和多晶体塑性应变率表达式 $\boldsymbol D^p=\overline{\boldsymbol M}^{vp}:\boldsymbol\Sigma'+ \boldsymbol D^0$,将单晶体的塑性应变率通过宏观粘塑性张量整理成:
+$$\boldsymbol d^p=\overline{\boldsymbol M}^{vp}:\boldsymbol\Sigma'+\boldsymbol d^0 + \boldsymbol d^*\tag{3-6}$$
+
+这样， $\boldsymbol d^*=(\boldsymbol M^{vp}-\overline{\boldsymbol M}^{vp}):\boldsymbol\sigma'+(\boldsymbol d^0-\boldsymbol D^0)$ 则是此时的本征应变率，考虑到粘塑性刚度张量 $\overline{\boldsymbol L}^{vp}=(\overline{\boldsymbol M}^{vp})^{-1}$ ，并记 $\boldsymbol{\widetilde\sigma}'=\boldsymbol\sigma'-\boldsymbol\Sigma'$ ， $\boldsymbol{\widetilde d}^p=\boldsymbol d^p-\boldsymbol D^p$ 式（3-6）可以改写成：
+$$\boldsymbol{\widetilde\sigma}'=\overline{\boldsymbol L}^{vp}:(\widetilde{\boldsymbol d}^p-\boldsymbol d^*)\tag{3-7a}$$
+
+记材料点的坐标为 $\boldsymbol x$ ,并将张量形式展开：
+$$\widetilde\sigma'_{ij}(\boldsymbol x)=\overline{L}^{vp}_{ijkl}:(\widetilde{d}^p_{kl}(\boldsymbol x)-d^*_{kl}(\boldsymbol x))\tag{3-7b}$$
+
+平衡方程为:
+$$\sigma_{ij,j}(\boldsymbol x)=(\widetilde\sigma_{ij}(\boldsymbol x)+\Sigma_{ij}(\boldsymbol x))_{,j}=\widetilde{\sigma}_{ij,j}(\boldsymbol x)=0\tag{3-8}$$
