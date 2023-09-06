@@ -87,7 +87,7 @@ $$\boldsymbol d = \boldsymbol M^e:\boldsymbol\sigma^\nabla+\boldsymbol d^p + \bo
 
 其中 $\boldsymbol M^e=(\boldsymbol L')^{-1}$ 为弹性柔度张量， $\boldsymbol w^0=\boldsymbol M^e:\boldsymbol\sigma^0$ 
 
-根据式(1-14a)，单晶的本构关系中还需要明确$\alpha$滑移/孪生系的剪切应变率$\dot\gamma^\alpha$，而对率相关材料，$\dot\gamma^\alpha$ 取决于变形系的分解剪切应力 $\tau^\alpha$ 、临界剪切应力 $\tau_{cr}^\alpha$ 以及率相关系数 $m$ 等:
+根据式(1-14a)，单晶的本构关系中还需要明确 $\alpha$ 滑移/孪生系的剪切应变率 $\dot\gamma^\alpha$ ，而对率相关材料， $\dot\gamma^\alpha$ 取决于变形系的分解剪切应力 $\tau^\alpha$ 、临界剪切应力 $\tau_{cr}^\alpha$ 以及率相关系数 $m$ 等:
 $$\dot\gamma^\alpha=\dot\gamma^\alpha(\tau^\alpha,\tau^\alpha_{cr},m,...)\tag{2-7}$$
 其中，变形系的分解剪切应力 $\tau^\alpha=\boldsymbol P^\alpha: \boldsymbol\sigma^{'}$ ,  $\boldsymbol\sigma^{'}$ 为应力偏张量。可以看出，这样定义的分解剪切应力 $\tau^\alpha$ 与剪切应变率 $\dot\gamma^\alpha$ 是功共轭的；而临界剪切应力 $\tau^\alpha_{cr}$ 反映了变形系的硬化/软化行为，其变化率 $\dot\tau^\alpha_{cr}$ 与当前临界剪切应力 $\tau^\alpha_{cr}$ 、其他变形系 $\beta$ 的累计剪切应变 $\gamma^\beta$ 和剪切应变率 $\dot\gamma^\beta$ 、以及孪晶系 $\kappa$ 的孪晶体积分数 $f^\kappa$ 相关:
 $$\dot\tau^\alpha_{cr}=\dot\tau^\alpha_{cr}(\tau^\alpha_{cr},\gamma^\beta,\dot\gamma^\beta,f^\kappa,...)\tag{2-8}$$
@@ -104,7 +104,7 @@ $$\dot\gamma^\alpha=\dot\gamma_0|\frac{\tau^\alpha}{\tau^\alpha_{cr}}|^\frac{1}{
 $$\dot\gamma^\alpha=\begin{cases}\dot\gamma_0|\frac{\tau^\alpha}{\tau^\alpha_{cr}}|^\frac{1}{m} & , \tau^\alpha \gt 0 \\
 1 & , \tau^\alpha \le 0\end{cases}\tag{2-11}$$
 
-$\dot\gamma_0$ 为参考剪切应变率，$sgn$ 为符号函数。
+$\dot\gamma_0$ 为参考剪切应变率， $sgn$ 为符号函数。
 
 由此建立了塑性应变率 $\boldsymbol d^p$ 与应力张量 $\boldsymbol\sigma$ 的联系，注意到此时单晶体本构关系(2-6)成为一个非线性方程，可以通过不同的方法将该方程进行准线性化，
 本构关系可以进一步表示为:
