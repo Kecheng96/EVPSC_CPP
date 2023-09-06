@@ -44,9 +44,9 @@ $$\boldsymbol {l}^p = \boldsymbol {d}^p + \boldsymbol {w}^p\tag{1-9}$$
 单晶体材料的塑性变形由滑移或孪生引起，在图 1所示的中间构型中，晶格矢量不发生变化，记第 $\alpha$ 个滑移/孪晶系统的变形方向为 $\boldsymbol {s}^\alpha_0$、变形法向为 $\boldsymbol {n}^\alpha_0$，则发生的塑性变形：
 $$\boldsymbol {\dot F}^p \cdot (\boldsymbol {F}^p)^{-1} = \sum_\alpha \dot\gamma^\alpha\boldsymbol {s}^\alpha_0\cdot(\boldsymbol {n}^\alpha_0)^T\tag{1-10}$$
 
-其中，$\dot\gamma^\alpha$ 为变形系 $\alpha$ 引起的剪切应变率。
+其中， $\dot\gamma^\alpha$ 为变形系 $\alpha$ 引起的剪切应变率。
 
-在发生晶格畸变后，晶格矢量将发生拉伸和转动，他们会保持正交关系，但一般不再是单位矢量。晶格畸变后，变形方向和法向分别为 $\boldsymbol {s}^\alpha$，$\boldsymbol {n}^\alpha$:
+在发生晶格畸变后，晶格矢量将发生拉伸和转动，他们会保持正交关系，但一般不再是单位矢量。晶格畸变后，变形方向和法向分别为 $\boldsymbol {s}^\alpha$ ， $\boldsymbol {n}^\alpha$ :
 $$\boldsymbol {s}^\alpha=\boldsymbol{F}^e\cdot\boldsymbol {s}^\alpha_0\tag{1-11a}$$
 $$\boldsymbol {n}^\alpha=(\boldsymbol{F}^e)^{-T}\cdot\boldsymbol {n}^\alpha_0\tag{1-11a}$$
 
