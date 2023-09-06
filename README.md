@@ -101,11 +101,9 @@ $$\dot\gamma^\alpha=\dot\gamma_0|\frac{\tau^\alpha}{\tau^\alpha_{cr}}|^\frac{1}{
 
 考虑到孪晶变形的极性，对孪晶系:
 
-$$\dot\gamma^\alpha=\begin{cases}
-\dot\gamma_0|\frac{\tau^\alpha}{\tau^\alpha_{cr}}|^\frac{1}{m} & , \tau^\alpha \gt 0 \\
+$$\dot\gamma^\alpha=\begin{cases}\dot\gamma_0|\frac{\tau^\alpha}{\tau^\alpha_{cr}}|^\frac{1}{m} & , \tau^\alpha \gt 0 \\
 1 & , \tau^\alpha \le 0\\
 \end{cases}\tag{2-11}$$
-
 $\dot\gamma_0$ 为参考剪切应变率，$sgn$ 为符号函数。
 
 由此建立了塑性应变率 $\boldsymbol d^p$ 与应力张量 $\boldsymbol\sigma$ 的联系，注意到此时单晶体本构关系(2-6)成为一个非线性方程，可以通过不同的方法将该方程进行准线性化，
