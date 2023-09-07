@@ -178,11 +178,23 @@ $$\sigma_{ij}(\boldsymbol x)=\sigma^p(\boldsymbol x)\delta_{ij}+\sigma_{ij}'(\bo
 
 再结合关系式 $\widetilde d_{ij}(\boldsymbol x)=\frac{1}{2}(\widetilde {\dot u_{i,j}}+\widetilde{\dot u_{j,i}})$ 和粘塑性刚度张量关于 $k$ 和 $l$ 的对称性 $\overline L_{ijkl}^{vp}=\overline L_{ijlk}^{vp}$ , $\widetilde\sigma_{ij,j}(\boldsymbol x)$ 可以通过位移来表示:
 
-$$\begin{align}\widetilde\sigma_{ij,j}(\boldsymbol x) &= \left[\sigma^p(\boldsymbol x)\delta_{ij}+\sigma_{ij}'(\boldsymbol x) \right],j \\
-&= \sigma^p_{,i}(\boldsymbol x) + \left[\overline L_{ijkl}^{vp}\left(\widetilde d_{kl}^p(\boldsymbol x) - d_{kl}^+(\boldsymbol x)\right)\right]\\
-&= \sigma^p_{,i}(\boldsymbol x) + \sigma_{ij,j}^+ + \left[\overline L_{ijkl}^{vp}\widetilde d_{kl}^p(\boldsymbol x)\right]\\
-& = \sigma^p_{,i}(\boldsymbol x) + \sigma_{ij,j}^+ + \frac{1}{2}\left[\overline L_{ijkl}^{vp}\left(\widetilde {\dot u_{k,l}}(\boldsymbol x)+\widetilde{\dot u_{l,k}}(\boldsymbol x)\right)\right]\\
-& = \sigma^p_{,i}(\boldsymbol x) + \sigma_{ij,j}^+ + \left[\overline L_{ijkl}^{vp}\widetilde {\dot u_{k,l}}(\boldsymbol x)\right],j\\
-&= \sigma^p_{,i}(\boldsymbol x) + \sigma_{ij,j}^+ + \overline L_{ijkl}^{vp}\widetilde {\dot u_{k,lj}}(\boldsymbol x)\end{align}\tag{3-10}$$
+$$\begin{align}\widetilde\sigma_{ij,j}(\boldsymbol x) &= \left[\widetilde\sigma^p(\boldsymbol x)\delta_{ij}+\sigma_{ij}'(\boldsymbol x) \right],j \\
+&= \widetilde\sigma^p_{,i}(\boldsymbol x) + \left[\overline L_{ijkl}^{vp}\left(\widetilde d_{kl}^p(\boldsymbol x) - d_{kl}^+(\boldsymbol x)\right)\right]\\
+&= \widetilde\sigma^p_{,i}(\boldsymbol x) + \sigma_{ij,j}^+(\boldsymbol x) + \left[\overline L_{ijkl}^{vp}\widetilde d_{kl}^p(\boldsymbol x)\right]\\
+& = \widetilde\sigma^p_{,i}(\boldsymbol x) + \sigma_{ij,j}^+(\boldsymbol x) + \frac{1}{2}\left[\overline L_{ijkl}^{vp}\left(\widetilde {\dot u_{k,l}}(\boldsymbol x)+\widetilde{\dot u_{l,k}}(\boldsymbol x)\right)\right]\\
+& = \widetilde\sigma^p_{,i}(\boldsymbol x) + \sigma_{ij,j}^+(\boldsymbol x) + \left[\overline L_{ijkl}^{vp}\widetilde {\dot u_{k,l}}(\boldsymbol x)\right],j\\
+&= \widetilde\sigma^p_{,i}(\boldsymbol x) + \sigma_{ij,j}^+(\boldsymbol x) + \overline L_{ijkl}^{vp}\widetilde {\dot u_{k,lj}}(\boldsymbol x)\end{align}\tag{3-10}$$
 
+式中, $\sigma_{ij,j}^+(\boldsymbol x) = -\overline L_{ijkl}^{vp}d_{kl}^+(\boldsymbol x)$ 即为本征应变引起的本征应力，该应力在介质无穷远处为0. 记虚拟体力:
 
+$$f_i^+(\boldsymbol x)=\sigma_{ij,j}^+(\boldsymbol x)\tag{3-11}$$
+
+用位移表示的平衡方程为:
+
+$$\overline L_{ijkl}^{vp}\widetilde {\dot u_{k,lj}}(\boldsymbol x)+\widetilde\sigma^p_{,i}(\boldsymbol x) + f_i^+(\boldsymbol x)=0\tag{3-12a}$$
+
+结合不可压缩条件:
+
+$$\widetilde {\dot u_{k,k}}(\boldsymbol x)=0\tag{3-12b}$$
+
+式(3-12)给出的位移场即为夹杂问题的解。在无限大均匀介质在集中力作用下的位移场, 可以通过格林函数法解出(Kelvin解)。设 $\widetilde {\dot u_i}(\boldsymbol x)$ 和 $\widetilde\sigma^p(\boldsymbol x)$  
