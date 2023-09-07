@@ -218,8 +218,67 @@ $$\alpha_k\overline\xi^2\widehat G_{km}(\boldsymbol\xi)=0\tag{3-15b}$$
 
 其中 $i=\sqrt{-1}$ , $\boldsymbol\xi$ 为傅立叶空间中的向量，可以用单位向量表示成 $\boldsymbol\xi=\overline\xi\boldsymbol\alpha$ . 记 $A_{ik}^d=\alpha_l\alpha_j\overline L_{ijkl}^{vp}$ , 可以将式(3-15)转换成矩阵乘法 $\boldsymbol{A\cdot B=C}$ 表达:
 
-$$A=\begin{bmatrix} A_{11}^d & A_{12}^d & A_{13}^d & \alpha_1\\
+$$\boldsymbol A=\begin{bmatrix} A_{11}^d & A_{12}^d & A_{13}^d & \alpha_1\\
 A_{21}^d & A_{22}^d & A_{23}^d & \alpha_2 \\
 A_{31}^d & A_{32}^d & A_{33}^d & \alpha_3 \\
 \alpha_1 & \alpha_2 & \alpha_3 & 0\end{bmatrix}\tag{3-16a}$$
+
+$$\boldsymbol B=\begin{bmatrix} \overline\xi^2\widehat G_{11} & \overline\xi^2\widehat G_{12} & \overline\xi^2\widehat G_{13} \\
+\overline\xi^2\widehat G_{21} & \overline\xi^2\widehat G_{22} & \overline\xi^2\widehat G_{23} \\
+\overline\xi^2\widehat G_{31} & \overline\xi^2\widehat G_{32} & \overline\xi^2\widehat G_{33} \\
+i\overline\xi\widehat H_1 & i\overline\xi\widehat H_2 & i\overline\xi\widehat H_3 \end{bmatrix}\tag{3-16b}$$
+
+$$\boldsymbol C=\begin{bmatrix} 1 & 0 & 0\\
+0 & 1 & 0\\
+0 & 0 & 1\\
+0 & 0 & 0\end{bmatrix}\tag{3-16c}$$
+
+其中 $\boldsymbol A$ 为四阶实对称矩阵，其逆矩阵（若存在）一定也是实对称矩阵， $\boldsymbol C$ 已知，则:
+
+$$\boldsymbol B=\boldsymbol A^{-1}\boldsymbol C=\begin{bmatrix} A_{11}^{-1} & A_{12}^{-1} & A_{13}^{-1}\\
+A_{21}^{-1} & A_{22}^{-1} & A_{23}^{-1}\\
+A_{31}^{-1} & A_{32}^{-1} & A_{33}^{-1}\\
+A_{41}^{-1} & A_{42}^{-1} & A_{43}^{-1}\end{bmatrix}\tag{3-17}$$
+
+显然有:
+
+$$\overline\xi^2\widehat G_{ij}=A_{ij}^{-1}\ (i,j=1,2,3)\tag{3-18a}$$
+
+$$i\overline\xi\widehat H_{i}=A_{4i}^{-1}\ (i=1,2,3)\tag{3-18b}$$
+
+至此, $\widehat G_{km}(\boldsymbol\xi)$ 和 $\widehat H_{m}(\boldsymbol\xi)$ 的值可以求得，再通过傅立叶变换即可得到实数域的解。对卷积式(3-14a)求偏导，并将(3-11)代入，并考虑卷积的微分特性，可得速度梯度解:
+
+$$\widetilde {\dot u_{k,l}}=\int_{R^3}G_{ki,lj}(\boldsymbol x - \boldsymbol x')\sigma_{ij}^+(\boldsymbol x')d\boldsymbol x'\tag{3-19}$$
+
+Eshelby (1957)已经证明，夹杂区域 $\Omega$ 为椭球，且本征应变为常应变且弹性模量在区域内为常张量，那么本征应力也将是常应力。故可以假设本征应力在 $\Omega$ 内为常量而在 $\Omega$ 外为 $0$ , 所以式(3-18)可以转变成求在Ω内的速度梯度 $\widetilde {\dot u_{k,l}}$ 的平均值:
+
+$$\begin{align}\widetilde {\dot u_{k,l}} &= \left(\int_{R^3}-G_{ki,lj}(\boldsymbol x - \boldsymbol x')d\boldsymbol x'\right)\overline L_{ijkl}^{vp}d_{kl}^+\\
+&=\left(-\int_{\Omega}\int_{\Omega}G_{ki,lj}(\boldsymbol x - \boldsymbol x')d\boldsymbol xd\boldsymbol x'\right)\overline L_{ijkl}^{vp}d_{kl}^+\end{align}\tag{3-20}$$
+
+同时将 $G_{ki,lj}$ 用傅立叶变换表达，则有:
+
+$$\begin{align}\widetilde {\dot u_{k,l}}&=\left(\frac{1}{8\pi^3\Omega}\int_{\Omega}\int_{\Omega}\int_{R^3}\alpha_l\alpha_j\overline\xi^2\widehat G_{km}(\boldsymbol\xi)e^{-i\boldsymbol\xi(\boldsymbol x - \boldsymbol x')}d\boldsymbol\xi d\boldsymbol xd\boldsymbol x'\right)\overline L_{ijkl}^{vp}d_{kl}^+\\\
+&=T_{klij}^{vp}\overline L_{ijkl}^{vp}d_{kl}^+\end{align}\tag{3-21}$$
+
+$T_{klij}^{vp}$ 称为格林作用张量，在球坐标系中, $d\boldsymbol\xi = \overline\xi^2d\overline\xi sin\theta d\theta d\phi$ , $\theta$ 和 $\phi$ 为傅立叶空间的单位向量 $\boldsymbol\alpha$ 的球坐标，将式(3-18a)代入，并在轴长为 $(a,b,c)$ 的椭球体晶粒内进行积分(Berveiller et al., 1987):
+
+$$T_{klij}^{vp}=\dfrac{abc}{4\pi}\int_0^{2\pi}\int_0^{\pi}\dfrac{\alpha_l\alpha_j A_{ki}^{-1}(\boldsymbol\alpha)}{\left[\rho(\boldsymbol\alpha)\right]^3}sin\theta d\theta d\phi\tag{3-22}$$
+
+其中, $\rho(\boldsymbol\alpha)=\left[(a\alpha_1)+(b\alpha_2)+(c\alpha_3)\right]^{1/2}$ . 根据式(3-22)张量 $T_{klij}^{vp}$ 可以通过数值积分的方法计算，注意 $A_{ki}^{-1}(\boldsymbol\alpha)$ 需要在每一个积分位置 $\boldsymbol\alpha$ 都计算一次逆矩阵.
+
+进一步可以得到对称和反对称的Eshelby张量:
+
+$$S_{ijkl}^{vp}=\frac{1}{4}\left(T_{ijmn}^{vp}+T_{jimn}^{vp}+T_{ijmn}^{vp}+T_{ijnm}^{vp}\right)\overline L_{mnkl}^{vp}\tag{3-23a}$$
+
+$$\Pi_{ijkl}^{vp}=\frac{1}{4}\left(T_{ijmn}^{vp}-T_{jimn}^{vp}+T_{ijmn}^{vp}-T_{ijnm}^{vp}\right)\overline L_{mnkl}^{vp}\tag{3-23a}$$
+
+所以:
+
+$$\boldsymbol{\widetilde d}^p=\boldsymbol S^{vp}:\boldsymbol d^+\tag{3-24a}$$
+
+$$\boldsymbol {\widetilde {\dot w^p}}=\boldsymbol\Pi^{vp}:\boldsymbol d^+ =\boldsymbol\Pi^{vp}:\left(\boldsymbol S^{vp}\right)^{-1}:\boldsymbol{\widetilde d}^p\tag{3-24b}$$
+
+结合式(3-24a)和式(3-7a)，可以消去本征应变率 $\boldsymbol d^+$ , 得到 $\boldsymbol{\widetilde d}^p=\boldsymbol S^{vp}:\left(\boldsymbol{\widetilde d}^p-\overline{\boldsymbol M}^{vp}:\widetilde{\boldsymbol\sigma'}\right)$ , 整理得:
+
+$$\boldsymbol{\widetilde d}^p=-\widetilde{\boldsymbol M}^{vp}:\widetilde{\boldsymbol\sigma'}\tag{3-25}$$
 
