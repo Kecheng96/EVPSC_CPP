@@ -282,3 +282,61 @@ $$\boldsymbol {\widetilde {\dot w^p}}=\boldsymbol\Pi^{vp}:\boldsymbol d^+ =\bold
 
 $$\boldsymbol{\widetilde d}^p=-\widetilde{\boldsymbol M}^{vp}:\widetilde{\boldsymbol\sigma'}\tag{3-25}$$
 
+其中 $\widetilde{\boldsymbol M}^{vp}$ 为粘塑性相互作用张量:
+
+$$\widetilde{\boldsymbol M}^{vp}=(\boldsymbol I-\boldsymbol S^{vp}):\boldsymbol S^{vp}:\overline{\boldsymbol M}^{vp}\tag{3-26}$$
+
+将式(3-25)与宏微观的塑性应变率表达式结合, 可以得到用宏观应力张量和晶粒应变张量的关系:
+
+$$\boldsymbol\sigma'=\boldsymbol B^{vp}:\boldsymbol\Sigma'+\boldsymbol b^{vp} \tag{3-27}$$
+
+其中 $\boldsymbol B^{vp}$ 为局部化粘塑性张量:
+
+$$\boldsymbol B^{vp}=\left(\boldsymbol M^{vp} + \widetilde{\boldsymbol M}^{vp}\right)^{-1}:\left(\overline{\boldsymbol M}^{vp}+\widetilde{\boldsymbol M}^{vp}\right)\tag{3-28a}$$
+
+$$\boldsymbol b^{vp}=\left(\boldsymbol M^{vp} + \widetilde{\boldsymbol M}^{vp}\right)^{-1}:\left(\boldsymbol D^0-\boldsymbol d^0\right)\tag{3-28b}$$
+
+### 3.3 弹性介质中弹性夹杂问题
+与粘塑性夹杂问题通过格林函数法求解类似，将求解的微分算子改变为$\overline L_{ijkl}^e\frac{\partial^2}{\partial x_l\partial x_j}$ , 即可得到对应的弹性夹杂问题的解:
+
+$$\boldsymbol{\widetilde d}^e=\boldsymbol S^{e}:\boldsymbol d^{e+}\tag{3-29a}$$
+
+$$\boldsymbol {\widetilde {\dot w^e}}=\boldsymbol\Pi^{e}:\boldsymbol d^{e+} =\boldsymbol\Pi^{e}:\left(\boldsymbol S^{e}\right)^{-1}:\boldsymbol{\widetilde d}^e\tag{3-29b}$$
+
+存在 $\widetilde{\boldsymbol M}^{e}$ 弹性相互作用张量:
+
+$$\widetilde{\boldsymbol M}^{e}=(\boldsymbol I-\boldsymbol S^{e}):\boldsymbol S^{e}:\overline{\boldsymbol M}^{e}\tag{3-30}$$
+
+宏观应力率和晶粒应力率的关系:
+
+$$\boldsymbol{\dot\sigma}=\boldsymbol B^e:\boldsymbol{\dot\Sigma} \tag{3-31}$$
+
+其中 $\boldsymbol B^e$ 为局部化弹性张量:
+
+$$\boldsymbol B^e=\left(\boldsymbol M^e + \widetilde{\boldsymbol M}^e\right)^{-1}:\left(\overline{\boldsymbol M}^e+\widetilde{\boldsymbol M}^e\right)\tag{3-32}$$
+
+### 3.4 弹粘塑性自洽
+晶粒的应变率张量可以通过相互作用张量与宏观的应力以及应力率建立联系:
+
+$$\boldsymbol d = -\widetilde{\boldsymbol M}^e:(\boldsymbol\sigma^\nabla-\boldsymbol\Sigma^\nabla)-\widetilde{\boldsymbol M}^{vp}:(\boldsymbol\sigma-\boldsymbol\Sigma)\tag{3-33}$$
+
+根据自洽条件式(3-1), 式(3-26), 式(3-30)以及宏观应变率式(3-2):
+
+$$\overline{\boldsymbol M}^e:\boldsymbol\Sigma^\nabla+\overline{\boldsymbol M}^{vp}:\boldsymbol\Sigma+\boldsymbol D^0=\\
+\langle\boldsymbol M^e:\boldsymbol B^e\rangle:\boldsymbol\Sigma^\nabla+\langle\boldsymbol M^{vp}:\boldsymbol B^{vp}\rangle:\boldsymbol\Sigma+\langle\boldsymbol M^{vp}:\boldsymbol b^{vp}+\boldsymbol d^0\rangle\tag{3-34}$$
+
+在所有晶粒的形状和方向都相同时, 有:
+
+$$\overline{\boldsymbol M}^e=\langle\boldsymbol M^e:\boldsymbol B^e\rangle\tag{3-35a}$$
+
+$$\overline{\boldsymbol M}^{vp}=\langle\boldsymbol M^{vp}:\boldsymbol B^{vp}\rangle\tag{3-35b}$$
+
+$$\boldsymbol D^0=\langle\boldsymbol M^{vp}:\boldsymbol b^{vp}+\boldsymbol d^0\rangle\tag{3-35c}$$
+
+根据Walpole (1969)和 Lebensohn 等人(1996&2004)的研究，当每个晶粒（椭球体）形状和取向不同时，有更一般的关系式:
+
+$$\overline{\boldsymbol M}^e=\langle\boldsymbol M^e:\boldsymbol B^e\rangle\:\langle\boldsymbol B^e\rangle^{-1}\tag{3-36a}$$
+
+$$\overline{\boldsymbol M}^{vp}=\langle\boldsymbol M^{vp}:\boldsymbol B^{vp}\rangle:\langle\boldsymbol B^{vp}\rangle^{-1}\tag{3-36b}$$
+
+$$\boldsymbol D^0=\langle\boldsymbol M^{vp}:\boldsymbol b^{vp}+\boldsymbol d^0\rangle-\boldsymbol M^{vp}:\langle\boldsymbol b^{vp}\rangle\tag{3-36c}$$
