@@ -9,6 +9,7 @@ $\boldsymbol{x(X)}$ :物质点在晶粒当前构型的坐标
 $\boldsymbol {u=x-X}$ :物质点的位移
 
 根据有限变形理论,晶粒的变形可以通过变形梯度张量 $\boldsymbol  F$ 及速度梯度张量 $\boldsymbol l$ ,定义为:
+
 $$\boldsymbol {l} = \frac{\partial \boldsymbol {\dot u}}{\partial \boldsymbol x} = \frac{\partial \boldsymbol v}{\partial \boldsymbol x} \tag{1-1}$$
 
 $$\boldsymbol{F}= \frac{\partial  \boldsymbol x}{\partial \boldsymbol X}= \frac{\partial \boldsymbol u}{\partial \boldsymbol X} + \boldsymbol I \tag{1-2}$$	
@@ -102,11 +103,11 @@ $$\dot{f}^\kappa=\frac{\gamma^\kappa}{\gamma^{tw}}\tag{2-9}$$
 $\gamma^{tw}$ 为孪晶系的特征剪切应变值,为常数。
 
 根据 Tomé等人的研究,对滑移系:
-$$\dot\gamma^\alpha=\dot\gamma_0|\frac{\tau^\alpha}{\tau^\alpha_{cr}}|^\frac{1}{m}sgn(\tau^\alpha)\tag{2-10}$$
+$$\dot\gamma^\alpha=\dot\gamma_0|\dfrac{\tau^\alpha}{\tau^\alpha_{cr}}|^{1/m}sgn(\tau^\alpha)\tag{2-10}$$
 
 考虑到孪晶变形的极性,对孪晶系:
 
-$$\dot\gamma^\alpha=\begin{cases}\dot\gamma_0|\frac{\tau^\alpha}{\tau^\alpha_{cr}}|^\frac{1}{m} & , \tau^\alpha \gt 0 \\
+$$\dot\gamma^\alpha=\begin{cases}\dot\gamma_0|\dfrac{\tau^\alpha}{\tau^\alpha_{cr}}|^{1/m} & , \tau^\alpha \gt 0 \\
 1 & , \tau^\alpha \le 0\end{cases}\tag{2-11}$$
 
 $\dot\gamma_0$ 为参考剪切应变率, $sgn$ 为符号函数。
@@ -197,4 +198,28 @@ $$\overline L_{ijkl}^{vp}\widetilde {\dot u_{k,lj}}(\boldsymbol x)+\widetilde\si
 
 $$\widetilde {\dot u_{k,k}}(\boldsymbol x)=0\tag{3-12b}$$
 
-式(3-12)给出的位移场即为夹杂问题的解。在无限大均匀介质在集中力作用下的位移场, 可以通过格林函数法解出(Kelvin解)。设 $\widetilde {\dot u_i}(\boldsymbol x)$ 和 $\widetilde\sigma^p(\boldsymbol x)$  
+式(3-12)给出的位移场即为夹杂问题的解。在无限大均匀介质在集中力作用下的位移场, 可以通过格林函数法解出(Kelvin解)。设 $\widetilde {\dot u_i}(\boldsymbol x)$ 和 $\widetilde\sigma^p(\boldsymbol x)$ 应的格林函数分别为 $G_{km}(\boldsymbol x)$ 和 $H_m(\boldsymbol x)$ (或者说是线性算子 $\overline L_{ijkl}^{vp}\frac{\partial^2}{\partial x_l\partial x_j}$ 和 $\frac{\partial}{\partial x_i}$ 的核函数), 它们可以通过求解线性系统在作用于x=0位置的单位冲击响应得到:
+
+$$\overline L_{ijkl}^{vp}G_{km,lj}(\boldsymbol x)+H_{m,i}(\boldsymbol x)+\delta_{im}\delta(\boldsymbol x)=0\tag{3-13a}$$
+
+$$G_{km,k}(\boldsymbol x)= 0\tag{3-13b}$$
+
+其中 $\delta(\boldsymbol x)$ 为Dirac函数, $\delta_{im}$ 为Kronecker函数，二者可以通过下标区分. $\widetilde {\dot u_i}(\boldsymbol x)$ 和 $\widetilde\sigma^p(\boldsymbol x)$ 的解可以通过格林函数与集中力的卷积得到:
+
+$$\widetilde {\dot u_k}=\int_{R^3}G_{ki}(\boldsymbol x - \boldsymbol x')f_i^+(\boldsymbol x')d\boldsymbol x'\tag{3-14a}$$
+
+$$\widetilde\sigma^p(\boldsymbol x)=\int_{R^3}H_{i}(\boldsymbol x - \boldsymbol x')f_i^+(\boldsymbol x')d\boldsymbol x'\tag{3-14b}$$
+
+将式(3-13)转换到傅立叶空间中:
+
+$$\alpha_l\alpha_j\overline L_{ijkl}^{vp}G_{km}\overline\xi^2\widehat G_{km}(\boldsymbol\xi)+\alpha_ii\overline\xi\widehat H_m(\boldsymbol\xi)=\delta_{im}\tag{3-15a}$$
+
+$$\alpha_k\overline\xi^2\widehat G_{km}(\boldsymbol\xi)=0\tag{3-15b}$$
+
+其中 $i=\sqrt{-1}$ , $\boldsymbol\xi$ 为傅立叶空间中的向量，可以用单位向量表示成 $\boldsymbol\xi=\overline\xi\boldsymbol\alpha$ . 记 $A_{ik}^d=\alpha_l\alpha_j\overline L_{ijkl}^{vp}$ , 可以将式(3-15)转换成矩阵乘法 $\boldsymbol{A\cdot B=C}$ 表达:
+
+$$A=\begin{bmatrix} A_{11}^d & A_{12}^d & A_{13}^d & \alpha_1\\
+A_{21}^d & A_{22}^d & A_{23}^d & \alpha_2 \\
+A_{31}^d & A_{32}^d & A_{33}^d & \alpha_3 \\
+\alpha_1 & \alpha_2 & \alpha_3 & 0\end{bmatrix}\tag{3-16a}$$
+
