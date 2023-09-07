@@ -276,7 +276,7 @@ $$\Pi_{ijkl}^{vp}=\frac{1}{4}\left(T_{ijmn}^{vp}-T_{jimn}^{vp}+T_{ijmn}^{vp}-T_{
 
 $$\boldsymbol{\widetilde d}^p=\boldsymbol S^{vp}:\boldsymbol d^+\tag{3-24a}$$
 
-$$\boldsymbol {\widetilde {\dot w^p}}=\boldsymbol\Pi^{vp}:\boldsymbol d^+ =\boldsymbol\Pi^{vp}:\left(\boldsymbol S^{vp}\right)^{-1}:\boldsymbol{\widetilde d}^p\tag{3-24b}$$
+$$\boldsymbol {\widetilde {\dot w}}^p=\boldsymbol\Pi^{vp}:\boldsymbol d^+ =\boldsymbol\Pi^{vp}:\left(\boldsymbol S^{vp}\right)^{-1}:\boldsymbol{\widetilde d}^p\tag{3-24b}$$
 
 结合式(3-24a)和式(3-7a)，可以消去本征应变率 $\boldsymbol d^+$ , 得到 $\boldsymbol{\widetilde d}^p=\boldsymbol S^{vp}:\left(\boldsymbol{\widetilde d}^p-\overline{\boldsymbol M}^{vp}:\widetilde{\boldsymbol\sigma'}\right)$ , 整理得:
 
