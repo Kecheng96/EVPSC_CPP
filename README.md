@@ -301,7 +301,7 @@ $$\boldsymbol b^{vp}=\left(\boldsymbol M^{vp} + \widetilde{\boldsymbol M}^{vp}\r
 
 $$\boldsymbol{\widetilde d}^e=\boldsymbol S^{e}:\boldsymbol d^{e+}\tag{3-29a}$$
 
-$$\boldsymbol {\widetilde {\dot w^e}}=\boldsymbol\Pi^{e}:\boldsymbol d^{e+} =\boldsymbol\Pi^{e}:\left(\boldsymbol S^{e}\right)^{-1}:\boldsymbol{\widetilde d}^e\tag{3-29b}$$
+$$\boldsymbol {\widetilde {\dot {w}}}^e=\boldsymbol\Pi^{e}:\boldsymbol d^{e+} =\boldsymbol\Pi^{e}:\left(\boldsymbol S^{e}\right)^{-1}:\boldsymbol{\widetilde d}^e\tag{3-29b}$$
 
 存在 $\widetilde{\boldsymbol M}^{e}$ 弹性相互作用张量:
 
@@ -340,3 +340,4 @@ $$\overline{\boldsymbol M}^e=\langle\boldsymbol M^e:\boldsymbol B^e\rangle\:\lan
 $$\overline{\boldsymbol M}^{vp}=\langle\boldsymbol M^{vp}:\boldsymbol B^{vp}\rangle:\langle\boldsymbol B^{vp}\rangle^{-1}\tag{3-36b}$$
 
 $$\boldsymbol D^0=\langle\boldsymbol M^{vp}:\boldsymbol b^{vp}+\boldsymbol d^0\rangle-\boldsymbol M^{vp}:\langle\boldsymbol b^{vp}\rangle\tag{3-36c}$$
+
