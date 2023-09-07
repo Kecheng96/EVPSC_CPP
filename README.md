@@ -179,6 +179,10 @@ $$\sigma_{ij}(\boldsymbol x)=\sigma^p(\boldsymbol x)\delta_{ij}+\sigma_{ij}'(\bo
 再结合关系式 $\widetilde d_{ij}(\boldsymbol x)=\frac{1}{2}(\widetilde {\dot u_{i,j}}+\widetilde{\dot u_{j,i}})$ 和粘塑性刚度张量关于 $k$ 和 $l$ 的对称性 $\overline L_{ijkl}^{vp}=\overline L_{ijlk}^{vp}$ , $\widetilde\sigma_{ij,j}(\boldsymbol x)$ 可以通过位移来表示:
 
 $$\begin{align}\widetilde\sigma_{ij,j}(\boldsymbol x) &= \left[\sigma^p(\boldsymbol x)\delta_{ij}+\sigma_{ij}'(\boldsymbol x) \right],j \\
-&= 1 \end{align}\tag{3-10}$$
+&= \sigma^p_{,i}(\boldsymbol x) + \left[\overline L_{ijkl}^{vp}\left(\widetilde d_{kl}^p(\boldsymbol x) - d_{kl}^+(\boldsymbol x)\right)\right]\\
+&= \sigma^p_{,i}(\boldsymbol x) + \sigma_{ij,j}^+ + \left[\overline L_{ijkl}^{vp}\widetilde d_{kl}^p(\boldsymbol x)\right]\\
+& = \sigma^p_{,i}(\boldsymbol x) + \sigma_{ij,j}^+ + \frac{1}{2}\left[\overline L_{ijkl}^{vp}\left(\widetilde {\dot u_{k,l}}(\boldsymbol x)+\widetilde{\dot u_{l,k}}(\boldsymbol x)\right)\right]\\
+& = \sigma^p_{,i}(\boldsymbol x) + \sigma_{ij,j}^+ + \left[\overline L_{ijkl}^{vp}\widetilde {\dot u_{k,l}}(\boldsymbol x)\right],j\\
+&= \sigma^p_{,i}(\boldsymbol x) + \sigma_{ij,j}^+ + \overline L_{ijkl}^{vp}\widetilde {\dot u_{k,lj}}(\boldsymbol x)\end{align}\tag{3-10}$$
 
 
