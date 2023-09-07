@@ -297,7 +297,7 @@ $$\boldsymbol B^{vp}=\left(\boldsymbol M^{vp} + \widetilde{\boldsymbol M}^{vp}\r
 $$\boldsymbol b^{vp}=\left(\boldsymbol M^{vp} + \widetilde{\boldsymbol M}^{vp}\right)^{-1}:\left(\boldsymbol D^0-\boldsymbol d^0\right)\tag{3-28b}$$
 
 ### 3.3 弹性介质中弹性夹杂问题
-与粘塑性夹杂问题通过格林函数法求解类似，将求解的微分算子改变为$\overline L_{ijkl}^e\frac{\partial^2}{\partial x_l\partial x_j}$ , 即可得到对应的弹性夹杂问题的解:
+与粘塑性夹杂问题通过格林函数法求解类似，将求解的微分算子改变为 $\overline L_{ijkl}^e\frac{\partial^2}{\partial x_l\partial x_j}$ , 即可得到对应的弹性夹杂问题的解:
 
 $$\boldsymbol{\widetilde d}^e=\boldsymbol S^{e}:\boldsymbol d^{e+}\tag{3-29a}$$
 
