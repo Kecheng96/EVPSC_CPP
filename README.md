@@ -177,14 +177,14 @@ $$\sigma_{ij,j}(\boldsymbol x)=(\widetilde\sigma_{ij}(\boldsymbol x)+\Sigma_{ij}
 
 $$\sigma_{ij}(\boldsymbol x)=\sigma^p(\boldsymbol x)\delta_{ij}+\sigma_{ij}'(\boldsymbol x)\tag{3-9}$$
 
-再结合关系式 $\widetilde d_{ij}(\boldsymbol x)=\frac{1}{2}(\widetilde {\dot u_{i,j}}+\widetilde{\dot u_{j,i}})$ 和粘塑性刚度张量关于 $k$ 和 $l$ 的对称性 $\overline L_{ijkl}^{vp}=\overline L_{ijlk}^{vp}$ , $\widetilde\sigma_{ij,j}(\boldsymbol x)$ 可以通过位移来表示:
+再结合关系式 $\widetilde d_{ij}(\boldsymbol x)=\frac{1}{2}({\widetilde {\dot {u}}}_{i,j}+{\widetilde{\dot {u}}}_{j,i})$ 和粘塑性刚度张量关于 $k$ 和 $l$ 的对称性 $\overline L_{ijkl}^{vp}=\overline L_{ijlk}^{vp}$ , $\widetilde\sigma_{ij,j}(\boldsymbol x)$ 可以通过位移来表示:
 
 $$\begin{align}\widetilde\sigma_{ij,j}(\boldsymbol x) &= \left[\widetilde\sigma^p(\boldsymbol x)\delta_{ij}+\sigma_{ij}'(\boldsymbol x) \right],j \\
 &= \widetilde\sigma^p_{,i}(\boldsymbol x) + \left[\overline L_{ijkl}^{vp}\left(\widetilde d_{kl}^p(\boldsymbol x) - d_{kl}^+(\boldsymbol x)\right)\right]\\
 &= \widetilde\sigma^p_{,i}(\boldsymbol x) + \sigma_{ij,j}^+(\boldsymbol x) + \left[\overline L_{ijkl}^{vp}\widetilde d_{kl}^p(\boldsymbol x)\right]\\
-& = \widetilde\sigma^p_{,i}(\boldsymbol x) + \sigma_{ij,j}^+(\boldsymbol x) + \frac{1}{2}\left[\overline L_{ijkl}^{vp}\left(\widetilde {\dot u_{k,l}}(\boldsymbol x)+\widetilde{\dot u_{l,k}}(\boldsymbol x)\right)\right]\\
-& = \widetilde\sigma^p_{,i}(\boldsymbol x) + \sigma_{ij,j}^+(\boldsymbol x) + \left[\overline L_{ijkl}^{vp}\widetilde {\dot u_{k,l}}(\boldsymbol x)\right],j\\
-&= \widetilde\sigma^p_{,i}(\boldsymbol x) + \sigma_{ij,j}^+(\boldsymbol x) + \overline L_{ijkl}^{vp}\widetilde {\dot u_{k,lj}}(\boldsymbol x)\end{align}\tag{3-10}$$
+& = \widetilde\sigma^p_{,i}(\boldsymbol x) + \sigma_{ij,j}^+(\boldsymbol x) + \frac{1}{2}\left[\overline L_{ijkl}^{vp}\left({\widetilde {\dot {u}}}_{k,l}(\boldsymbol x)+{\widetilde{\dot {u}}}_{l,k}(\boldsymbol x)\right)\right]\\
+& = \widetilde\sigma^p_{,i}(\boldsymbol x) + \sigma_{ij,j}^+(\boldsymbol x) + \left[\overline L_{ijkl}^{vp}{\widetilde {\dot {u}}}_{k,l}(\boldsymbol x)\right],j\\
+&= \widetilde\sigma^p_{,i}(\boldsymbol x) + \sigma_{ij,j}^+(\boldsymbol x) + \overline L_{ijkl}^{vp}{\widetilde {\dot {u}}}_{k,lj}(\boldsymbol x)\end{align}\tag{3-10}$$
 
 式中, $\sigma_{ij,j}^+(\boldsymbol x) = -\overline L_{ijkl}^{vp}d_{kl}^+(\boldsymbol x)$ 即为本征应变引起的本征应力，该应力在介质无穷远处为0. 记虚拟体力:
 
@@ -192,11 +192,11 @@ $$f_i^+(\boldsymbol x)=\sigma_{ij,j}^+(\boldsymbol x)\tag{3-11}$$
 
 用位移表示的平衡方程为:
 
-$$\overline L_{ijkl}^{vp}\widetilde {\dot u_{k,lj}}(\boldsymbol x)+\widetilde\sigma^p_{,i}(\boldsymbol x) + f_i^+(\boldsymbol x)=0\tag{3-12a}$$
+$$\overline L_{ijkl}^{vp}{\widetilde {\dot {u}}}_{k,lj}(\boldsymbol x)+\widetilde\sigma^p_{,i}(\boldsymbol x) + f_i^+(\boldsymbol x)=0\tag{3-12a}$$
 
 结合不可压缩条件:
 
-$$\widetilde {\dot u_{k,k}}(\boldsymbol x)=0\tag{3-12b}$$
+$${\widetilde {\dot {u}}}_{k,k}(\boldsymbol x)=0\tag{3-12b}$$
 
 式(3-12)给出的位移场即为夹杂问题的解。在无限大均匀介质在集中力作用下的位移场, 可以通过格林函数法解出(Kelvin解)。设 $\widetilde {\dot u_i}(\boldsymbol x)$ 和 $\widetilde\sigma^p(\boldsymbol x)$ 应的格林函数分别为 $G_{km}(\boldsymbol x)$ 和 $H_m(\boldsymbol x)$ (或者说是线性算子 $\overline L_{ijkl}^{vp}\frac{\partial^2}{\partial x_l\partial x_j}$ 和 $\frac{\partial}{\partial x_i}$ 的核函数), 它们可以通过求解线性系统在作用于x=0位置的单位冲击响应得到:
 
@@ -206,7 +206,7 @@ $$G_{km,k}(\boldsymbol x)= 0\tag{3-13b}$$
 
 其中 $\delta(\boldsymbol x)$ 为Dirac函数, $\delta_{im}$ 为Kronecker函数，二者可以通过下标区分. $\widetilde {\dot u_i}(\boldsymbol x)$ 和 $\widetilde\sigma^p(\boldsymbol x)$ 的解可以通过格林函数与集中力的卷积得到:
 
-$$\widetilde {\dot u_k}=\int_{R^3}G_{ki}(\boldsymbol x - \boldsymbol x')f_i^+(\boldsymbol x')d\boldsymbol x'\tag{3-14a}$$
+$${\widetilde {\dot {u}}}_k=\int_{R^3}G_{ki}(\boldsymbol x - \boldsymbol x')f_i^+(\boldsymbol x')d\boldsymbol x'\tag{3-14a}$$
 
 $$\widetilde\sigma^p(\boldsymbol x)=\int_{R^3}H_{i}(\boldsymbol x - \boldsymbol x')f_i^+(\boldsymbol x')d\boldsymbol x'\tag{3-14b}$$
 
@@ -248,16 +248,16 @@ $$i\overline\xi\widehat H_{i}=A_{4i}^{-1}\ (i=1,2,3)\tag{3-18b}$$
 
 至此, $\widehat G_{km}(\boldsymbol\xi)$ 和 $\widehat H_{m}(\boldsymbol\xi)$ 的值可以求得，再通过傅立叶变换即可得到实数域的解。对卷积式(3-14a)求偏导，并将(3-11)代入，并考虑卷积的微分特性，可得速度梯度解:
 
-$$\widetilde {\dot u_{k,l}}=\int_{R^3}G_{ki,lj}(\boldsymbol x - \boldsymbol x')\sigma_{ij}^+(\boldsymbol x')d\boldsymbol x'\tag{3-19}$$
+$${\widetilde {\dot {u}}}_{k,l}=\int_{R^3}G_{ki,lj}(\boldsymbol x - \boldsymbol x')\sigma_{ij}^+(\boldsymbol x')d\boldsymbol x'\tag{3-19}$$
 
 Eshelby (1957)已经证明，夹杂区域 $\Omega$ 为椭球，且本征应变为常应变且弹性模量在区域内为常张量，那么本征应力也将是常应力。故可以假设本征应力在 $\Omega$ 内为常量而在 $\Omega$ 外为 $0$ , 所以式(3-18)可以转变成求在Ω内的速度梯度 $\widetilde {\dot u_{k,l}}$ 的平均值:
 
-$$\begin{align}\widetilde {\dot u_{k,l}} &= \left(\int_{R^3}-G_{ki,lj}(\boldsymbol x - \boldsymbol x')d\boldsymbol x'\right)\overline L_{ijkl}^{vp}d_{kl}^+\\
+$$\begin{align}{\widetilde {\dot {u}}}_{k,l} &= \left(\int_{R^3}-G_{ki,lj}(\boldsymbol x - \boldsymbol x')d\boldsymbol x'\right)\overline L_{ijkl}^{vp}d_{kl}^+\\
 &=\left(-\int_{\Omega}\int_{\Omega}G_{ki,lj}(\boldsymbol x - \boldsymbol x')d\boldsymbol xd\boldsymbol x'\right)\overline L_{ijkl}^{vp}d_{kl}^+\end{align}\tag{3-20}$$
 
 同时将 $G_{ki,lj}$ 用傅立叶变换表达，则有:
 
-$$\begin{align}\widetilde {\dot u_{k,l}}&=\left(\frac{1}{8\pi^3\Omega}\int_{\Omega}\int_{\Omega}\int_{R^3}\alpha_l\alpha_j\overline\xi^2\widehat G_{km}(\boldsymbol\xi)e^{-i\boldsymbol\xi(\boldsymbol x - \boldsymbol x')}d\boldsymbol\xi d\boldsymbol xd\boldsymbol x'\right)\overline L_{ijkl}^{vp}d_{kl}^+\\\
+$$\begin{align}{\widetilde {\dot {u}}}_{k,l}&=\left(\frac{1}{8\pi^3\Omega}\int_{\Omega}\int_{\Omega}\int_{R^3}\alpha_l\alpha_j\overline\xi^2\widehat G_{km}(\boldsymbol\xi)e^{-i\boldsymbol\xi(\boldsymbol x - \boldsymbol x')}d\boldsymbol\xi d\boldsymbol xd\boldsymbol x'\right)\overline L_{ijkl}^{vp}d_{kl}^+\\\
 &=T_{klij}^{vp}\overline L_{ijkl}^{vp}d_{kl}^+\end{align}\tag{3-21}$$
 
 $T_{klij}^{vp}$ 称为格林作用张量，在球坐标系中, $d\boldsymbol\xi = \overline\xi^2d\overline\xi sin\theta d\theta d\phi$ , $\theta$ 和 $\phi$ 为傅立叶空间的单位向量 $\boldsymbol\alpha$ 的球坐标，将式(3-18a)代入，并在轴长为 $(a,b,c)$ 的椭球体晶粒内进行积分(Berveiller et al., 1987):
@@ -276,7 +276,7 @@ $$\Pi_{ijkl}^{vp}=\frac{1}{4}\left(T_{ijmn}^{vp}-T_{jimn}^{vp}+T_{ijmn}^{vp}-T_{
 
 $$\boldsymbol{\widetilde d}^p=\boldsymbol S^{vp}:\boldsymbol d^+\tag{3-24a}$$
 
-$$\boldsymbol {\widetilde {\dot w^p}}=\boldsymbol\Pi^{vp}:\boldsymbol d^+ =\boldsymbol\Pi^{vp}:\left(\boldsymbol S^{vp}\right)^{-1}:\boldsymbol{\widetilde d}^p\tag{3-24b}$$
+$$\boldsymbol {\widetilde {\dot {w}}}^p=\boldsymbol\Pi^{vp}:\boldsymbol d^+ =\boldsymbol\Pi^{vp}:\left(\boldsymbol S^{vp}\right)^{-1}:\boldsymbol{\widetilde d}^p\tag{3-24b}$$
 
 结合式(3-24a)和式(3-7a)，可以消去本征应变率 $\boldsymbol d^+$ , 得到 $\boldsymbol{\widetilde d}^p=\boldsymbol S^{vp}:\left(\boldsymbol{\widetilde d}^p-\overline{\boldsymbol M}^{vp}:\widetilde{\boldsymbol\sigma'}\right)$ , 整理得:
 
