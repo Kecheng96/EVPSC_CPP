@@ -47,24 +47,24 @@ $$\boldsymbol {l}^e = \boldsymbol {d}^e + \boldsymbol {w}^e $$
 $$\boldsymbol {l}^p = \boldsymbol {d}^p + \boldsymbol {w}^p $$
 
 单晶体材料的塑性变形由滑移或孪生引起,在图 1所示的中间构型中,晶格矢量不发生变化,记第 $\alpha$ 个滑移/孪晶系统的变形方向为 $\boldsymbol {s}^\alpha_0$、变形法向为 $\boldsymbol {n}^\alpha_0$,则发生的塑性变形:
-$$\boldsymbol {\dot F}^p \cdot (\boldsymbol {F}^p)^{-1} = \sum_\alpha \dot\gamma^\alpha\boldsymbol {s}^\alpha_0\cdot(\boldsymbol {n}^\alpha_0)^T\tag{1-10}$$
+$$\boldsymbol {\dot F}^p \cdot (\boldsymbol {F}^p)^{-1} = \sum_\alpha \dot\gamma^\alpha\boldsymbol {s}^\alpha_0\cdot(\boldsymbol {n}^\alpha_0)^T $$
 
 其中, $\dot\gamma^\alpha$ 为变形系 $\alpha$ 引起的剪切应变率。
 
 在发生晶格畸变后,晶格矢量将发生拉伸和转动,他们会保持正交关系,但一般不再是单位矢量。晶格畸变后,变形方向和法向分别为 $\boldsymbol {s}^\alpha$ , $\boldsymbol {n}^\alpha$ :
-$$\boldsymbol {s}^\alpha=\boldsymbol{F}^e\cdot\boldsymbol {s}^\alpha_0\tag{1-11a}$$
-$$\boldsymbol {n}^\alpha=(\boldsymbol{F}^e)^{-T}\cdot\boldsymbol {n}^\alpha_0\tag{1-11a}$$
+$$\boldsymbol {s}^\alpha=\boldsymbol{F}^e\cdot\boldsymbol {s}^\alpha_0 $$
+$$\boldsymbol {n}^\alpha=(\boldsymbol{F}^e)^{-T}\cdot\boldsymbol {n}^\alpha_0 $$
 
 那么塑性速度梯度张量 $\boldsymbol {l}^p$:
-$$\boldsymbol {l}^p=\sum_\alpha \dot\gamma^\alpha \boldsymbol {s}^\alpha\cdot(\boldsymbol {n}^\alpha)^T\tag{1-12}$$
+$$\boldsymbol {l}^p=\sum_\alpha \dot\gamma^\alpha \boldsymbol {s}^\alpha\cdot(\boldsymbol {n}^\alpha)^T $$
 
 根据公式(1-12),可以得到应变率张量 $\boldsymbol d$ 和旋率张量 $\boldsymbol w$ 的弹性和塑性部分
 $$\boldsymbol{d}^e= \frac{1}{2}\left[\boldsymbol{\dot F}^e\cdot(\boldsymbol{F}^e)^{-1}+(\boldsymbol{F}^e)^{-T}\cdot(\boldsymbol{\dot F}^e)^T
-\right]\tag{1-13}$$
+\right] $$
 $$\boldsymbol{w}^e= \frac{1}{2}\left[\boldsymbol{\dot F}^e\cdot(\boldsymbol{F}^e)^{-1}-(\boldsymbol{F}^e)^{-T}\cdot(\boldsymbol{\dot F}^e)^T
-\right]\tag{1-14}$$
-$$\boldsymbol {d}^p=\sum_\alpha \dot\gamma^\alpha \boldsymbol {P}^\alpha\tag{1-15}$$
-$$\boldsymbol {w}^p=\sum_\alpha \dot\gamma^\alpha \boldsymbol {R}^\alpha\tag{1-16}$$
+\right] $$
+$$\boldsymbol {d}^p=\sum_\alpha \dot\gamma^\alpha \boldsymbol {P}^\alpha $$
+$$\boldsymbol {w}^p=\sum_\alpha \dot\gamma^\alpha \boldsymbol {R}^\alpha $$
 
 其中 $\boldsymbol {P}^\alpha=\frac{1}{2}\left[\boldsymbol {s}^\alpha\cdot(\boldsymbol {n}^\alpha)^T+\boldsymbol {n}^\alpha\cdot(\boldsymbol {s}^\alpha)^T
 \right]$（称为Schmid tensor施密特张量）,
@@ -106,18 +106,18 @@ $$\dot{f}^\kappa=\frac{\gamma^\kappa}{\gamma^{tw}} $$
 $\gamma^{tw}$ 为孪晶系的特征剪切应变值,为常数。
 
 根据 Tomé等人的研究,对滑移系:
-$$\dot\gamma^\alpha=\dot\gamma_0|\dfrac{\tau^\alpha}{\tau^\alpha_{cr}}|^{1/m}sgn(\tau^\alpha)\tag{2-10}$$
+$$\dot\gamma^\alpha=\dot\gamma_0|\dfrac{\tau^\alpha}{\tau^\alpha_{cr}}|^{1/m}sgn(\tau^\alpha) $$
 
 考虑到孪晶变形的极性,对孪晶系:
 
 $$\dot\gamma^\alpha=\begin{cases}\dot\gamma_0|\dfrac{\tau^\alpha}{\tau^\alpha_{cr}}|^{1/m} & , \tau^\alpha \gt 0 \\
-1 & , \tau^\alpha \le 0\end{cases}\tag{2-11}$$
+1 & , \tau^\alpha \le 0\end{cases} $$
 
 $\dot\gamma_0$ 为参考剪切应变率, $sgn$ 为符号函数。
 
 由此建立了塑性应变率 $\boldsymbol d^p$ 与应力张量 $\boldsymbol\sigma$ 的联系,注意到此时单晶体本构关系(2-6)成为一个非线性方程,可以通过不同的方法将该方程进行准线性化,
 本构关系可以进一步表示为:
-$$\boldsymbol d = \boldsymbol M^e:\boldsymbol\sigma^\nabla+\boldsymbol M^{vp}:\boldsymbol\sigma'+\boldsymbol d^0 \tag{2-12}$$
+$$\boldsymbol d = \boldsymbol M^e:\boldsymbol\sigma^\nabla+\boldsymbol M^{vp}:\boldsymbol\sigma'+\boldsymbol d^0  $$
 其中, $\boldsymbol M^{vp}$ 为粘塑性模量, $\boldsymbol d^0$ 为使该准线性方程成立的反推项,并且有 $\boldsymbol d^e=\boldsymbol M^e:\boldsymbol\sigma^\nabla$, $\boldsymbol d^p=\boldsymbol M^{vp}:\boldsymbol\sigma^{'}+\boldsymbol d^0$ 
 
 ## 3. 多晶体自洽模型
@@ -126,9 +126,9 @@ $$\boldsymbol d = \boldsymbol M^e:\boldsymbol\sigma^\nabla+\boldsymbol M^{vp}:\b
 
 
 对多晶体材料,宏观应变率张量 $\boldsymbol D$ 、旋率张量 $\boldsymbol W$ 及 Cauchy 应力张量 $\boldsymbol\Sigma$ 可看作其包含的所有单晶体的对应张量的体积平均:
-$$\boldsymbol D = \langle\boldsymbol d\rangle=\frac{1}{V}\int\boldsymbol d\ dV\tag{3-1a}$$
-$$\boldsymbol W = \langle\boldsymbol w\rangle=\frac{1}{V}\int\boldsymbol w\ dV\tag{3-1b}$$
-$$\boldsymbol\Sigma = \langle\boldsymbol\sigma\rangle=\frac{1}{V}\int\boldsymbol\sigma\ dV\tag{3-1c}$$
+$$\boldsymbol D = \langle\boldsymbol d\rangle=\frac{1}{V}\int\boldsymbol d\ dV $$
+$$\boldsymbol W = \langle\boldsymbol w\rangle=\frac{1}{V}\int\boldsymbol w\ dV $$
+$$\boldsymbol\Sigma = \langle\boldsymbol\sigma\rangle=\frac{1}{V}\int\boldsymbol\sigma\ dV $$
 
 $V$ 为多晶体的体积,算符〈⋯〉表示求体积平均。均匀化处理之后可以得到多晶体的本构方程:
 $$\boldsymbol D = \overline{\boldsymbol M}^e:\boldsymbol\Sigma^\nabla+\overline{\boldsymbol M}^{vp}:\boldsymbol\Sigma'+\boldsymbol D^0  $$
@@ -166,11 +166,11 @@ $S_{ijkl}$ 称为Eshebly张量,它仅与介质的弹性性质和椭球体的形�
 $$\boldsymbol d^p=\overline{\boldsymbol M}^{vp}:\boldsymbol\Sigma'+\boldsymbol d^0 + \boldsymbol d^+ $$
 
 这样, $\boldsymbol d^+=(\boldsymbol M^{vp}-\overline{\boldsymbol M}^{vp}):\boldsymbol\sigma'+(\boldsymbol d^0-\boldsymbol D^0)$ 则是此时的本征应变率,考虑到粘塑性刚度张量 $\overline{\boldsymbol L}^{vp}=(\overline{\boldsymbol M}^{vp})^{-1}$ ,并记 $\boldsymbol{\widetilde\sigma}'=\boldsymbol\sigma'-\boldsymbol\Sigma'$ , $\boldsymbol{\widetilde d}^p=\boldsymbol d^p-\boldsymbol D^p$ 式（3-6）可以改写成:
-$$\boldsymbol{\widetilde\sigma}'=\overline{\boldsymbol L}^{vp}:(\widetilde{\boldsymbol d}^p-\boldsymbol d^+)\tag{3-7a}$$
+$$\boldsymbol{\widetilde\sigma}'=\overline{\boldsymbol L}^{vp}:(\widetilde{\boldsymbol d}^p-\boldsymbol d^+) $$
 
 记材料点的坐标为 $\boldsymbol x$ ,并将张量形式展开:
 
-$$\widetilde\sigma_{ij}'(\boldsymbol x)=\overline L_{ijkl}^{vp}:(\widetilde d_{kl}^p(\boldsymbol x)-d_{kl}^+(\boldsymbol x)) \tag{3-7b}$$
+$$\widetilde\sigma_{ij}'(\boldsymbol x)=\overline L_{ijkl}^{vp}:(\widetilde d_{kl}^p(\boldsymbol x)-d_{kl}^+(\boldsymbol x))  $$
 
 平衡方程为:
 
@@ -187,159 +187,159 @@ $$\begin{align}\widetilde\sigma_{ij,j}(\boldsymbol x) &= \left[\widetilde\sigma^
 &= \widetilde\sigma^p_{,i}(\boldsymbol x) + \sigma_{ij,j}^+(\boldsymbol x) + \left[\overline L_{ijkl}^{vp}\widetilde d_{kl}^p(\boldsymbol x)\right]\\
 & = \widetilde\sigma^p_{,i}(\boldsymbol x) + \sigma_{ij,j}^+(\boldsymbol x) + \frac{1}{2}\left[\overline L_{ijkl}^{vp}\left(\widetilde {\dot u_{k,l}}(\boldsymbol x)+\widetilde{\dot u_{l,k}}(\boldsymbol x)\right)\right]\\
 & = \widetilde\sigma^p_{,i}(\boldsymbol x) + \sigma_{ij,j}^+(\boldsymbol x) + \left[\overline L_{ijkl}^{vp}\widetilde {\dot u_{k,l}}(\boldsymbol x)\right],j\\
-&= \widetilde\sigma^p_{,i}(\boldsymbol x) + \sigma_{ij,j}^+(\boldsymbol x) + \overline L_{ijkl}^{vp}\widetilde {\dot u_{k,lj}}(\boldsymbol x)\end{align}\tag{3-10}$$
+&= \widetilde\sigma^p_{,i}(\boldsymbol x) + \sigma_{ij,j}^+(\boldsymbol x) + \overline L_{ijkl}^{vp}\widetilde {\dot u_{k,lj}}(\boldsymbol x)\end{align} $$
 
 式中, $\sigma_{ij,j}^+(\boldsymbol x) = -\overline L_{ijkl}^{vp}d_{kl}^+(\boldsymbol x)$ 即为本征应变引起的本征应力，该应力在介质无穷远处为0. 记虚拟体力:
 
-$$f_i^+(\boldsymbol x)=\sigma_{ij,j}^+(\boldsymbol x)\tag{3-11}$$
+$$f_i^+(\boldsymbol x)=\sigma_{ij,j}^+(\boldsymbol x) $$
 
 用位移表示的平衡方程为:
 
-$$\overline L_{ijkl}^{vp}\widetilde {\dot u_{k,lj}}(\boldsymbol x)+\widetilde\sigma^p_{,i}(\boldsymbol x) + f_i^+(\boldsymbol x)=0\tag{3-12a}$$
+$$\overline L_{ijkl}^{vp}\widetilde {\dot u_{k,lj}}(\boldsymbol x)+\widetilde\sigma^p_{,i}(\boldsymbol x) + f_i^+(\boldsymbol x)=0 $$
 
 结合不可压缩条件:
 
-$$\widetilde {\dot u_{k,k}}(\boldsymbol x)=0\tag{3-12b}$$
+$$\widetilde {\dot u_{k,k}}(\boldsymbol x)=0 $$
 
 式(3-12)给出的位移场即为夹杂问题的解。在无限大均匀介质在集中力作用下的位移场, 可以通过格林函数法解出(Kelvin解)。设 $\widetilde {\dot u_i}(\boldsymbol x)$ 和 $\widetilde\sigma^p(\boldsymbol x)$ 应的格林函数分别为 $G_{km}(\boldsymbol x)$ 和 $H_m(\boldsymbol x)$ (或者说是线性算子 $\overline L_{ijkl}^{vp}\frac{\partial^2}{\partial x_l\partial x_j}$ 和 $\frac{\partial}{\partial x_i}$ 的核函数), 它们可以通过求解线性系统在作用于x=0位置的单位冲击响应得到:
 
-$$\overline L_{ijkl}^{vp}G_{km,lj}(\boldsymbol x)+H_{m,i}(\boldsymbol x)+\delta_{im}\delta(\boldsymbol x)=0\tag{3-13a}$$
+$$\overline L_{ijkl}^{vp}G_{km,lj}(\boldsymbol x)+H_{m,i}(\boldsymbol x)+\delta_{im}\delta(\boldsymbol x)=0 $$
 
-$$G_{km,k}(\boldsymbol x)= 0\tag{3-13b}$$
+$$G_{km,k}(\boldsymbol x)= 0 $$
 
 其中 $\delta(\boldsymbol x)$ 为Dirac函数, $\delta_{im}$ 为Kronecker函数，二者可以通过下标区分. $\widetilde {\dot u_i}(\boldsymbol x)$ 和 $\widetilde\sigma^p(\boldsymbol x)$ 的解可以通过格林函数与集中力的卷积得到:
 
-$$\widetilde {\dot u_k}=\int_{R^3}G_{ki}(\boldsymbol x - \boldsymbol x')f_i^+(\boldsymbol x')d\boldsymbol x'\tag{3-14a}$$
+$$\widetilde {\dot u_k}=\int_{R^3}G_{ki}(\boldsymbol x - \boldsymbol x')f_i^+(\boldsymbol x')d\boldsymbol x' $$
 
-$$\widetilde\sigma^p(\boldsymbol x)=\int_{R^3}H_{i}(\boldsymbol x - \boldsymbol x')f_i^+(\boldsymbol x')d\boldsymbol x'\tag{3-14b}$$
+$$\widetilde\sigma^p(\boldsymbol x)=\int_{R^3}H_{i}(\boldsymbol x - \boldsymbol x')f_i^+(\boldsymbol x')d\boldsymbol x' $$
 
 将式(3-13)转换到傅立叶空间中:
 
-$$\alpha_l\alpha_j\overline L_{ijkl}^{vp}G_{km}\overline\xi^2\widehat G_{km}(\boldsymbol\xi)+\alpha_ii\overline\xi\widehat H_m(\boldsymbol\xi)=\delta_{im}\tag{3-15a}$$
+$$\alpha_l\alpha_j\overline L_{ijkl}^{vp}G_{km}\overline\xi^2\widehat G_{km}(\boldsymbol\xi)+\alpha_ii\overline\xi\widehat H_m(\boldsymbol\xi)=\delta_{im} $$
 
-$$\alpha_k\overline\xi^2\widehat G_{km}(\boldsymbol\xi)=0\tag{3-15b}$$
+$$\alpha_k\overline\xi^2\widehat G_{km}(\boldsymbol\xi)=0 $$
 
 其中 $i=\sqrt{-1}$ , $\boldsymbol\xi$ 为傅立叶空间中的向量，可以用单位向量表示成 $\boldsymbol\xi=\overline\xi\boldsymbol\alpha$ . 记 $A_{ik}^d=\alpha_l\alpha_j\overline L_{ijkl}^{vp}$ , 可以将式(3-15)转换成矩阵乘法 $\boldsymbol{A\cdot B=C}$ 表达:
 
 $$\boldsymbol A=\begin{bmatrix} A_{11}^d & A_{12}^d & A_{13}^d & \alpha_1\\
 A_{21}^d & A_{22}^d & A_{23}^d & \alpha_2 \\
 A_{31}^d & A_{32}^d & A_{33}^d & \alpha_3 \\
-\alpha_1 & \alpha_2 & \alpha_3 & 0\end{bmatrix}\tag{3-16a}$$
+\alpha_1 & \alpha_2 & \alpha_3 & 0\end{bmatrix} $$
 
 $$\boldsymbol B=\begin{bmatrix} \overline\xi^2\widehat G_{11} & \overline\xi^2\widehat G_{12} & \overline\xi^2\widehat G_{13} \\
 \overline\xi^2\widehat G_{21} & \overline\xi^2\widehat G_{22} & \overline\xi^2\widehat G_{23} \\
 \overline\xi^2\widehat G_{31} & \overline\xi^2\widehat G_{32} & \overline\xi^2\widehat G_{33} \\
-i\overline\xi\widehat H_1 & i\overline\xi\widehat H_2 & i\overline\xi\widehat H_3 \end{bmatrix}\tag{3-16b}$$
+i\overline\xi\widehat H_1 & i\overline\xi\widehat H_2 & i\overline\xi\widehat H_3 \end{bmatrix} $$
 
 $$\boldsymbol C=\begin{bmatrix} 1 & 0 & 0\\
 0 & 1 & 0\\
 0 & 0 & 1\\
-0 & 0 & 0\end{bmatrix}\tag{3-16c}$$
+0 & 0 & 0\end{bmatrix} $$
 
 其中 $\boldsymbol A$ 为四阶实对称矩阵，其逆矩阵（若存在）一定也是实对称矩阵， $\boldsymbol C$ 已知，则:
 
 $$\boldsymbol B=\boldsymbol A^{-1}\boldsymbol C=\begin{bmatrix} A_{11}^{-1} & A_{12}^{-1} & A_{13}^{-1}\\
 A_{21}^{-1} & A_{22}^{-1} & A_{23}^{-1}\\
 A_{31}^{-1} & A_{32}^{-1} & A_{33}^{-1}\\
-A_{41}^{-1} & A_{42}^{-1} & A_{43}^{-1}\end{bmatrix}\tag{3-17}$$
+A_{41}^{-1} & A_{42}^{-1} & A_{43}^{-1}\end{bmatrix} $$
 
 显然有:
 
-$$\overline\xi^2\widehat G_{ij}=A_{ij}^{-1}\ (i,j=1,2,3)\tag{3-18a}$$
+$$\overline\xi^2\widehat G_{ij}=A_{ij}^{-1}\ (i,j=1,2,3) $$
 
-$$i\overline\xi\widehat H_{i}=A_{4i}^{-1}\ (i=1,2,3)\tag{3-18b}$$
+$$i\overline\xi\widehat H_{i}=A_{4i}^{-1}\ (i=1,2,3) $$
 
 至此, $\widehat G_{km}(\boldsymbol\xi)$ 和 $\widehat H_{m}(\boldsymbol\xi)$ 的值可以求得，再通过傅立叶变换即可得到实数域的解。对卷积式(3-14a)求偏导，并将(3-11)代入，并考虑卷积的微分特性，可得速度梯度解:
 
-$$\widetilde {\dot u_{k,l}}=\int_{R^3}G_{ki,lj}(\boldsymbol x - \boldsymbol x')\sigma_{ij}^+(\boldsymbol x')d\boldsymbol x'\tag{3-19}$$
+$$\widetilde {\dot u_{k,l}}=\int_{R^3}G_{ki,lj}(\boldsymbol x - \boldsymbol x')\sigma_{ij}^+(\boldsymbol x')d\boldsymbol x' $$
 
 Eshelby (1957)已经证明，夹杂区域 $\Omega$ 为椭球，且本征应变为常应变且弹性模量在区域内为常张量，那么本征应力也将是常应力。故可以假设本征应力在 $\Omega$ 内为常量而在 $\Omega$ 外为 $0$ , 所以式(3-18)可以转变成求在Ω内的速度梯度 $\widetilde {\dot u_{k,l}}$ 的平均值:
 
 $$\begin{align}\widetilde {\dot u_{k,l}} &= \left(\int_{R^3}-G_{ki,lj}(\boldsymbol x - \boldsymbol x')d\boldsymbol x'\right)\overline L_{ijkl}^{vp}d_{kl}^+\\
-&=\left(-\int_{\Omega}\int_{\Omega}G_{ki,lj}(\boldsymbol x - \boldsymbol x')d\boldsymbol xd\boldsymbol x'\right)\overline L_{ijkl}^{vp}d_{kl}^+\end{align}\tag{3-20}$$
+&=\left(-\int_{\Omega}\int_{\Omega}G_{ki,lj}(\boldsymbol x - \boldsymbol x')d\boldsymbol xd\boldsymbol x'\right)\overline L_{ijkl}^{vp}d_{kl}^+\end{align} $$
 
 同时将 $G_{ki,lj}$ 用傅立叶变换表达，则有:
 
 $$\begin{align}\widetilde {\dot u_{k,l}}&=\left(\frac{1}{8\pi^3\Omega}\int_{\Omega}\int_{\Omega}\int_{R^3}\alpha_l\alpha_j\overline\xi^2\widehat G_{km}(\boldsymbol\xi)e^{-i\boldsymbol\xi(\boldsymbol x - \boldsymbol x')}d\boldsymbol\xi d\boldsymbol xd\boldsymbol x'\right)\overline L_{ijkl}^{vp}d_{kl}^+\\\
-&=T_{klij}^{vp}\overline L_{ijkl}^{vp}d_{kl}^+\end{align}\tag{3-21}$$
+&=T_{klij}^{vp}\overline L_{ijkl}^{vp}d_{kl}^+\end{align} $$
 
 $T_{klij}^{vp}$ 称为格林作用张量，在球坐标系中, $d\boldsymbol\xi = \overline\xi^2d\overline\xi sin\theta d\theta d\phi$ , $\theta$ 和 $\phi$ 为傅立叶空间的单位向量 $\boldsymbol\alpha$ 的球坐标，将式(3-18a)代入，并在轴长为 $(a,b,c)$ 的椭球体晶粒内进行积分(Berveiller et al., 1987):
 
-$$T_{klij}^{vp}=\dfrac{abc}{4\pi}\int_0^{2\pi}\int_0^{\pi}\dfrac{\alpha_l\alpha_j A_{ki}^{-1}(\boldsymbol\alpha)}{\left[\rho(\boldsymbol\alpha)\right]^3}sin\theta d\theta d\phi\tag{3-22}$$
+$$T_{klij}^{vp}=\dfrac{abc}{4\pi}\int_0^{2\pi}\int_0^{\pi}\dfrac{\alpha_l\alpha_j A_{ki}^{-1}(\boldsymbol\alpha)}{\left[\rho(\boldsymbol\alpha)\right]^3}sin\theta d\theta d\phi $$
 
 其中, $\rho(\boldsymbol\alpha)=\left[(a\alpha_1)+(b\alpha_2)+(c\alpha_3)\right]^{1/2}$ . 根据式(3-22)张量 $T_{klij}^{vp}$ 可以通过数值积分的方法计算，注意 $A_{ki}^{-1}(\boldsymbol\alpha)$ 需要在每一个积分位置 $\boldsymbol\alpha$ 都计算一次逆矩阵.
 
 进一步可以得到对称和反对称的Eshelby张量:
 
-$$S_{ijkl}^{vp}=\frac{1}{4}\left(T_{ijmn}^{vp}+T_{jimn}^{vp}+T_{ijmn}^{vp}+T_{ijnm}^{vp}\right)\overline L_{mnkl}^{vp}\tag{3-23a}$$
+$$S_{ijkl}^{vp}=\frac{1}{4}\left(T_{ijmn}^{vp}+T_{jimn}^{vp}+T_{ijmn}^{vp}+T_{ijnm}^{vp}\right)\overline L_{mnkl}^{vp} $$
 
-$$\Pi_{ijkl}^{vp}=\frac{1}{4}\left(T_{ijmn}^{vp}-T_{jimn}^{vp}+T_{ijmn}^{vp}-T_{ijnm}^{vp}\right)\overline L_{mnkl}^{vp}\tag{3-23a}$$
+$$\Pi_{ijkl}^{vp}=\frac{1}{4}\left(T_{ijmn}^{vp}-T_{jimn}^{vp}+T_{ijmn}^{vp}-T_{ijnm}^{vp}\right)\overline L_{mnkl}^{vp} $$
 
 所以:
 
-$$\boldsymbol{\widetilde d}^p=\boldsymbol S^{vp}:\boldsymbol d^+\tag{3-24a}$$
+$$\boldsymbol{\widetilde d}^p=\boldsymbol S^{vp}:\boldsymbol d^+ $$
 
-$$\boldsymbol {\widetilde {\dot w}}^p=\boldsymbol\Pi^{vp}:\boldsymbol d^+ =\boldsymbol\Pi^{vp}:\left(\boldsymbol S^{vp}\right)^{-1}:\boldsymbol{\widetilde d}^p\tag{3-24b}$$
+$$\boldsymbol {\widetilde {\dot w}}^p=\boldsymbol\Pi^{vp}:\boldsymbol d^+ =\boldsymbol\Pi^{vp}:\left(\boldsymbol S^{vp}\right)^{-1}:\boldsymbol{\widetilde d}^p $$
 
 结合式(3-24a)和式(3-7a)，可以消去本征应变率 $\boldsymbol d^+$ , 得到 $\boldsymbol{\widetilde d}^p=\boldsymbol S^{vp}:\left(\boldsymbol{\widetilde d}^p-\overline{\boldsymbol M}^{vp}:\widetilde{\boldsymbol\sigma'}\right)$ , 整理得:
 
-$$\boldsymbol{\widetilde d}^p=-\widetilde{\boldsymbol M}^{vp}:\widetilde{\boldsymbol\sigma'}\tag{3-25}$$
+$$\boldsymbol{\widetilde d}^p=-\widetilde{\boldsymbol M}^{vp}:\widetilde{\boldsymbol\sigma'} $$
 
 其中 $\widetilde{\boldsymbol M}^{vp}$ 为粘塑性相互作用张量:
 
-$$\widetilde{\boldsymbol M}^{vp}=(\boldsymbol I-\boldsymbol S^{vp}):\boldsymbol S^{vp}:\overline{\boldsymbol M}^{vp}\tag{3-26}$$
+$$\widetilde{\boldsymbol M}^{vp}=(\boldsymbol I-\boldsymbol S^{vp}):\boldsymbol S^{vp}:\overline{\boldsymbol M}^{vp} $$
 
 将式(3-25)与宏微观的塑性应变率表达式结合, 可以得到用宏观应力张量和晶粒应变张量的关系:
 
-$$\boldsymbol\sigma'=\boldsymbol B^{vp}:\boldsymbol\Sigma'+\boldsymbol b^{vp} \tag{3-27}$$
+$$\boldsymbol\sigma'=\boldsymbol B^{vp}:\boldsymbol\Sigma'+\boldsymbol b^{vp}  $$
 
 其中 $\boldsymbol B^{vp}$ 为局部化粘塑性张量:
 
-$$\boldsymbol B^{vp}=\left(\boldsymbol M^{vp} + \widetilde{\boldsymbol M}^{vp}\right)^{-1}:\left(\overline{\boldsymbol M}^{vp}+\widetilde{\boldsymbol M}^{vp}\right)\tag{3-28a}$$
+$$\boldsymbol B^{vp}=\left(\boldsymbol M^{vp} + \widetilde{\boldsymbol M}^{vp}\right)^{-1}:\left(\overline{\boldsymbol M}^{vp}+\widetilde{\boldsymbol M}^{vp}\right) $$
 
-$$\boldsymbol b^{vp}=\left(\boldsymbol M^{vp} + \widetilde{\boldsymbol M}^{vp}\right)^{-1}:\left(\boldsymbol D^0-\boldsymbol d^0\right)\tag{3-28b}$$
+$$\boldsymbol b^{vp}=\left(\boldsymbol M^{vp} + \widetilde{\boldsymbol M}^{vp}\right)^{-1}:\left(\boldsymbol D^0-\boldsymbol d^0\right) $$
 
 ### 3.3 弹性介质中弹性夹杂问题
 与粘塑性夹杂问题通过格林函数法求解类似，将求解的微分算子改变为 $\overline L_{ijkl}^e\frac{\partial^2}{\partial x_l\partial x_j}$ , 即可得到对应的弹性夹杂问题的解:
 
-$$\boldsymbol{\widetilde d}^e=\boldsymbol S^{e}:\boldsymbol d^{e+}\tag{3-29a}$$
+$$\boldsymbol{\widetilde d}^e=\boldsymbol S^{e}:\boldsymbol d^{e+} $$
 
-$$\boldsymbol {\widetilde {\dot w}}^e=\boldsymbol\Pi^{e}:\boldsymbol d^{e+} =\boldsymbol\Pi^{e}:\left(\boldsymbol S^{e}\right)^{-1}:\boldsymbol{\widetilde d}^e\tag{3-29b}$$
+$$\boldsymbol {\widetilde {\dot w}}^e=\boldsymbol\Pi^{e}:\boldsymbol d^{e+} =\boldsymbol\Pi^{e}:\left(\boldsymbol S^{e}\right)^{-1}:\boldsymbol{\widetilde d}^e $$
 
 存在 $\widetilde{\boldsymbol M}^{e}$ 弹性相互作用张量:
 
-$$\widetilde{\boldsymbol M}^{e}=(\boldsymbol I-\boldsymbol S^{e}):\boldsymbol S^{e}:\overline{\boldsymbol M}^{e}\tag{3-30}$$
+$$\widetilde{\boldsymbol M}^{e}=(\boldsymbol I-\boldsymbol S^{e}):\boldsymbol S^{e}:\overline{\boldsymbol M}^{e} $$
 
 宏观应力率和晶粒应力率的关系:
 
-$$\boldsymbol{\dot\sigma}=\boldsymbol B^e:\boldsymbol{\dot\Sigma} \tag{3-31}$$
+$$\boldsymbol{\dot\sigma}=\boldsymbol B^e:\boldsymbol{\dot\Sigma}  $$
 
 其中 $\boldsymbol B^e$ 为局部化弹性张量:
 
-$$\boldsymbol B^e=\left(\boldsymbol M^e + \widetilde{\boldsymbol M}^e\right)^{-1}:\left(\overline{\boldsymbol M}^e+\widetilde{\boldsymbol M}^e\right)\tag{3-32}$$
+$$\boldsymbol B^e=\left(\boldsymbol M^e + \widetilde{\boldsymbol M}^e\right)^{-1}:\left(\overline{\boldsymbol M}^e+\widetilde{\boldsymbol M}^e\right) $$
 
 ### 3.4 弹粘塑性自洽
 晶粒的应变率张量可以通过相互作用张量与宏观的应力以及应力率建立联系:
 
-$$\boldsymbol d = -\widetilde{\boldsymbol M}^e:(\boldsymbol\sigma^\nabla-\boldsymbol\Sigma^\nabla)-\widetilde{\boldsymbol M}^{vp}:(\boldsymbol\sigma-\boldsymbol\Sigma)\tag{3-33}$$
+$$\boldsymbol d = -\widetilde{\boldsymbol M}^e:(\boldsymbol\sigma^\nabla-\boldsymbol\Sigma^\nabla)-\widetilde{\boldsymbol M}^{vp}:(\boldsymbol\sigma-\boldsymbol\Sigma) $$
 
 根据自洽条件式(3-1), 式(3-26), 式(3-30)以及宏观应变率式(3-2):
 
 $$\overline{\boldsymbol M}^e:\boldsymbol\Sigma^\nabla+\overline{\boldsymbol M}^{vp}:\boldsymbol\Sigma+\boldsymbol D^0=\\
-\langle\boldsymbol M^e:\boldsymbol B^e\rangle:\boldsymbol\Sigma^\nabla+\langle\boldsymbol M^{vp}:\boldsymbol B^{vp}\rangle:\boldsymbol\Sigma+\langle\boldsymbol M^{vp}:\boldsymbol b^{vp}+\boldsymbol d^0\rangle\tag{3-34}$$
+\langle\boldsymbol M^e:\boldsymbol B^e\rangle:\boldsymbol\Sigma^\nabla+\langle\boldsymbol M^{vp}:\boldsymbol B^{vp}\rangle:\boldsymbol\Sigma+\langle\boldsymbol M^{vp}:\boldsymbol b^{vp}+\boldsymbol d^0\rangle $$
 
 在所有晶粒的形状和方向都相同时, 有:
 
-$$\overline{\boldsymbol M}^e=\langle\boldsymbol M^e:\boldsymbol B^e\rangle\tag{3-35a}$$
+$$\overline{\boldsymbol M}^e=\langle\boldsymbol M^e:\boldsymbol B^e\rangle $$
 
-$$\overline{\boldsymbol M}^{vp}=\langle\boldsymbol M^{vp}:\boldsymbol B^{vp}\rangle\tag{3-35b}$$
+$$\overline{\boldsymbol M}^{vp}=\langle\boldsymbol M^{vp}:\boldsymbol B^{vp}\rangle $$
 
-$$\boldsymbol D^0=\langle\boldsymbol M^{vp}:\boldsymbol b^{vp}+\boldsymbol d^0\rangle\tag{3-35c}$$
+$$\boldsymbol D^0=\langle\boldsymbol M^{vp}:\boldsymbol b^{vp}+\boldsymbol d^0\rangle $$
 
 根据Walpole (1969)和 Lebensohn 等人(1996&2004)的研究，当每个晶粒（椭球体）形状和取向不同时，有更一般的关系式:
 
-$$\overline{\boldsymbol M}^e=\langle\boldsymbol M^e:\boldsymbol B^e\rangle\:\langle\boldsymbol B^e\rangle^{-1}\tag{3-36a}$$
+$$\overline{\boldsymbol M}^e=\langle\boldsymbol M^e:\boldsymbol B^e\rangle\:\langle\boldsymbol B^e\rangle^{-1} $$
 
-$$\overline{\boldsymbol M}^{vp}=\langle\boldsymbol M^{vp}:\boldsymbol B^{vp}\rangle:\langle\boldsymbol B^{vp}\rangle^{-1}\tag{3-36b}$$
+$$\overline{\boldsymbol M}^{vp}=\langle\boldsymbol M^{vp}:\boldsymbol B^{vp}\rangle:\langle\boldsymbol B^{vp}\rangle^{-1} $$
 
-$$\boldsymbol D^0=\langle\boldsymbol M^{vp}:\boldsymbol b^{vp}+\boldsymbol d^0\rangle-\boldsymbol M^{vp}:\langle\boldsymbol b^{vp}\rangle\tag{3-36c}$$
+$$\boldsymbol D^0=\langle\boldsymbol M^{vp}:\boldsymbol b^{vp}+\boldsymbol d^0\rangle-\boldsymbol M^{vp}:\langle\boldsymbol b^{vp}\rangle $$
