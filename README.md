@@ -4,21 +4,24 @@ The cpp version of Elastic Visco-plastic Self-Consistent model
 描述单晶体大变形,即描述单晶体从初始构型（参考构型）变形到当前构型（变形后构型）时的几何变化和应力状态变化。
 
 我们定义:
+
 $\boldsymbol X$ :物质点坐标,即在晶粒参考构型中的坐标
+
 $\boldsymbol{x(X)}$ :物质点在晶粒当前构型的坐标
+
 $\boldsymbol {u=x-X}$ :物质点的位移
 
 根据有限变形理论,晶粒的变形可以通过变形梯度张量 $\boldsymbol  F$ 及速度梯度张量 $\boldsymbol l$ ,定义为:
 
-$$\boldsymbol {l} = \frac{\partial \boldsymbol {\dot u}}{\partial \boldsymbol x} = \frac{\partial \boldsymbol v}{\partial \boldsymbol x} \tag{1-1}$$
+$$\boldsymbol {l} = \frac{\partial \boldsymbol {\dot u}}{\partial \boldsymbol x} = \frac{\partial \boldsymbol v}{\partial \boldsymbol x} $$
 
-$$\boldsymbol{F}= \frac{\partial  \boldsymbol x}{\partial \boldsymbol X}= \frac{\partial \boldsymbol u}{\partial \boldsymbol X} + \boldsymbol I \tag{1-2}$$	
+$$\boldsymbol{F}= \frac{\partial  \boldsymbol x}{\partial \boldsymbol X}= \frac{\partial \boldsymbol u}{\partial \boldsymbol X} + \boldsymbol I $$	
 
 根据它们的偏微分关系,有:
-$$\boldsymbol {\dot F} = \boldsymbol {l \cdot F}  \tag{1-3}$$
+$$\boldsymbol {\dot F} = \boldsymbol {l \cdot F}  $$
 
 如图1所示,变形梯度张量 $\boldsymbol {F}$ 可以分解为:
-$$\boldsymbol {F} = \boldsymbol {F}^e \cdot \boldsymbol {F}^p \tag{1-4}$$
+$$\boldsymbol {F} = \boldsymbol {F}^e \cdot \boldsymbol {F}^p $$
 
 晶体在外力的作用下, 会发生晶格畸变,同时由于晶粒边界的约束和变形协调的要求,发生刚体转动, $\boldsymbol {F}^e$ 即表示由晶格畸变和刚体转动所产生的变形梯度, $\boldsymbol {F}^p$ 则表示晶体由于滑移/孪晶系统产生的均匀剪切产生的变形梯度。
 
@@ -31,17 +34,17 @@ $$\boldsymbol {F} = \boldsymbol {F}^e \cdot \boldsymbol {F}^p \tag{1-4}$$
 $$\begin{align}\boldsymbol l &= \boldsymbol {\dot F} \cdot \boldsymbol {F}^{-1}\\
 &= (\boldsymbol {\dot F}^e \cdot \boldsymbol { F}^p+\boldsymbol { F}^e \cdot \boldsymbol {\dot F}^p)\cdot(\boldsymbol { F}^e \cdot \boldsymbol {F}^p)^{-1}\\
 &=\boldsymbol {\dot F}^e \cdot (\boldsymbol { F}^e)^{-1} + \boldsymbol { F}^e \cdot \boldsymbol {\dot F}^p \cdot (\boldsymbol {F}^p)^{-1} \cdot  (\boldsymbol {F}^e)^{-1}\\
-\end{align}\tag{1-5}$$
+\end{align}$$
 
 令 $\boldsymbol {l}^e=\boldsymbol {\dot F}^e \cdot (\boldsymbol { F}^e)^{-1}$ , $\boldsymbol {l}^p= \boldsymbol { F}^e \cdot \boldsymbol {\dot F}^p \cdot (\boldsymbol {F}^p)^{-1} \cdot  (\boldsymbol {F}^e)^{-1}$ 则速度梯度分解成弹性和塑性部分:
-$$\boldsymbol {l} = \boldsymbol {l}^e+\boldsymbol {l}^p \tag{1-6}$$
+$$\boldsymbol {l} = \boldsymbol {l}^e+\boldsymbol {l}^p $$
 
 速度梯度张量可以分解成对称张量（应变率张量） $\boldsymbol d$ 和反对称张量（旋率张量） $\boldsymbol w$ :
-$$\boldsymbol {l = d + w}\tag{1-7}$$
+$$\boldsymbol {l = d + w} $$
 
 $\boldsymbol {l}$ 的弹性部分和塑性部分也可以进行类似的分解:
-$$\boldsymbol {l}^e = \boldsymbol {d}^e + \boldsymbol {w}^e\tag{1-8}$$
-$$\boldsymbol {l}^p = \boldsymbol {d}^p + \boldsymbol {w}^p\tag{1-9}$$
+$$\boldsymbol {l}^e = \boldsymbol {d}^e + \boldsymbol {w}^e $$
+$$\boldsymbol {l}^p = \boldsymbol {d}^p + \boldsymbol {w}^p $$
 
 单晶体材料的塑性变形由滑移或孪生引起,在图 1所示的中间构型中,晶格矢量不发生变化,记第 $\alpha$ 个滑移/孪晶系统的变形方向为 $\boldsymbol {s}^\alpha_0$、变形法向为 $\boldsymbol {n}^\alpha_0$,则发生的塑性变形:
 $$\boldsymbol {\dot F}^p \cdot (\boldsymbol {F}^p)^{-1} = \sum_\alpha \dot\gamma^\alpha\boldsymbol {s}^\alpha_0\cdot(\boldsymbol {n}^\alpha_0)^T\tag{1-10}$$
@@ -70,36 +73,36 @@ $\boldsymbol {R}^\alpha=\frac{1}{2}\left[\boldsymbol {s}^\alpha\cdot(\boldsymbol
 
 ## 2. 单晶本构关系
 设晶体的弹性性质不受滑移/孪晶变形的影响,则单晶的本构方程为:
-$$\boldsymbol\sigma^{\nabla*}+\boldsymbol\sigma\ tr(\boldsymbol{d}^e)=\boldsymbol L:\boldsymbol{d}^e\tag{2-1}$$
+$$\boldsymbol\sigma^{\nabla*}+\boldsymbol\sigma\ tr(\boldsymbol{d}^e)=\boldsymbol L:\boldsymbol{d}^e $$
 
 其中, $\boldsymbol L$ 为四阶弹性模量张量, $\boldsymbol\sigma^{\nabla*}$ 为基于中间构型的Cauchy应力张量的客观率（Jaumann率）:
-$$\boldsymbol\sigma^{\nabla*}=\boldsymbol {\dot\sigma}-\boldsymbol {w}^e\cdot\boldsymbol\sigma+\boldsymbol\sigma\cdot\boldsymbol {w}^e\tag{2-2}$$
+$$\boldsymbol\sigma^{\nabla*}=\boldsymbol {\dot\sigma}-\boldsymbol {w}^e\cdot\boldsymbol\sigma+\boldsymbol\sigma\cdot\boldsymbol {w}^e $$
 
 而基于初始构型的Cauchy应力张量的Jaumann率为:
 
 $$\begin{align}\boldsymbol{\sigma}^\nabla &= \boldsymbol{\dot\sigma}-\boldsymbol w \cdot \boldsymbol \sigma + \boldsymbol \sigma \cdot \boldsymbol w \\
 &= (\boldsymbol{\sigma}^{\nabla*}+\boldsymbol w^e\cdot\boldsymbol\sigma-\boldsymbol \sigma\cdot\boldsymbol w^e) - \boldsymbol w \cdot \boldsymbol \sigma + \boldsymbol \sigma\cdot \boldsymbol w\\
 &=\boldsymbol\sigma^{\nabla*}-(\boldsymbol {w}-\boldsymbol {w}^e)\cdot\boldsymbol\sigma+\boldsymbol\sigma\cdot(\boldsymbol {w}-\boldsymbol {w}^e)\\
-&=\boldsymbol\sigma^{\nabla*}-\boldsymbol {w}^p\cdot\boldsymbol\sigma+\boldsymbol\sigma\cdot\boldsymbol {w}^p\end{align}\tag{2-3}$$
+&=\boldsymbol\sigma^{\nabla*}-\boldsymbol {w}^p\cdot\boldsymbol\sigma+\boldsymbol\sigma\cdot\boldsymbol {w}^p\end{align} $$
 
 将式(2-3)代入单晶本构方程(2-1),得到在参考构型下的单晶本构方程:
-$$\boldsymbol{\sigma}^\nabla+\boldsymbol {w}^p\cdot\boldsymbol\sigma-\boldsymbol\sigma\cdot\boldsymbol {w}^p + \boldsymbol\sigma\ tr(\boldsymbol{d}-\boldsymbol{d}^p)=\boldsymbol L : (\boldsymbol{d}-\boldsymbol{d}^p)\tag{2-4}$$
+$$\boldsymbol{\sigma}^\nabla+\boldsymbol {w}^p\cdot\boldsymbol\sigma-\boldsymbol\sigma\cdot\boldsymbol {w}^p + \boldsymbol\sigma\ tr(\boldsymbol{d}-\boldsymbol{d}^p)=\boldsymbol L : (\boldsymbol{d}-\boldsymbol{d}^p) $$
 
 整理得到:
-$$\boldsymbol{\sigma}^\nabla= \boldsymbol {L'}:(\boldsymbol{d}-\boldsymbol{d}^p)+\boldsymbol\sigma^0\tag{2-5}$$
+$$\boldsymbol{\sigma}^\nabla= \boldsymbol {L'}:(\boldsymbol{d}-\boldsymbol{d}^p)+\boldsymbol\sigma^0 $$
 
 其中, $L_{ijkl}'=L_{ijkl}-\sigma_{ij}\delta_{kl}$ , $\sigma^0_{ij}=w^p_{ik}\sigma_{kj}-\sigma_{ik}w^p_{kj}$ , 进而得到应变率张量与客观应力率的关系:
-$$\boldsymbol d = \boldsymbol M^e:\boldsymbol\sigma^\nabla+\boldsymbol d^p + \boldsymbol w^0\tag{2-6}$$
+$$\boldsymbol d = \boldsymbol M^e:\boldsymbol\sigma^\nabla+\boldsymbol d^p + \boldsymbol w^0 $$
 
 其中 $\boldsymbol M^e=(\boldsymbol L')^{-1}$ 为弹性柔度张量, $\boldsymbol w^0=\boldsymbol M^e:\boldsymbol\sigma^0$ 
 
 根据式(1-14a),单晶的本构关系中还需要明确 $\alpha$ 滑移/孪生系的剪切应变率 $\dot\gamma^\alpha$ ,而对率相关材料, $\dot\gamma^\alpha$ 取决于变形系的分解剪切应力 $\tau^\alpha$ 、临界剪切应力 $\tau_{cr}^\alpha$ 以及率相关系数 $m$ 等:
-$$\dot\gamma^\alpha=\dot\gamma^\alpha(\tau^\alpha,\tau^\alpha_{cr},m,...)\tag{2-7}$$
+$$\dot\gamma^\alpha=\dot\gamma^\alpha(\tau^\alpha,\tau^\alpha_{cr},m,...) $$
 其中,变形系的分解剪切应力 $\tau^\alpha=\boldsymbol P^\alpha: \boldsymbol\sigma'$ ,  $\boldsymbol\sigma'$ 为应力偏张量。可以看出,这样定义的分解剪切应力 $\tau^\alpha$ 与剪切应变率 $\dot\gamma^\alpha$ 是功共轭的；而临界剪切应力 $\tau^\alpha_{cr}$ 反映了变形系的硬化/软化行为,其变化率 $\dot\tau^\alpha_{cr}$ 与当前临界剪切应力 $\tau^\alpha_{cr}$ 、其他变形系 $\beta$ 的累计剪切应变 $\gamma^\beta$ 和剪切应变率 $\dot\gamma^\beta$ 、以及孪晶系 $\kappa$ 的孪晶体积分数 $f^\kappa$ 相关:
-$$\dot\tau^\alpha_{cr}=\dot\tau^\alpha_{cr}(\tau^\alpha_{cr},\gamma^\beta,\dot\gamma^\beta,f^\kappa,...)\tag{2-8}$$
+$$\dot\tau^\alpha_{cr}=\dot\tau^\alpha_{cr}(\tau^\alpha_{cr},\gamma^\beta,\dot\gamma^\beta,f^\kappa,...) $$
 
 其中,孪晶系 $\kappa$ 的孪晶体积分数 $f^\kappa$ 的变化率为:
-$$\dot{f}^\kappa=\frac{\gamma^\kappa}{\gamma^{tw}}\tag{2-9}$$
+$$\dot{f}^\kappa=\frac{\gamma^\kappa}{\gamma^{tw}} $$
 $\gamma^{tw}$ 为孪晶系的特征剪切应变值,为常数。
 
 根据 Tomé等人的研究,对滑移系:
@@ -128,7 +131,7 @@ $$\boldsymbol W = \langle\boldsymbol w\rangle=\frac{1}{V}\int\boldsymbol w\ dV\t
 $$\boldsymbol\Sigma = \langle\boldsymbol\sigma\rangle=\frac{1}{V}\int\boldsymbol\sigma\ dV\tag{3-1c}$$
 
 $V$ 为多晶体的体积,算符〈⋯〉表示求体积平均。均匀化处理之后可以得到多晶体的本构方程:
-$$\boldsymbol D = \overline{\boldsymbol M}^e:\boldsymbol\Sigma^\nabla+\overline{\boldsymbol M}^{vp}:\boldsymbol\Sigma'+\boldsymbol D^0 \tag{3-2}$$
+$$\boldsymbol D = \overline{\boldsymbol M}^e:\boldsymbol\Sigma^\nabla+\overline{\boldsymbol M}^{vp}:\boldsymbol\Sigma'+\boldsymbol D^0  $$
 
 其中, $\overline{\boldsymbol M}^e$ , $\overline{\boldsymbol M}^{vp}$ 和 $\boldsymbol D^0$ 分别为宏观弹性模量张量,宏观粘塑性模量张量和反推项。在实际计算中,仅仅只有宏观的边界条件是已知的,而宏观的模量和各个晶粒的模量以及塑性应变都是未知的,需要利用多晶体聚合体和晶粒之间的联系来迭代求解。
 
@@ -142,11 +145,11 @@ $$\boldsymbol D = \overline{\boldsymbol M}^e:\boldsymbol\Sigma^\nabla+\overline{
 （ii）当本征应变在区域 $\Omega$ 内均匀分布,则可以通过在夹杂边界 $S$ 附加虚拟面力 $p_i^+$ ,从而使区域 $\Omega$ 产生弹性应变 $-\varepsilon_{ij}^+$ ,恢复取出时的形状,这样产生的弹性应力场为:
 
 
-$$\sigma_{ij}^+=-C_{ijkl}\varepsilon_{ij}^+\tag{3-3}$$
+$$\sigma_{ij}^+=-C_{ijkl}\varepsilon_{ij}^+ $$
 
 式中 $C_{ijkl}$ 为材料的弹性刚度, $σ_{ij}^+$ 即为对应的本征应力,虚拟面力 $p_i^+$ 为:
 
-$$p_i^+=-\sigma^{+}_{ij}n_j\tag{3-4}$$
+$$p_i^+=-\sigma^{+}_{ij}n_j $$
 
 式中 $n_j$ 为边界的外法向。至此,局部区域 $\Omega$ 已经恢复成原来的形状,只是在边界上存在虚拟面力;
 
@@ -154,13 +157,13 @@ $$p_i^+=-\sigma^{+}_{ij}n_j\tag{3-4}$$
 
 Eshebly (1957) 证明,当介质为线弹性,夹杂体形状为椭球体,而且本征应变 $\boldsymbol\varepsilon^+$ 为常应变（应变大小在夹杂体内不随位置改变）,最终求解得到的夹杂内的实际应变 $\boldsymbol\varepsilon$ 也是常应变,二者之间满足:
 
-$$\varepsilon_{ij}^+=S_{ijkl}\varepsilon_{ij}^+\tag{3-5}$$
+$$\varepsilon_{ij}^+=S_{ijkl}\varepsilon_{ij}^+ $$
 
 $S_{ijkl}$ 称为Eshebly张量,它仅与介质的弹性性质和椭球体的形状与取向有关。 $S_{ijkl}$ 关于 $i$ 和 $j$ , $k$ 和 $l$ 对称,但一般关于 $(i,j)$ 与 $(k,l)$ 不对称,故一般不具有 Voigt 对称性。
 
 ### 3.2 粘塑性介质中粘塑性夹杂问题
 将多晶体视为无限大粘塑性介质,而某一晶粒则为夹杂体。根据单晶体塑性应变率 $\boldsymbol d^p=\boldsymbol M^{vp}:\boldsymbol\sigma'+\boldsymbol d^0$ 和多晶体塑性应变率表达式 $\boldsymbol D^p=\overline{\boldsymbol M}^{vp}:\boldsymbol\Sigma'+ \boldsymbol D^0$,将单晶体的塑性应变率通过宏观粘塑性张量整理成:
-$$\boldsymbol d^p=\overline{\boldsymbol M}^{vp}:\boldsymbol\Sigma'+\boldsymbol d^0 + \boldsymbol d^+\tag{3-6}$$
+$$\boldsymbol d^p=\overline{\boldsymbol M}^{vp}:\boldsymbol\Sigma'+\boldsymbol d^0 + \boldsymbol d^+ $$
 
 这样, $\boldsymbol d^+=(\boldsymbol M^{vp}-\overline{\boldsymbol M}^{vp}):\boldsymbol\sigma'+(\boldsymbol d^0-\boldsymbol D^0)$ 则是此时的本征应变率,考虑到粘塑性刚度张量 $\overline{\boldsymbol L}^{vp}=(\overline{\boldsymbol M}^{vp})^{-1}$ ,并记 $\boldsymbol{\widetilde\sigma}'=\boldsymbol\sigma'-\boldsymbol\Sigma'$ , $\boldsymbol{\widetilde d}^p=\boldsymbol d^p-\boldsymbol D^p$ 式（3-6）可以改写成:
 $$\boldsymbol{\widetilde\sigma}'=\overline{\boldsymbol L}^{vp}:(\widetilde{\boldsymbol d}^p-\boldsymbol d^+)\tag{3-7a}$$
@@ -171,11 +174,11 @@ $$\widetilde\sigma_{ij}'(\boldsymbol x)=\overline L_{ijkl}^{vp}:(\widetilde d_{k
 
 平衡方程为:
 
-$$\sigma_{ij,j}(\boldsymbol x)=(\widetilde\sigma_{ij}(\boldsymbol x)+\Sigma_{ij}(\boldsymbol x)),j=\widetilde{\sigma}_{ij,j}(\boldsymbol x)=0\tag{3-8}$$
+$$\sigma_{ij,j}(\boldsymbol x)=(\widetilde\sigma_{ij}(\boldsymbol x)+\Sigma_{ij}(\boldsymbol x)),j=\widetilde{\sigma}_{ij,j}(\boldsymbol x)=0 $$
 
 应力张量 $\sigma_{ij}$,可以分解成球应力张量 $\sigma^p\delta_{ij}$ 与偏应力张量之和 $\sigma_{ij}'$:
 
-$$\sigma_{ij}(\boldsymbol x)=\sigma^p(\boldsymbol x)\delta_{ij}+\sigma_{ij}'(\boldsymbol x)\tag{3-9}$$
+$$\sigma_{ij}(\boldsymbol x)=\sigma^p(\boldsymbol x)\delta_{ij}+\sigma_{ij}'(\boldsymbol x) $$
 
 再结合关系式 $\widetilde d_{ij}(\boldsymbol x)=\frac{1}{2}(\widetilde {\dot u_{i,j}}+\widetilde{\dot u_{j,i}})$ 和粘塑性刚度张量关于 $k$ 和 $l$ 的对称性 $\overline L_{ijkl}^{vp}=\overline L_{ijlk}^{vp}$ , $\widetilde\sigma_{ij,j}(\boldsymbol x)$ 可以通过位移来表示:
 
