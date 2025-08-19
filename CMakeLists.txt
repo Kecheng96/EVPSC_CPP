@@ -1,15 +1,12 @@
-cmake_minimum_required(VERSION 3.0.0)
-set(CMAKE_CXX_COMPILER "C:/mingw64/bin/gcc.exe")
+cmake_minimum_required(VERSION 3.10.0)
 set(CMAKE_CXX_FLAGS_DEBUG "-O3")
-#set(CMAKE_CXX_FLAGS_DEBUG "-municode")
 
 project(EVPSC_CPP)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_EXPORTCOMPILE_COMMANDS ON)
 set(CMAKE_BUILD_TYPE Debug)
 
-set( EIGEN3_INCLUDE_DIR "C:/mingw64/include/eigen3")
-#find_package( Eigen3 3.3 REQUIRED)
+set( EIGEN3_INCLUDE_DIR "C:\\msys64\\mingw64\\include\\eigen-3.4.0")
 
 include_directories( ${EIGEN3_INCLUDE_DIR} )
 

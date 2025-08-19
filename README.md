@@ -1,4 +1,20 @@
 The cpp version of Elastic Visco-plastic Self-Consistent model
+# 环境配置
+1. Install MSYS2 from the official website: https://www.msys2.org
+2. After installation, open "MSYS2 UCRT64" from the Start menu and install the C and C++ compiler:
+   
+   ```pacman -S --needed base-devel mingw-w64-ucrt-x86_64-toolchain```
+
+   cmake:
+
+   ```pacman -S mingw-w64-ucrt-x86_64-cmake ```
+
+3. Download the eigen3.4.0 from https://eigen.tuxfamily.org/
+
+4. Open the terminal at the folder Debuginput and run the command:
+
+   ```..\build\EVPSC_CPP.exe```
+
 # Elastic visco-plastic self-consistent model
 ## 1. 晶体变形运动学
 描述单晶体大变形,即描述单晶体从初始构型（参考构型）变形到当前构型（变形后构型）时的几何变化和应力状态变化。
